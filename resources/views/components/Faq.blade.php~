@@ -1,0 +1,65 @@
+<section class="bg-white">
+<div class="flex flex-col space-x-1  md:space-x-2 mt-4 items-center justify-center text-gray-800 w-[20rem] md:w-[39rem] mx-auto
+ pb-3">
+    <header class="text-[1.1rem] md:text-[1.7rem] font-medium">Egypt Tours Frequently Asked Questions</header>
+    <article class="text-sm font-semibold text-gray-800/70">Explore Egypt Tours FAQs to get all the answers you need before embarking on your adventure.
+        From must-see attractions to visa requirements and safety concerns, Dr Boogie Egypt Tours has you covered. Discover the wonders of Egypt with
+        confidence and ease. Everything that facilitates your visit and trip to Egypt so that your Egypt tour is the best for you.
+        Anything is possible! We know you. Your desires are extraordinary and you want Egypt everything is possible! We know you.
+        Your desires are extraordinary and you want to spend a vacation in Egypt as you wish.
+        Learn a lot about the common methods during your tour And Trip in Egypt . </article>
+ </div>
+ <div class=" flex flex-col justify-center items-center mx-auto  mt-4 space-y-3">
+ @component('components.FaqButton',['id'=>'1','text'=>'What Are The Most Important Tourist Attractions To Visit?'
+ ,'itenary'=>'Egypt is home to numerous iconic attractions. Some of the important  places include the Great Pyramids of Giza, the Sphinx, Valley of the Kings, Karnak Temple Complex, Abu Simbel Temples, the Egyptian Museum in Cairo, and the vibrant city of Alexandria.'])
+ @endcomponent
+ @component('components.FaqButton',['id'=>'2','text'=>'What Is The Best Time To Visit Egypt?'
+ ,'itenary'=>'The best time to visit Egypt is during the cooler months, which are from October to April you can take a trip to Egypt during these monthes, as it is more enjoyable. The weather is more pleasant for exploring the archaeological sites and the Nile cruises. However, if you dont mind the heat, visiting during the summer months can offer lower prices and fewer crowds.'])
+ @endcomponent
+ @component('components.FaqButton',['id'=>'3','text'=>'How Many Days Are Suitable For Egypt Tours?'
+ ,'itenary'=>'The duration of your Egypt tour depends on the places you want to visit and the depth of exploration. A typical itinerary ranges from 7 to 10 days, allowing you to cover the major highlights in Cairo, Luxor, and Aswan. If you have more time, you can extend your stay to explore additional regions, such as Alexandria or the Red Sea coast.'])
+ @endcomponent
+ @component('components.FaqButton',['id'=>'4','text'=>'Is It Safe To Travel To Egypt?'
+ ,'itenary'=>'Egypt is generally a safe country to visit, and millions of tourists enjoy their trips without any issues. However, its always advisable to stay informed about the current travel advisories and follow the guidance of local authorities. Its also recommended to use reputable tour operators and exercise caution in crowded areas.'])
+ @endcomponent
+ @component('components.FaqButton',['id'=>'5','text'=>'What Should I Wear During My Egypt Tour?'
+ ,'itenary'=>'You can wear whatever clothes suit you, but it is recommended to dress modestly, especially when visiting religious or conservative areas. For both men and women, lightweight, breathable clothing made from natural fibers is ideal, such as loose-fitting pants and long skirts or dresses and shirts with sleeves. Dont forget to bring a hat, sunglasses and sunscreen to protect yourself from the sun.'])
+ @endcomponent
+ @component('components.FaqButton',['id'=>'6','text'=>'Are Egypt Safe For Travelers From All Over The World?'
+ ,'itenary'=>'Yes, Egypt is very safe for tourists for you and your family. However, it is advised to stay informed of current travel warnings, follow local guidelines, and practice common travel safety precautions to ensure a safe and enjoyable trip'])
+ @endcomponent
+ @component('components.FaqButton',['id'=>'7','text'=>'Why Dr Boogie Egypt Tours The Best For Booking Your Trip To Egypt?'
+ ,'itenary'=>'Dr Boogie Egypt Tours is considered one of the advanced companies in the field of tourism and various trips in Egypt and offers a wide range of benefits to its customers. Rest assured that your trip with us is an experience of a lifetime that will leave you yearning for more. Here are some reasons why Dr Boogie Egypt Tours should be your companion on your trip
+- Customer reviews: Various on TripAdvisor - Excellent customer service - Easy payment - Our river cruises and various fun classic excursion packages. Competitive prices.'])
+ @endcomponent
+ @component('components.FaqButton',['id'=>'8','text'=>'What Are The Transportation Options Within Egypt?'
+ ,'itenary'=>'Transportation options include domestic flights, trains, buses, taxis and private transport. Nile River cruises are also popular for traveling between Luxor and Aswan. All means of transportation are available to you. You must choose the most appropriate for you and your Egypt trip.
+'])
+ @endcomponent
+ @component('components.FaqButton',['id'=>'9','text'=>'Is It Necessary To Hire A Guide For Egypt Tours?'
+ ,'itenary'=>'Although not mandatory, hiring a knowledgeable guide will enhance your experience by providing insight into Egypt history, culture and attractions. At Dr Boogie Egypt Tours, we have a team with experience in the field of tourism that can accompany you throughout your trip
+'])
+ @endcomponent
+ @component('components.FaqButton',['id'=>'10','text'=>'What Should I Pack For My Egypt Tour?'
+ ,'itenary'=>'Essential items to pack include comfortable clothes to help you have a more comfortable trip, sunscreen to protect from the suns rays, sunglasses, a hat, insect repellent, sturdy walking shoes, and a camera to document every moment you spend during your Egypt tours.
+'])
+ @endcomponent
+ </div>
+</section>
+<script>
+    const Ques_Button=document.querySelectorAll('[id^="Quest_"]')
+    const Answers=document.querySelectorAll('[id^="Answer_"]')
+    const PlusSign = document.querySelectorAll('[id^="plusSign_"]');
+    const MinusSign = document.querySelectorAll('[id^="MinusSign_"]');
+    Ques_Button.forEach(function (btn, index) {
+        btn.addEventListener("click", function () {
+            console.log(index)
+            Answers[index].classList.toggle("max-h-96");
+            Answers[index].classList.toggle("max-h-0");
+            setTimeout(() => {
+                PlusSign[index].classList.toggle("hidden");
+                MinusSign[index].classList.toggle("hidden");
+            }, 100);
+        });
+    });
+</script>

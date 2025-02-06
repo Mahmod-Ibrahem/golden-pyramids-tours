@@ -1,0 +1,46 @@
+<section id="TailorMade" class="bg-[#f9f9f9] md:py-12">
+    <div class="parent_container  space-y-8">
+        <header>
+            <h1
+                id="tailorHeader"
+                class="parent_header    border-orange-500/60 ">
+                Tailor Your Dream Tour
+            </h1>
+        </header>
+        <div class="flex flex-col  items-center flex-nowrap mx-auto gap-8
+             md:flex-row md:justify-between md:max-w-7xl  w-full  md:gap-0">
+
+            <div id="left_container"
+                 class="flex flex-col bg-white rounded-2xl shadow-md items-center p-8
+                 md:max-w-[680px] md:p-20 md:">
+                <h3 class="font-bold text-base text-Primary/95 md:text-[1.1rem]">25% OFF SALE</h3>
+                <h2 class="text-2xl font-bold text-[#ff6700] tracking-wide md:text-3xl ">TOUR OF YOUR DREAMS</h2>
+            </div>
+
+            <div id="right_container"
+                 class="flex flex-col bg-white  gap-6 rounded-2xl shadow-md max-w-[350px] md:max-w-[680px] p-6">
+                <h1 class="font-medium text-gray-600 select-none">At Mr Egypt Torus, we specialize in designing
+                    remarkable Egypt tours that highlight the country's rich cultural heritage, luxurious
+                    accommodations, and thrilling adventures. Our services include custom vacation packages, precise
+                    flight bookings, exciting cruises, and convenient car rentals. Experience the magic of Egypt with
+                    our specially curated Easter tours and romantic honeymoon escapes. Discover Egypt's top attractions
+                    through meticulously crafted day trips to Cairo, Hurghada, Sharm El Sheikh, and embark on
+                    extraordinary journeys from Hurghada Resort to the awe-inspiring Abu Simbel.
+
+                    We bring Egypt's ancient history to life, exploring the mysteries of the Pharaohs, the treasures of
+                    King Tutankhamun, the majestic pyramids of Giza, and the scenic beauty of Alexandria's coastline.
+                    Each tour reflects our commitment to crafting unforgettable experiences with an emphasis on history,
+                    luxury, and adventure.</h1>
+            </div>
+        </div>
+        <a href="{{route('TailorMade.index')}}">
+            <button id="tailorButton"
+                    type="button"
+                    class="main_button bg-main w-full  uppercase shadow-[0px_5px_0px_0px_rgba(0,0,0,0.25)] shadow-blue-800 hover:shadow-none
+                    hover:translate-y-[5px] transition-all duration-1000 px-10 py-3">
+                Tailor Made Your Egypt Tour !
+            </button>
+        </a>
+
+    </div>
+</section>

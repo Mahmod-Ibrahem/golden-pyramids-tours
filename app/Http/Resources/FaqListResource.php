@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Http\Resources;
+
+use Illuminate\Http\Request;
+use Illuminate\Http\Resources\Json\JsonResource;
+
+class FaqListResource extends JsonResource
+{
+    /**
+     * Transform the resource into an array.
+     *
+     * @return array<string, mixed>
+     */
+    public function toArray(Request $request): array
+    {
+        $locale=request('locale');
+        return [
+            'id' => $this->id,
+            'answer' => $this->getTranslation('answer',$locale),
+            'question' => $this->getTranslation('question',$locale),
+        ];
+    }
+}

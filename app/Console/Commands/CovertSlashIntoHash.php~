@@ -1,0 +1,41 @@
+<?php
+
+namespace App\Console\Commands;
+
+use App\Models\TourTranslation;
+use Illuminate\Console\Command;
+
+class CovertSlashIntoHash extends Command
+{
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'app:covert-slash-into-hash';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Convert Slash In Tour Itenary_description column in db Into ###';
+
+    /**
+     * Execute the console command.
+     */
+    public function handle()
+    {
+        $tours=TourTranslation::all();
+        $progressBar = $this->output->createProgressBar($tours->count());
+        foreach($tours as $tour)
+        {
+            $tour->itenary_section=str_replace('/', '###', $tour->itenary_section);
+            $tour->save();
+            $progressBar->advance();
+        }
+        $progressBar->finish();
+        echo '/n';
+        $this->info('completed');
+    }
+}

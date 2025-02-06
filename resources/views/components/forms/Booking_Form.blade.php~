@@ -1,0 +1,98 @@
+<div class="bg-white  rounded-xl pt-6 px-6 h-fit md:w-96 border-[] border-main/80">
+    <h1
+     class="text-xl md:text-3xl font-medium text-main pb-3 mb-6  text-center border-b-2 border-Primary/20">
+     Booking Form</h1>
+
+    <form method="POST" action="{{route('booking.checkout',['tour'=>$tour])}}">
+       @csrf
+        <div class="flex flex-col items-center gap-7">
+
+            <div class="relative bg-white">
+
+                <input id='name' name="name" value="{{ old('name') }}" required
+                class="peer input_style" placeholder="FullName" autocomplete="off">
+                <label for="name" class="input_label_style">
+                     FullName</label>
+            </div>
+
+            <div class="relative bg-white">
+
+                <input id='email' name="email" value="{{ old('email') }}" required
+                class="peer input_style" placeholder="email" autocomplete="off">
+
+                <label for="email" class="input_label_style">
+                     E-mail</label>
+
+            </div>
+
+            <div class="relative bg-white">
+
+                <input id='phone' name="phone" value="{{ old('phone') }}" required
+                class="peer input_style" placeholder="phone" autocomplete="off">
+
+                <label for="email" class="input_label_style">
+                     Phone</label>
+            </div>
+
+            <div class="relative bg-white">
+
+                <input id='nationality' name="nationality" value="{{ old('nationality') }}" required
+                class="peer input_style" placeholder="Country" autocomplete="off">
+
+                <label for="nationality" class="input_label_style">
+                    Nationality</label>
+            </div>
+
+            <div class="relative bg-white">
+
+                <input id='Adult' type="number" name="Adult" value="{{ old('Adult') }}" required
+                class="peer input_style" placeholder="Adult" autocomplete="off">
+
+                <label for="Adult" class="input_label_style">
+                     Adult</label>
+            </div>
+
+
+            <div class="relative bg-white">
+
+                <input id='Children_under_12'  type="number" name="Children_under_12" value="{{ old('Children_under_12') }}"
+                       class="peer input_style" placeholder="Children_under_12" autocomplete="off">
+
+                <label for="Children_under_12" class="input_label_style">
+                    Children Under 12</label>
+            </div>
+
+            <div class="relative bg-white">
+
+                <input id='Children_under_6' type="number" name="Children_under_6" value="{{ old('Children_under_6') }}"
+                       class="peer input_style" placeholder="Children Under 6" autocomplete="off">
+
+                <label for="Children_under_6" class="input_label_style">
+                    Children Under 6</label>
+            </div>
+
+            <div class="relative bg-white">
+
+                <input id='students' type="number" name="students" value="{{ old('students') }}"
+                       class="peer input_style" placeholder="Students" autocomplete="off">
+
+                <label for="students" class="input_label_style">
+                    Students</label>
+            </div>
+
+            <div class="relative bg-white">
+
+                <input id='Date' type="date" name="Date" value="{{ old('Date') }}" required
+                class="peer input_style" placeholder="Date" autocomplete="off">
+
+                <label for="Date" class="input_label_style">
+                     Date</label>
+
+            </div>
+      <button type="submit"
+            class="main_button w-full py-3 uppercase shadow-[0px_5px_0px_0px_rgba(0,0,0,0.25)] shadow-blue-800 hover:shadow-none hover:translate-y-[5px] transition-all duration-1000 bg-main">
+          Confirm
+        </button>
+       </div>
+    </form>
+</div>

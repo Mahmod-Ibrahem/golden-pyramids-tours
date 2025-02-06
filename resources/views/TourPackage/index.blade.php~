@@ -1,0 +1,13 @@
+@extends('layout.layouts')
+@section('content')
+    <section class="relative md:bg-fixed md:h-screen h-[50vh]  w-full"
+             style="background-image: url('{{ asset('Images/contact.jpg') }}'); background-size: cover; background-repeat: no-repeat; background-position: center;"
+    >
+        <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center px-2">
+            <h1 class="backgroundImageHeader">
+                {{__("Discover Top Tour Packages with Infinite Adventures")}}
+            </h1>
+        </div>
+    </section>
+    @component('components.Sections.TourPackagesCategory',['categories'=>$category])@endcomponent
+@endsection

@@ -1,0 +1,39 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+    /*SideBar*/
+    .parent_container {
+        @apply flex flex-col items-center justify-center
+    }
+
+    .child_container {
+        @apply flex flex-col mb-5  md:flex-row justify-center items-center  md:flex-wrap
+    }
+
+    .sidebar_router{
+        @apply flex items-center p-2 rounded transition-colors hover:bg-black/30 hover:cursor-pointer
+    }
+
+    /*Table*/
+    .managmenet_container {
+        @apply bg-white border-2 p-4 rounded-lg shadow animate-fade-in-down mx-auto sm:w-[22rem]  md:w-auto
+        md:max-w-full sm:overflow-x-auto lg:overflow-visible
+    }
+
+    .table_tag {
+        @apply table-auto w-full overflow-x-auto border-r-2 border-l-2
+    }
+
+    .table-body {
+        @apply  font-medium
+    }
+
+    .table-header {
+        @apply text-3xl font-semibold sm:ml-6 md:ml-0
+    }
+    /*End oF Table*/
+
+}

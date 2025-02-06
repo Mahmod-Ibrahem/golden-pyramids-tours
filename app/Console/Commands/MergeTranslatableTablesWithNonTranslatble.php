@@ -1,0 +1,101 @@
+<?php
+
+namespace App\Console\Commands;
+
+use App\Models\Faq;
+use Illuminate\Console\Command;
+
+class MergeTranslatableTablesWithNonTranslatble extends Command
+{
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'app:merge-translatable-tables-with-non-translatble';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Command description';
+
+    /**
+     * Execute the console command.
+     */
+    public function handle()
+    {
+        $faqs = Faq::with('translations')->get();
+        Faq::query()->delete();
+        foreach ($faqs as $faq) {
+            $answer=['en' => $faq->translations[0]->answer];
+            $question=['en' => $faq->translations[0]->answer];
+            Faq::create([
+                'question' => $question, // Fixing structure
+                'answer' => $answer
+            ]);
+        }
+        $CategoryTranslations = \App\Models\CategoryTranslation::all();
+        foreach ($CategoryTranslations as $CategoryTranslation) {
+            $category = \App\Models\Category::where('id', $CategoryTranslation->category_id)->first();
+            $category->name = [
+                'en'=>$CategoryTranslation->name
+            ];
+            $category->header =  [
+                'en'=>$CategoryTranslation->header
+            ];
+            $category->description =  [
+                'en'=>$CategoryTranslation->description
+            ];
+            $category->bg_header =  [
+                'en'=>$CategoryTranslation->bg_header
+            ];
+            $category->title_meta =  [
+                'en'=>$CategoryTranslation->title_meta
+            ];
+            $category->description_meta =  [
+                'en'=>$CategoryTranslation->description_meta
+            ];
+            $category->save();
+        }
+
+        $tourTranslations = \App\Models\TourTranslation::all();
+        foreach ($tourTranslations as $tourTranslation) {
+            $tour = \App\Models\Tour::where('id', $tourTranslation->tours_id)->first();
+            $tour->slug = [
+                'en'=>$tourTranslation->slug
+            ];
+            $tour->title = [
+                'en'=>$tourTranslation->title
+            ];
+            $tour->description =  [
+                'en'=>$tourTranslation->description
+            ];
+            $tour->itenary_title = [
+                'en'=>$tourTranslation->itenary_title
+            ];
+            $tour->itenary_section = [
+                'en'=>$tourTranslation->itenary_section
+            ];
+            $tour->included = [
+                'en'=>$tourTranslation->included
+            ];
+            $tour->excluded = [
+                'en'=>$tourTranslation->excluded
+            ];
+            $tour->duration = [
+                'en'=>$tourTranslation->duration
+            ];
+            $tour->places = [
+                'en'=>$tourTranslation->places
+            ];
+            $tour->locations = [
+                'en'=>$tourTranslation->locations
+            ];
+            $tour->save();
+        }
+        $this->info('done');
+
+    }
+}

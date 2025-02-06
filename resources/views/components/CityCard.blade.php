@@ -1,0 +1,13 @@
+<div class="group relative    border-2 border-dotted bg-white
+ rounded-lg mr-4 shadow hover:cursor-pointer mb-7  w-[18rem]">
+    <div class="w-[18rem] h-[18rem]  overflow-hidden">
+    <a href="{{route('Blog.show',$city->slug)}}">
+        <img class=" transition-all duration-300 hover:scale-110 w-[18rem] h-[18rem]"
+     src="{{$city->image}}" alt="Product Image"></a>
+    </div>
+    <div class="p-4  md:pl-4 h-[4.5rem]  max-w-[18rem]">
+        <a href="{{route('Blog.show',[$city,$city->id])}}">
+            <p class="text-[1.05rem] font-bold tracking-wide text-[#1A2B48] ">{{$city->name}}</p>
+        </a>
+    </div>
+</div>
