@@ -9,12 +9,14 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/user', [AuthController::class, 'getUser']);
     Route::apiResource('/categories', CategoryController::class);
-    Route::put('/createCategoryTranslation/{categoryId}', [\App\Http\Controllers\Api\CategoryController::class,'createCategoryTranslation']);
-    Route::get('/getCategoryForTranslation/{categoryId}', [\App\Http\Controllers\Api\CategoryController::class,'getCategoryForTranslation']);
+    Route::put('/createCategoryTranslation/{category}', [\App\Http\Controllers\Api\CategoryController::class,'createCategoryTranslation']);
+    Route::get('/getCategoryForTranslation/{category}', [\App\Http\Controllers\Api\CategoryController::class,'getCategoryForTranslation']);
     /** Tours*/
     Route::apiResource('/products', ProductController::class);
     Route::delete('/products/deleteImage/{id}', [ProductController::class, 'deleteImage']);
     Route::put('/addImageToTour/{id}', [ProductController::class, 'addImages']);
+    Route::get('getTourForTranslation/{tourId}', [ProductController::class, 'getTourForTranslation']);
+    Route::put('/createTourTranslation/{tourId}', [ProductController::class, 'createTourTranslation']);
     /*Reviews */
     Route::get('/reviews', [\App\Http\Controllers\ReviewController::class, 'getReviews']);
     Route::get('/review/{id}', [\App\Http\Controllers\ReviewController::class, 'getReview']);

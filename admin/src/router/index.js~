@@ -19,7 +19,6 @@ import BlogsTranslationForm from "../views/Blogs/BlogsTranslationForm.vue";
 import CityTranslationForm from "../views/City/CityTranslationForm.vue";
 import FaqTranslationForm from "../views/Faq/FaqTranslationForm.vue";
 import CategoryTranslationForm from "../views/Category/CategoryTranslationForm.vue";
-import ProductTranslationForm from "../views/Products/ProductTranslationForm.vue";
 
 const routes = [
     {
@@ -53,7 +52,7 @@ const routes = [
             {
                 path: "productTranslate/:id",
                 name: "app.product.translation",
-                component: ProductTranslationForm,
+                component: ProductForm,
             },
             {
                 path: "products/Images/:id",

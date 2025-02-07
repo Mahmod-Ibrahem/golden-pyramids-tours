@@ -15,6 +15,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('/products', ProductController::class);
     Route::delete('/products/deleteImage/{id}', [ProductController::class, 'deleteImage']);
     Route::put('/addImageToTour/{id}', [ProductController::class, 'addImages']);
+    Route::get('getProductForTranslation/{tourId}', [ProductController::class, 'getTourForTranslation']);
+    Route::put('/createProductTranslation/{tourId}', [ProductController::class, 'createTourTranslation']);
     /*Reviews */
     Route::get('/reviews', [\App\Http\Controllers\ReviewController::class, 'getReviews']);
     Route::get('/review/{id}', [\App\Http\Controllers\ReviewController::class, 'getReview']);

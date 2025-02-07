@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -10,10 +11,12 @@ use Spatie\Translatable\HasTranslations;
 
 class Tour extends Model
 {
-    use HasFactory,HasTranslations;
+    use HasFactory, HasTranslations, Sluggable;
 
-    protected $fillable = ['category_id', 'group', 'preference', 'tour_cover', 'price_per_person', 'price_two_five', 'price_six_twenty'];
-    protected $translatable = ['tours_id', 'slug', 'locale', 'title', 'description', 'itenary_title', 'itenary_section', 'included', 'excluded', 'duration', 'locations','places'];
+    protected $fillable = ['category_id', 'group', 'preference', 'tour_cover', 'price_per_person', 'price_two_five', 'price_six_twenty',
+        'slug', 'locale', 'title', 'description', 'itenary_title', 'itenary_section', 'included', 'excluded', 'duration', 'locations', 'places'];
+
+    protected $translatable = ['slug', 'title', 'description', 'itenary_title', 'itenary_section', 'included', 'excluded', 'duration', 'locations', 'places'];
 
 
     public function category()
@@ -29,6 +32,16 @@ class Tour extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class, 'tour_id', 'id');
+    }
+
+    public function sluggable(): array
+    {
+        return [
+            'slug' => [
+                'source' => 'title',
+                'onUpdate' => true
+            ]
+        ];
     }
 
 

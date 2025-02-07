@@ -18,7 +18,7 @@
                      focus:outline-none
                      focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Search">
             </div>
-            <span class="mt-4">Found {{ products.total }} products</span>
+            <span class="mt-4">Found {{ products.total }} Tours</span>
         </div>
         <table class="table_tag">
             <thead>
@@ -116,6 +116,17 @@
                             <MenuItems
                                 class="absolute z-10 right-0 mt-2 w-32 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                 <div class="px-1 py-1">
+                                    <MenuItem v-slot="{ active }">
+                                        <RouterLink :to="{ name: 'app.product.translation', params: { id: product.id } }"
+                                                    :class="[
+                                                active ? 'bg-indigo-600 text-white' : 'text-gray-900',
+                                                'group flex w-full items-center rounded-md px-2 py-2 text-sm',
+                                            ]">
+                                            <PencilIcon :active="active" class="mr-2 h-5 w-5 text-indigo-400"
+                                                        aria-hidden="true"/>
+                                            Tour Translate
+                                        </RouterLink>
+                                    </MenuItem>
                                     <MenuItem v-slot="{ active }">
                                         <RouterLink :to="{ name: 'app.products.edit', params: { id: product.id } }"
                                                     :class="[
@@ -234,10 +245,6 @@ function sortProduct(field) {
     }
 
     getProducts()
-}
-
-function editProduct(product) {
-    emit('clickEdit', product)
 }
 
 // function deleteProduct(product) {

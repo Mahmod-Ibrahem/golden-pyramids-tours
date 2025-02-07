@@ -27,7 +27,7 @@ class ProductResource extends JsonResource
             'places' => $this->getTranslation('places',$locale),
             'included' => $this->getTranslation('included',$locale),
             'excluded' => $this->getTranslation('excluded',$locale),
-            'locations' => $this->locations ? implode('/', json_decode($this->getTranslation('locations',$locale))) : null,
+            'locations' => $this->locations ? implode('/', json_decode($this->locations)) : null,
             'itenary_title' => $this->getTranslation("itenary_title",$locale),
             'itenary_section' => $this->getTranslation('itenary_section',$locale),
             'tourCover' => $this->tour_cover,

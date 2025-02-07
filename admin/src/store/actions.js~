@@ -69,6 +69,10 @@ export function createProduct({commit}, product) {
     return axiosClient.post('/products', product)
 }
 
+export function createProductTranslation(__, product) {
+    return axiosClient.put(`/createProductTranslation/${product.id}`, product)
+}
+
 export function updateProduct({commit}, product) {
     const id = product.id;
     if (product.tour_cover instanceof File) {
@@ -106,7 +110,9 @@ export function getProduct({}, {productId,locale}={}) {
     return axiosClient.get(`/products/${productId}`,{params:{locale}})
 }
 
-
+export function getProductForTranslation({commit,state},id){
+    return axiosClient.get(`/getProductForTranslation/${id}`)
+}
 export function deleteProductImage({commit},id) {
     //Images hena hya kol al product with image ana 8lt fi al def bta3ha
     return axiosClient.delete(`/products/deleteImage/${id}`)
@@ -133,7 +139,6 @@ export function getCategories({commit},{locale}={}) {
 }
 
 export function getCategory({commit}, {id,locale}={}) {
-    // debugger
     return axiosClient.get(`/categories/${id}`,{params:{locale}})
 }
 
@@ -152,6 +157,9 @@ export function createCategory({commit}, category) {
         category = form;
     }
     return axiosClient.post('/categories', category)
+}
+export function createCategoryTranslation(__, category) {
+    return axiosClient.put(`/createCategoryTranslation/${category.id}`, category)
 }
 
 export function updateCategory({commit}, category) {
@@ -212,24 +220,7 @@ export function updateReview({commit}, review) {
 export function deleteReview({commit}, id) {
     return axiosClient.delete(`/review/${id}`)
 }
-
-export function getNonTranslatedTours({commit}) {
-    return axiosClient.get('/getNonTranslatedTours').then(({data}) => {
-        return data
-    })
-}
-
-export function TranslateNewTour({commit}, product) {
-    return axiosClient.post('/translateNewTour', product)
-}
-
-export function updateTourTranslation({commit}, product) {
-    product['locale']='sp'
-    return axiosClient.put(`/updateTranslationOfTour/${product.tourTranslationId}`, product)
-}
-
-
-                                                            /* Faqs */
+                                                                        /* Faqs */
 export function getFaqs({commit}) {
     return axiosClient.get('/faqs').then(({data}) => {
         commit('setFaqs', data)
