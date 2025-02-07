@@ -31,7 +31,11 @@ class ProductController extends Controller
         $search = request('search');
         $perPage = request('perPage', 10);
         $locale = request('locale');
-        $products = Tour::where('title->'.$locale, '!=', '')->orderBy($SortField, $SortDirection);
+        $products = Tour::where('title->'.$locale, '!=', '')
+            ->with(['category.categoryTranslations', 'tourTranslations' => function ($query) use ($locale) {
+                $query->where('locale', $locale); // Limit loaded translations to the given locale
+            }])
+            ->orderBy($SortField, $SortDirection);
 
         if ($search) {
             $products->where(function ($query) use ($search) {

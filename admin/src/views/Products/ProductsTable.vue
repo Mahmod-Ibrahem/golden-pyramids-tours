@@ -77,18 +77,18 @@
             </tr>
             </tbody>
             <tbody v-else class="table-body">
-            <tr v-for="(product, index) of products.data">
+            <tr v-for="(product) of products.data">
                 <td class="border-b p-2 ">{{ product.id }}</td>
                 <td class="border-b p-2 ">{{ product.group }}</td>
 
                 <td class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis ">
-                    {{ product.category?.category_translations[0]?.name ||  product.group }}
+                    {{ product.category }}
                 </td>
                 <td class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis ">
                     {{ product.preference ?? 'Not Exist' }}
                 </td>
                 <td class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis ">
-                    {{ product.tour_translations[0].title }}
+                    {{ product.title }}
                 </td>
                 <td class="border-b p-2">
                     <img class="w-16 h-16 object-cover" :src="product.tour_cover" :alt="product.title">
@@ -96,7 +96,7 @@
                 <td class="border-b p-2  ">
                     ({{ product.price_per_person }},{{ product.price_two_five }},{{ product.price_six_twenty }})$
                 </td>                <td class="border-b p-2  ">
-                {{product.tour_translations[0].duration }}
+                {{product.duration }}
                 </td>
                 <td class="border-b p-2 ">
                     <Menu as="div" class="relative inline-block text-left">

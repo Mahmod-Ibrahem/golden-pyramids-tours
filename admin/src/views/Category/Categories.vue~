@@ -12,7 +12,9 @@
   <CategoriesTable @click-edit="EditProduct"></CategoriesTable>
 </template>
 <script setup>
+import store from '../../store';
 import CategoriesTable from "./CategoriesTable.vue";
+
 </script>
 
 <style scoped></style>

@@ -153,6 +153,9 @@ export function createCategory({commit}, category) {
     }
     return axiosClient.post('/categories', category)
 }
+export function createCategoryTranslation(__, category) {
+    return axiosClient.put(`/createCategoryTranslation/${category.id}`, category)
+}
 
 export function updateCategory({commit}, category) {
     const id = category.id;
@@ -176,7 +179,10 @@ export function updateCategory({commit}, category) {
     }
     return axiosClient.post(`/categories/${id}`, category);
 }
-
+export function getCategoryForTranslation(__, categoryId) {
+    return axiosClient.get(`/getCategoryForTranslation/${categoryId}`)
+}
+    /* Reviews*/
 export function getReviews(
     {commit},
     {url = null, search = null, sortField, sortDirection,perPage} = {}
@@ -225,19 +231,7 @@ export function updateTourTranslation({commit}, product) {
     return axiosClient.put(`/updateTranslationOfTour/${product.tourTranslationId}`, product)
 }
 
-export function getNonTranslatedCategories({commit}) {
-    return axiosClient.get('/getNonTranslatedCategories').then(({data}) => {
-        return data
-    })
-}
 
-export function createCategoryTranslation({commit}, category) {
-    return axiosClient.post('/translateNewCategory', category)
-}
-
-export function updateCategoryTranslation({commit}, category) {
-    return axiosClient.put(`/updateTranslationOfCategory/${category.categoryTranslationId}`, category)
-}
                                                             /* Faqs */
 export function getFaqs({commit}) {
     return axiosClient.get('/faqs').then(({data}) => {

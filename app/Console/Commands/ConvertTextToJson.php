@@ -29,28 +29,29 @@ class ConvertTextToJson extends Command
         $blogs = \App\Models\Blog::all();
         foreach ($blogs as $blog)
         {
-            $blog->slug = [
-                'en' => $blog->slug
-            ];
-            $blog->title = [
-                'en' => $blog->title
-            ];
-            $blog->blog = [
-                'en' => $blog->blog
-            ];
+            $blog->slug = json_encode([
+                'en'=>$blog->slug
+            ]);
+            $blog->title = json_encode([
+                'en'=>$blog->title
+            ]);
+            $blog->blog = json_encode([
+                'en'=>$blog->blog
+            ]);
             $blog->save();
         }
 
-        /*City*/
+//        /*City*/
         $cities=City::all();
         foreach ($cities as $city)
         {
-            $city->slug = [
-                'en' => $city->slug
-            ];
-            $city->name = [
-                'en' => $city->name
-            ];
+            $this->info($city->slug);
+            $city->slug = json_encode([
+                'en'=>$city->slug
+            ]);
+            $city->name = json_encode([
+                'en'=>$city->name
+            ]);
             $city->save();
         }
         $this->info('Done');

@@ -18,6 +18,7 @@ class CategoryResource extends JsonResource
         $locale=request('locale');
         return [
             'id' => $this->id,
+            'categoryTranslationId' => $this->id,
             'type' => $this->type,
             'header' => $this->getTranslation('header',$locale),
             'description' => $this->getTranslation('description',$locale),

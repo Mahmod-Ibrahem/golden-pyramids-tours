@@ -29,6 +29,7 @@ class CategoryRequeust extends FormRequest
             'name' => 'bail|required',
             'title_meta'=> 'bail|required',
             'description_meta' => 'bail|required',
+            'locale' => 'bail|required|in:en,sp',
         ];
 
         if($this->isMethod('POST')) {

@@ -12,7 +12,7 @@ class City extends Model
     use HasFactory ,Sluggable,HasTranslations;
 
     protected $fillable=['name','slug','image'];
-    public $translatable =['name'];
+    public $translatable =['name','slug'];
     public function blogs()
     {
         return $this->hasMany(Blog::class);

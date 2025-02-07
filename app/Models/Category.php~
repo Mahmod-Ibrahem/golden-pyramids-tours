@@ -2,24 +2,32 @@
 
 namespace App\Models;
 
+use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Translatable\HasTranslations;
 
 class Category extends Model
 {
-    use HasFactory , HasTranslations;
-    protected $fillable=['type','image'];
-//    public $translatable=['name','header','bg_header','description','title_meta','description_meta'];
+    use HasFactory , HasTranslations,Sluggable;
+    protected $fillable=['type','image','title_meta','description_meta','name','header','bg_header','description','slug'];
+    public $translatable=['slug','name','header','bg_header','description','title_meta','description_meta'];
 
     public function tours()
     {
         return $this->hasMany(Tour::class);
     }
 
-    public function categoryTranslations()
+    public function sluggable(): array
     {
-        return $this->hasMany(CategoryTranslation::class);
+        return [
+            'slug' => [
+                'source' => 'name'
+            ]
+        ];
     }
-
+    public function getRouteKeyName()
+    {
+        return 'id'; // Or 'slug' if you want to resolve by slug
+    }
 }

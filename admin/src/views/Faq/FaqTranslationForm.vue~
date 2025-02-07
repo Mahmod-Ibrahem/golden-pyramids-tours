@@ -8,7 +8,7 @@
         <Spinner v-if="loading"
                  class="absolute left-0 top-0 bg-white right-0 bottom-0 flex items-center justify-center"/>
         <form v-else @submit.prevent="onSubmit">
-            <div class="bg-white px-4  pb-4">
+            <div class="bg-white px-4 pt-5 pb-4">
                 <div class=" mb-2">
                     <select
                         name="type" v-model="faq.locale"
@@ -19,10 +19,8 @@
                         </option>
                     </select>
                 </div>
-            <div class="bg-white px-4 pt-5 pb-4">
                 <CustomInput class="mb-2" v-model="faq.question" label="Question" :errors="errors.question"/>
                 <CustomInput class="mb-2" v-model="faq.answer" label="Answer" :errors="errors.answer"/>
-            </div>
             </div>
             <footer class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                 <button type="submit"

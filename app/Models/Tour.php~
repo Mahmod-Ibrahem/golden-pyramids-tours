@@ -13,7 +13,7 @@ class Tour extends Model
     use HasFactory,HasTranslations;
 
     protected $fillable = ['category_id', 'group', 'preference', 'tour_cover', 'price_per_person', 'price_two_five', 'price_six_twenty'];
-    protected $translatable = ['tours_id', 'slug', 'locale', 'title', 'description', 'itenary_title', 'itenary_section', 'included', 'excluded', 'duration', 'locations','places'];
+    protected $translatable = ['tours_id', 'slug', 'locale', 'title', 'description', 'itenary_title', 'itenary_section', 'included', 'excluded', 'duration', 'locations'];
 
 
     public function category()

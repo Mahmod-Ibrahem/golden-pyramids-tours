@@ -14,7 +14,7 @@ class FaqController extends Controller
     public function index()
     {
         $locale=request('locale');
-        return FaqListResource::collection(Faq::whereNotNull('question->'.$locale)->get());
+        return FaqListResource::collection(Faq::where('question->'.$locale,'!=','')->get());
     }
 
     public function show(Faq $faq)
@@ -28,13 +28,13 @@ class FaqController extends Controller
         return new FaqResource($faq);
     }
 
-    public function update(FAQRequest $request, FaqTranslation $faq)
+    public function update(FAQRequest $request, Faq $faq)
     {
         $validatedFaqData = $request->validated();
-        $faq->update([
-                'question' => $validatedFaqData['question'],
-                'answer' => $validatedFaqData['answer'],
-            ]);
+        $locale=request('locale');
+        $faq->setTranslation('question', $locale,$validatedFaqData['question']);
+        $faq->setTranslation('answer', $locale,$validatedFaqData['answer']);
+        $faq->save();
         return $faq;
     }
     public function destroy(Faq $faq)

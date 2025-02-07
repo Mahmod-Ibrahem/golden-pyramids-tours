@@ -12,7 +12,7 @@ class Blog extends Model
     use HasFactory , Sluggable , HasTranslations;
 
     protected $fillable = ['slug', 'title', 'blog', 'image','city_id'];
-    public $translatable =['title','blog'];
+    public $translatable =['title','blog','slug'];
 
     public function city()
     {

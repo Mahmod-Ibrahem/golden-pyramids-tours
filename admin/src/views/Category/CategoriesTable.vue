@@ -73,6 +73,16 @@
                                 class="absolute z-10 right-0 mt-2 w-32 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                 <div class="px-1 py-1">
                                     <MenuItem v-slot="{ active }">
+                                        <RouterLink :to="{ name: 'app.categories.translation', params: { id: category.id } }" :class="[
+                                                active ? 'bg-indigo-600 text-white' : 'text-gray-900',
+                                                'group flex w-full items-center rounded-md px-2 py-2 text-sm',
+                                            ]">
+                                            <PencilIcon :active="active" class="mr-2 h-5 w-5 text-indigo-400"
+                                                        aria-hidden="true" />
+                                            Translate Category
+                                        </RouterLink>
+                                    </MenuItem>
+                                    <MenuItem v-slot="{ active }">
                                         <RouterLink :to="{ name: 'app.categories.edit', params: { id: category.id } }" :class="[
                                                 active ? 'bg-indigo-600 text-white' : 'text-gray-900',
                                                 'group flex w-full items-center rounded-md px-2 py-2 text-sm',

@@ -1,39 +1,38 @@
 <template>
     <div class="flex items-center justify-between mb-3">
         <h1 v-if="!loading" class="text-3xl font-semibold">
-            Translation Form
+            Translate Category
         </h1>
     </div>
     <div>
         <Spinner v-if="loading"
                  class="absolute left-0 top-0 bg-white right-0 bottom-0 flex items-center justify-center"/>
+
         <form v-else @submit.prevent="onSubmit">
             <div class="bg-white px-4 pt-5 pb-4">
                 <div class=" mb-2">
                     <select
-                        name="type" v-model="faq.locale"
+                        name="type" v-model="category.locale"
                         class="customInput w-full px-3 py-2 border focus:ring-indigo-500 focus:border-indigo-500 rounded-md">
                         <option value="" selected>Choose Language</option>
-                        <option v-for="locale in faq.availableLocales" :value="locale" :key="locale">
+                        <option v-for="locale in category.availableLocales" :value="locale" :key="locale">
                             {{ locale }}
                         </option>
                     </select>
                 </div>
-                <CustomInput class="mb-2" v-model="faq.question" label="Question" :errors="errors.question"/>
-                <CustomInput class="mb-2" v-model="faq.answer" label="Answer" :errors="errors.answer"/>
+                <CustomInput class="mb-2" v-model="category.name" label="Category Name" :errors="errors.name"/>
+                <CustomInput class="mb-2" v-model="category.header" label="Category Header" :errors="errors.header"/>
+                <CustomInput class="mb-2" v-model="category.bg_header" label="Category BackGround Header" :errors="errors.bg_header"/>
+                <Editor class="mb-2" v-model="category.description" label="Category Description" :errors="errors.description" editorStyle="height: 100px"/>
+                <CustomInput class="mb-2" v-model="category.title_meta" label="Category Meta Title" :errors="errors.title_meta"/>
+                <CustomInput class="mb-2" v-model="category.description_meta" label="Category Meta Description" :errors="errors.description_meta"/>
             </div>
             <footer class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                 <button type="submit"
                         class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-3">
                     Save
                 </button>
-                <button type="button"
-                        @click="onSubmit($event,true)"
-                        class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none
-                        focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-3">
-                    Save & Close
-                </button>
-                <RouterLink :to="{ name: 'app.faqs' }" type="button"
+                <RouterLink :to="{ name: 'app.categories' }" type="button"
                             class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
                     Cancel
                 </RouterLink>
@@ -48,37 +47,27 @@ import {ref, onMounted, computed} from 'vue'
 import {useRoute, useRouter} from "vue-router";
 import store from "../../store/index.js"
 import CustomInput from '../../components/Core/CustomInput.vue';
+import Editor from "primevue/editor";
 
 const emit = defineEmits(['update:modelValue', 'close'])
 const route = useRoute()
 const router = useRouter()
 
 const loading = ref(false)
-const faq = ref({
-    id: null,
-    question: '',
-    answer: '',
-})
-
+const category = ref({})
 const errors = ref({})
 
-function onSubmit($event, close = false) {
+function onSubmit() {
     loading.value = true
-    store.dispatch('createFaqTranslation', faq.value)
-        .then(response => {
+    store.dispatch('createCategoryTranslation', category.value)
+        .then(() => {
             loading.value = false;
-            if (response.status === 200) {
                 store.commit('showToast', 'Translation has  successfully created')
-                store.dispatch('getFaqs')
-                if (close) {
-                    router.push({name: 'app.faqs'})
-                } else {
-                    faq.value = response.data
-                    router.push({name: 'app.faqs.createTranslation', params: {id: response.data.id}})
-                }
-            }
+                store.dispatch('getCategories')
+                router.push({name: 'app.categories'})
         })
         .catch(err => {
+            debugger
             loading.value = false;
             if (err.response.status === 422) {
                 errors.value = err.response.data.errors
@@ -87,13 +76,14 @@ function onSubmit($event, close = false) {
             }
         })
 }
+
 onMounted(() => {
     loading.value = true
-    store.dispatch('getFaqForTranslation', route.params.id)
+    store.dispatch('getCategoryForTranslation', route.params.id)
         .then(response => {
             loading.value = false;
             if (response.status === 200) {
-                faq.value = response.data
+                category.value = response.data
             }
         })
         .catch(err => {
@@ -107,4 +97,14 @@ onMounted(() => {
 })
 
 </script>
+<style scoped>
+::v-deep(.ql-editor a) {
+    text-decoration: none !important;
+    color: #ff6700 !important;
+}
+
+.ql-editor a {
+    color: #ff6700 !important;
+}
+</style>
 

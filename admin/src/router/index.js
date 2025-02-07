@@ -9,9 +9,6 @@ import CategoryForm from "../views/Category/CategoryForm.vue";
 import ProductImages from "../views/Products/ProductImages.vue";
 import Reviews from "../views/Reviews/Reviews.vue";
 import ReviewForm from "../views/Reviews/ReviewForm.vue";
-import ToursGer from "../views/TourSP/ToursSP.vue";
-import ToursFormGer from "../views/TourSP/ToursFormSP.vue";
-import CategoriesSp from "../views/CategorySp/CategoriesSp.vue";
 import Faqs from "../views/Faq/Faqs.vue";
 import FaqForm from "../views/Faq/FaqForm.vue";
 import Cities from "../views/City/Cities.vue";
@@ -21,6 +18,7 @@ import BlogsForm from "../views/Blogs/BlogsForm.vue";
 import BlogsTranslationForm from "../views/Blogs/BlogsTranslationForm.vue";
 import CityTranslationForm from "../views/City/CityTranslationForm.vue";
 import FaqTranslationForm from "../views/Faq/FaqTranslationForm.vue";
+import CategoryTranslationForm from "../views/Category/CategoryTranslationForm.vue";
 
 const routes = [
     {
@@ -70,6 +68,12 @@ const routes = [
                 path: "categories/:id",
                 name: "app.categories.edit",
                 component: CategoryForm,
+
+            },
+            {
+                path: "categoryTranslation/:id",
+                name: "app.categories.translation",
+                component: CategoryTranslationForm,
 
             },
             {

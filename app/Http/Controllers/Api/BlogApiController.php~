@@ -52,7 +52,7 @@ class BlogApiController extends Controller
         $blog=Blog::find($blogId);
         if (!$blog)
         {
-            return resposne()->json('Blog Not Found',404);
+            return response()->json('Blog Not Found',404);
         }
         return response()->json([
             'id'=>$blog->id,
@@ -81,7 +81,6 @@ class BlogApiController extends Controller
             $blogValidatedData['image'] = $blog['image']; //34an lma agy 23ml insert myb2a5 null lo mfi4 image asln
         }
         $blogValidatedData['blog']= $this->removeAnchorTareget($blogValidatedData['blog']);
-//        $blog->city_id=$blogValidatedData['city_id'];
         $this->setBlogTranslation($blog,$locale,$blogValidatedData);//update translatable attribute of blog
         $this->updateBlogMain($blog,$blogValidatedData); // update non Translatable attribute
         $blog->save();

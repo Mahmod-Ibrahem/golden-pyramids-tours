@@ -18,7 +18,7 @@ class ProductListResource extends JsonResource
         return [
             'id' => $this->id,
             'group' => $this->group,
-            'category' => $this->category->name,
+            'category' => $this->category,
             'title' => $this->getTranslation('title',$locale),
             'locations'=>$this->getTranslation('locations',$locale),
             'duration'=>$this->getTranslation('duration',$locale),
