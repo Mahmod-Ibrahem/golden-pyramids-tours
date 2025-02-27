@@ -19,6 +19,9 @@ import BlogsTranslationForm from "../views/Blogs/BlogsTranslationForm.vue";
 import CityTranslationForm from "../views/City/CityTranslationForm.vue";
 import FaqTranslationForm from "../views/Faq/FaqTranslationForm.vue";
 import CategoryTranslationForm from "../views/Category/CategoryTranslationForm.vue";
+import ProductTranslationForm from "../views/Products/ProductTranslationForm.vue";
+import PageText from "../views/PageText/PageText.vue";
+import PageTextForm from "../views/PageText/PageTextForm.vue";
 
 const routes = [
     {
@@ -52,7 +55,7 @@ const routes = [
             {
                 path: "productTranslate/:id",
                 name: "app.product.translation",
-                component: ProductForm,
+                component: ProductTranslationForm,
             },
             {
                 path: "products/Images/:id",
@@ -155,6 +158,26 @@ const routes = [
                 path:'blogTranslate/:id',
                 name:'app.blogs.createTranslation',
                 component: BlogsTranslationForm
+            },
+            {
+                path: "pageTexts",
+                name: "app.pageTexts",
+                component: PageText,
+            },
+            {
+                path:'pageTexts/create',
+                name:'app.pageTexts.create',
+                component: PageTextForm
+            },
+            {
+                path:'pageTexts/:id',
+                name:'app.pageTexts.edit',
+                component: PageTextForm
+            },
+            {
+                path:'pageTextTranslation/:id',
+                name:'app.pageTexts.createTranslation',
+                component: PageTextTranslationForm
             },
 
         ],

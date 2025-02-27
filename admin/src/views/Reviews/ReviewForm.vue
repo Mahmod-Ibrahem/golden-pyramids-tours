@@ -17,7 +17,7 @@
                         class="customInput w-full px-3 py-2 border focus:ring-indigo-500 focus:border-indigo-500 rounded-md">
                         <option value="" selected>اختار الرحله اللي انت عايز تحطلها ريفيو</option>
                         <option v-for="tour in tours" :value="tour.id">
-                            {{ tour.tour_translations[0].title }}
+                            {{ tour.title }}
                         </option>
                         <option value="">Home Page</option>
                     </select>
@@ -110,8 +110,7 @@ function onSubmit($event, close = false) {
                         router.push({name: 'app.reviews.edit', params: {id: response.data.id}})
                     }
                 }
-            })
-            .catch(err => {
+            }).catch(err => {
                 loading.value = false;
                 if (err.response.status === 422) {
                     errors.value = err.response.data.errors

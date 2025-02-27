@@ -2,11 +2,11 @@
     <div class="parent_container gap-8 mt-0">
         <div
             class="flex flex-col items-center justify-center  md:items-start md:justify-start  px-3 md:max-w-[68rem] gap-2">
-            <h1 class="text-Primary font-semibold text-xl md:text-2xl">
-                {{ $tours[0]['category']['category_translations'][0]['header'] ?? 'Soon' }}
+            <h1 class="font-semibold text-xl md:text-2xl text-bg-main">
+                {{ $tours[0]['category']['header'] ?? 'Soon' }}
             </h1>
-            <div class="capitalize prose max-w-none prose-a:no-underline prose-a:!text-main !text-black prose-p:my-1 prose-h2:m-0">
-                {!! $tours[0]['category']['category_translations'][0]['description'] ??'Soon'!!}
+            <div class="capitalize prose max-w-none prose-a:no-underline prose-a:!text-bg-main !text-black prose-p:my-1 prose-h2:m-0">
+                {!! $tours[0]['category']['description'] ??'Soon'!!}
             </div>
         </div>
 

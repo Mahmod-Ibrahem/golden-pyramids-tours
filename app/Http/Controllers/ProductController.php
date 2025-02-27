@@ -77,7 +77,18 @@ class ProductController extends Controller
     public function createTourTranslation(string $tourId)
     {
         $tour = $this->findTour($tourId);
-        $tourData=request()->all();
+        $tourData=request()->validate([
+            'locale' => 'required|in:en,fr,sp,pt,zh',
+            'title' => 'required',
+            'description' => 'required',
+            'included' => 'required',
+            'excluded' => 'required',
+            'duration' => 'required',
+            'locations' => 'required',
+            'places' => 'required',
+            'itenary_title' => 'required',
+            'itenary_section' => 'required',
+        ]);
         $this->setTourTranslation($tour,$tourData['locale'],$tourData);
         return response()->json(['message' => 'Tour created successfully'], 200);
     }
@@ -120,7 +131,6 @@ class ProductController extends Controller
         } else {
             $data['tour_cover'] = $tour->tour_cover;
         }
-        //handle location to be  a json before uddating
         $data['visit_count'] = $tour->visit_count; //keep old visit count
         $this->setTourTranslation($tour, $data['locale'], $data);
         $this->updateTourMain($tour, $data);
@@ -199,7 +209,7 @@ class ProductController extends Controller
         $tour->setTranslation('included', $locale, $tourData['included']);
         $tour->setTranslation('excluded', $locale, $tourData['excluded']);
         $tour->setTranslation('duration', $locale, $tourData['duration']);
-        $tour->setTranslation('locations', $locale, json_encode(array_map('trim', explode('/', $tourData['locations']))));
+        $tour->setTranslation('locations', $locale, array_map('trim', explode('/', $tourData['locations'])));
         $tour->setTranslation('places', $locale, $tourData['places']);
         $tour->setTranslation('slug', $locale, Str::slug($tourData['title']));
         $tour->save();

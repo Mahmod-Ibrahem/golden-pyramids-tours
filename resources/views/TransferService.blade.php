@@ -1,6 +1,6 @@
 @extends('layout.layouts')
 @section('title')
-    Tailor Made
+    Transfer Service
 @endsection
 @section('content')
 
@@ -16,29 +16,16 @@
     >
         <div class="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">
             <h1 class="backgroundImageHeader">
-                {{__("Smooth Travels with Timeless Egypt Rides")}}
+                {!! $transferImageHeader->content!!}
             </h1>
         </div>
     </section>
 
-    <div class="parent_container">
+    <div class="parent_container pb-2" style="background-image: url('{{ asset('Images/hero-bg.png') }}')">
         <div
-            class="flex flex-col items-center justify-center  md:items-start md:justify-start  px-3 md:max-w-6xl gap-4 mb-6">
-            <h1 class="text-main font-semibold text-xl md:text-2xl text-center">Exclusive Egypt Transfers
-            </h1>
-            <p class="font-medium text-Primary/75">
-                Experience unparalleled luxury and convenience with our exclusive transfer services across Egypt. Our
-                top-tier offerings ensure your journey is as memorable as the destination itself. Upon your arrival at
-                Cairo International Airport or any major Egyptian gateway, be welcomed by our courteous, professional
-                chauffeurs ready with a personalized greeting. Enjoy hassle-free transit as we expertly handle your
-                luggage and whisk you away to your chosen location. Our services extend beyond city limits, offering
-                transfers between key urban centers such as Cairo, Alexandria, Luxor, and Aswan—alongside direct routes
-                to iconic sights like the Giza Pyramids, Egyptian Museum, and the serene Red Sea retreats of Sharm El
-                Sheikh and Hurghada. Whether your travels take you to exceptional places like Siwa Oasis or the historic
-                St. Catherine's Monastery, rest assured that our long-distance transfers guarantee comfort and
-                sophistication. Let us take the stress out of travel, providing you with a punctual, seamless
-                experience, so you can immerse yourself in the marvels that Egypt has to offer.
-            </p>
+            class="flex flex-col items-center justify-center  md:items-start md:justify-start  px-3 md:max-w-6xl gap-4 mb-6
+            prose prose-a:no-underline prose-a:!text-bg-main !text-black prose-p:my-1 prose-h2:m-0 font-medium">
+            {!! $transferDescription->content !!}
         </div>
 
         <form method="POST" action="{{route('Transfer.post')}}">
@@ -108,13 +95,14 @@
                     </div>
                 </div>
                 <textarea id="message" rows="5" name="thought"
-                          class="p-2.5 text-sm w-full mx-[3.1rem] md:w-[75%]  md:mt-6 rounded-lg shadow  font-medium bg-white focus:outline-main  border-2"
+                          class="p-2.5 text-sm w-full mx-[3.1rem] md:w-[75%]  md:mt-6 rounded-lg shadow  font-medium bg-white focus:outline-bg-main  border-2"
                           placeholder="Any Notes You Want To Add "></textarea>
 
 
                 <div class="flex flex-col md:flex-row items-center justify-center space-x-2 mt-2">
                     <button type="submit"
-                            class="px-20 main_button  py-3 uppercase bg-main shadow-[0px_5px_0px_0px_rgba(0,0,0,0.25)] shadow-blue-800 hover:shadow-none hover:translate-y-[5px] transition-all duration-1000
+                            class="px-20 main_button  py-3 uppercase bg-bg-main text-secondary shadow-[0px_5px_0px_0px_rgba(0,0,0,0.25)] shadow-yellow-800
+                            hover:shadow-none hover:translate-y-[5px] transition-all duration-1000
                             w-full">Submit
                     </button>
                 </div>

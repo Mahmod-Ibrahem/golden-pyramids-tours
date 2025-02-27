@@ -11,7 +11,7 @@
         <form v-else @submit.prevent="onSubmit">
             <div class="bg-white px-4 pt-5 pb-4">
                 <div class=" mb-2">
-                    <select v-if="store.state.appLocale"
+                    <select v-if="store.state.appLocale==='en'"
                         name="type" v-model="blog.city_id"
                         class="customInput w-full px-3 py-2 border focus:ring-indigo-500 focus:border-indigo-500 rounded-md">
                         <option value="" selected>اختار المدينه اللي انت عايز تحطلها بلوج</option>
@@ -22,6 +22,7 @@
                 </div>
                 <CustomInput class="mb-2" v-model="blog.title" label="Blog Name" :errors="errors.title"/>
                 <Editor v-model="blog.blog" editorStyle="height: 320px" :errors="errors.blog" />
+                <span v-if="errors.blog && errors.blog" class="text-red-500 text-sm font-semibold">{{errors.blog}}</span>
                 <CustomInput type="file" class="mb-2" label="blog Image" @change="file => blog.image = file"
                              :errors="errors.image"/>
             </div>

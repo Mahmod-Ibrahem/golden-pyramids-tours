@@ -43,10 +43,10 @@ class FaqController extends Controller
         return response()->noContent();
     }
 
-    public function createFaqTranslation(string $faqId)
+    public function createFaqTranslation(FAQRequest $request,string $faqId)
     {
         $faq=Faq::Find($faqId);
-        $faqTranslationData=\request()->all();
+        $faqTranslationData=$request->validated();
         if (!$faq)
         {
             return response()->json('Faq Not Found', 404);

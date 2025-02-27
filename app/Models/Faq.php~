@@ -9,8 +9,8 @@ use Spatie\Translatable\HasTranslations;
 class Faq extends Model
 {
     use HasFactory , HasTranslations;
-    protected $fillable = [];
-    public $translatable=['question','answer'];
+    protected $fillable = ['question','answer'];
+//    public $translatable=['question','answer'];
 
     public function translations()
     {

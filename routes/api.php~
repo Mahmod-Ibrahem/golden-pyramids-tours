@@ -15,8 +15,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('/products', ProductController::class);
     Route::delete('/products/deleteImage/{id}', [ProductController::class, 'deleteImage']);
     Route::put('/addImageToTour/{id}', [ProductController::class, 'addImages']);
-    Route::get('getTourForTranslation/{tourId}', [ProductController::class, 'getTourForTranslation']);
-    Route::put('/createTourTranslation/{tourId}', [ProductController::class, 'createTourTranslation']);
+    Route::get('getProductForTranslation/{tourId}', [ProductController::class, 'getTourForTranslation']);
+    Route::put('/createProductTranslation/{tourId}', [ProductController::class, 'createTourTranslation']);
     /*Reviews */
     Route::get('/reviews', [\App\Http\Controllers\ReviewController::class, 'getReviews']);
     Route::get('/review/{id}', [\App\Http\Controllers\ReviewController::class, 'getReview']);
@@ -25,6 +25,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::delete('/review/{id}', [\App\Http\Controllers\ReviewController::class, 'deleteReview']);
     /* Faq*/
     Route::apiResource('/faqs', \App\Http\Controllers\Api\FaqController::class);
+    Route::get('/faqs', [\App\Http\Controllers\Api\FaqController::class, 'index']);
     Route::put('/createFaqTranslation/{faqId}', [\App\Http\Controllers\Api\FaqController::class,'createFaqTranslation']);
     Route::get('/getFaqForTranslation/{faqId}', [\App\Http\Controllers\Api\FaqController::class,'getFaqForTranslation']);
     /* Cities*/

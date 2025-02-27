@@ -27,12 +27,6 @@
                         class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-3">
                     Save
                 </button>
-                <button type="button"
-                        @click="onSubmit($event,true)"
-                        class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none
-                        focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-3">
-                    Save & Close
-                </button>
                 <RouterLink :to="{ name: 'app.faqs' }" type="button"
                             class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
                     Cancel
@@ -62,7 +56,7 @@ const faq = ref({
 
 const errors = ref({})
 
-function onSubmit($event, close = false) {
+function onSubmit() {
     loading.value = true
     store.dispatch('createFaqTranslation', faq.value)
         .then(response => {
@@ -70,12 +64,7 @@ function onSubmit($event, close = false) {
             if (response.status === 200) {
                 store.commit('showToast', 'Translation has  successfully created')
                 store.dispatch('getFaqs')
-                if (close) {
                     router.push({name: 'app.faqs'})
-                } else {
-                    faq.value = response.data
-                    router.push({name: 'app.faqs.createTranslation', params: {id: response.data.id}})
-                }
             }
         })
         .catch(err => {

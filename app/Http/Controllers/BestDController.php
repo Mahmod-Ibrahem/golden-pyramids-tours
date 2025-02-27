@@ -11,11 +11,12 @@ class BestDController extends Controller
 {
     public function index($location)
     {
-        $tours = Tour::whereHas('tourTranslations', function ($query) use ($location) {
-            $query->where('locale', app()->getLocale());
-            $query->whereJsonContains('locations', $location);
-        })
-            ->withTranslations()->get()->toArray();
+        $tours = Tour::whereJsonContains('locations->'.app()->getLocale(), $location)
+            ->orWhereJsonContains('locations->en', $location)
+        ->with('category')
+        ->get();
+
+        //ToDo Fix This
         return view('BestDestination.index', compact('tours', 'location'));
     }
 }

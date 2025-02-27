@@ -20,18 +20,12 @@
                         </option>
                     </select>
                 </div>
-                <CustomInput class="mb-2" v-model="city.name" label="City Name" :errors="errors.title"/>
+                <CustomInput class="mb-2" v-model="city.name" label="City Name" :errors="errors.name"/>
             </div>
             <footer class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                 <button type="submit"
                         class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-3">
                     Save
-                </button>
-                <button type="button"
-                        @click="onSubmit($event,true)"
-                        class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none
-                        focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-3">
-                    Save & Close
                 </button>
                 <RouterLink :to="{ name: 'app.cities' }" type="button"
                             class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
@@ -62,7 +56,7 @@ const city = ref({
 
 const errors = ref({})
 
-function onSubmit($event, close = false) {
+function onSubmit() {
     loading.value = true
     store.dispatch('createCityTranslation', city.value)
         .then(response => {
@@ -70,12 +64,7 @@ function onSubmit($event, close = false) {
             if (response.status === 200) {
                 store.commit('showToast', 'Translation has  successfully created')
                 store.dispatch('getCities')
-                if (close) {
                     router.push({name: 'app.cities'})
-                } else {
-                    city.value = response.data
-                    router.push({name: 'app.cities.createTranslation', params: {id: response.data.id}})
-                }
             }
         })
         .catch(err => {

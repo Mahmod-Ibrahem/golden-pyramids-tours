@@ -12,7 +12,7 @@
                 <div class="Category_titleContainer">
                     <h1 id="home_title"
                         class="backgroundImageHeader">
-                        {{$tours[0]['category']['category_translations'][0]['bg_header'] ?? 'Soon'}}
+                        {{__('Discover Top')}} +{{$tours->count()}} {{$tours[0]['category']['name']}}
                     </h1>
                 </div>
             </div>

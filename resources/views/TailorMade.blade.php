@@ -23,10 +23,10 @@
         </section>
 
 
-        <div class="parent_container  mb-4 py-6 mt-0 bg-[#f9f9f9] md:mx-auto mx-3 ">
-            <h1
-                class="text-Primary font-bold text-xl md:text-3xl mb-6 md:mb-16 md:mt-6">
-                Tailor Your Dream Tour And Get <span class="text-main">25%</span> OFF
+        <div class="parent_container py-6 mt-0 bg-[#f9f9f9] md:mx-auto mx-3"
+             style="background-image: url('{{asset('/Images/hero-bg.png')}}')"><h1
+                class="text-bg-main font-bold text-xl md:text-3xl mb-6 md:mb-8 md:mt-6">
+                {{__('Tailor Your Dream Tour And Get 25% Off')}}
             </h1>
             <form method="POST" action="{{route('TailorMade.post')}}">
                 @csrf
@@ -103,14 +103,14 @@
                     </div>
                     <textarea id="message" rows="5" name="thought"
                               class="p-2.5 text-sm w-full mx-[3.1rem] md:w-[75%]  md:mt-6
-                        rounded-lg shadow  font-medium bg-white border-2 focus:outline-main"
+                        rounded-lg shadow  font-medium bg-white border-2 focus:outline-bg-main"
                               placeholder="Write your thoughts here..."></textarea>
 
 
                     <div class="flex flex-col md:flex-row items-center justify-center space-x-2 mt-2">
                         <button type="submit"
-                                class="main_button bg-main w-full py-3 uppercase shadow-[0px_5px_0px_0px_rgba(0,0,0,0.25)] shadow-blue-800 hover:shadow-none
-                                hover:translate-y-[5px] transition-all duration-1000 px-20">Submit
+                                class="main_button bg-bg-main w-full py-3 uppercase shadow-[0px_5px_0px_0px_rgba(0,0,0,0.25)] shadow-yellow-800 hover:shadow-none
+                                hover:translate-y-[5px] transition-all duration-1000 px-20 text-secondary">Submit
                         </button>
                     </div>
                 </div>

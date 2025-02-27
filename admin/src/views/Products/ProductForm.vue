@@ -75,10 +75,8 @@
                              label="Tour Excluded"/>
                 <CustomInput type="textarea" class="mb-2" :errors="errors.itenary_title" v-model="product.itenary_title"
                              label="Itenary Titles (2fsl ben kol title we al tany b sla4 /"/>
-<!--                <CustomInput type="textarea" class="mb-2" v-model="product.itenary_section"-->
-<!--                             :errors="errors.itenary_section"-->
-<!--                             label="Itenary description  (2fsl ben kol description we al tany b sla4 /"/>-->
-                <Editor v-model="product.itenary_section" editorStyle="height: 320px" />
+                <Editor v-model="product.itenary_section" editorStyle="height: 320px"  :class="{'border border-red-500': errors.itenary_section && errors.itenary_section[0]}"/>
+                <span v-if="errors.itenary_section && errors.itenary_section[0]" class="text-red-500 text-sm font-semibold">{{errors.itenary_section[0]}}</span>
                 <CustomInput type="textarea" class="mb-2" v-model="product.places" label="Places"
                              :errors="errors.places"/>
                 <CustomInput class="mb-2" v-model="product.duration" label="Tour Duration" :errors="errors.duration"/>

@@ -5,26 +5,30 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Blog;
 use App\Models\City;
+use App\Models\PageText;
 use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
     public function index()
     {
-        $cities=City::all();
-        return view('Blog.index',['cities' => $cities]);
+        $cities = City::all();
+        $blogText = PageText::where('type', 'blogBackGroundImageTitle')->first();
+        return view('Blog.index', ['cities' => $cities, 'blogText' => $blogText]);
     }
 
-    public function show(City $city)
+    public function show(string $city)
     {
-        $cityAttractions=Blog::where('city_id', $city->id)->get();
-        $city=$city->name;
-        return view('Blog.show',compact('cityAttractions','city'));
+        $city = City::where('slug->'.app()->getLocale(), $city)->first();
+        $cityAttractions = Blog::where('city_id', $city->id)->get();
+        return view('Blog.show', compact('cityAttractions', 'city'));
     }
 
-    public function Attraction(City $city,Blog $blog)
+    public function Attraction(string $city, string $blog)
     {
-        return view('Blog.blog',compact('city','blog'));
+        $city = City::where('slug->'.app()->getLocale(), $city)->first();
+        $blog = Blog::where('slug->'.app()->getLocale(), $blog)->first();
+        return view('Blog.blog', compact('city', 'blog'));
     }
 }
 

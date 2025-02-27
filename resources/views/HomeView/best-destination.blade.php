@@ -1,6 +1,7 @@
 <section id="Trend Destination">
     <div class="parent_container relative ">
-        <h2 class="parent_header" id="Trend_header">Top Destinations</h2>
+        <h2 class="parent_header " id="Trend_header">{{__('Discover the best destinations in Egypt with')}}
+            <span class="text-bg-main font-semibold">Golden Pyramids Travel! </span></h2>
         <div id="TrendCard"
              class="child_container gap-6 mx-auto">
             @component('components.core.DestinationCard', ['destination' => 'Giza'])
@@ -38,7 +39,7 @@
                     {{asset('Images/Best Destination/Hurghada.jpg')}}
                 @endslot
             @endcomponent
-                @component('components.core.DestinationCard', ['destination' => 'Al-Faiyum'])
+                @component('components.core.DestinationCard', ['destination' => 'Al-Fayoum'])
                 @slot('image')
                     {{asset('Images/Best Destination/Faiyum.jpg')}}
                 @endslot

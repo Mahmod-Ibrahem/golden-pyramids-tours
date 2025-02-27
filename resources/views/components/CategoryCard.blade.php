@@ -1,19 +1,22 @@
-<div
-    class="flex-shrink-0 group w-[380px] h-[357px] md:w-[20rem] md:h-96 overflow-hidden relative border rounded-lg transition-all
-    duration-200 mx-2 md:mx-0 cursor-pointer">
-    <a href="{{ route($Category['type'].'.view', $Category['category_translations'][0]['slug']) }}">
-    <div class="inset-0 absolute bg-black/5 z-10"></div>
-
-        <img class="group-hover:scale-110 transition-all duration-[2s] ease-out w-full h-full object-fill" src="{{$Category['image']}}"
-             alt="Product Image"/>
-    <div class="absolute bottom-[10%] left-1/2 transform -translate-x-1/2 w-full flex flex-col items-center">
-        <h3 class="text-[22px] text-white font-medium text-center uppercase tracking-wide ">{{$Category['category_translations'][0]['name']}}
-        </h3>
-        <h3 class="text-[14px] text-white font-medium text-center uppercase tracking-wide ">{{$Category['tours_count'] ?? 0}} tours
-        </h3>
+<div class="flex flex-col items-center w-[380px] mx-3 bg-white rounded-xl overflow-hidden border relative">
+    <div class=" w-full h-full">
+        <a href="{{ route($Category['type'].'.view', $Category->getTranslation('slug',app()->getLocale())) }}">
+            <div class="w-full h-60 overflow-hidden hover:cursor-pointer">
+                <img src="{{$Category->image}}"
+                     class="w-full h-full object-cover  hover:scale-110 transition-all duration-[0.5s]"
+                     alt="Tour Card"/>
+            </div>
+        </a>
     </div>
-    </a>
+    <div class="flex flex-col items-center p-4 w-full h-full ">
+        <a class="mt-[6px] mb-3 text-[18px] font-bold text-bg-main hover:text-bg-main hover:cursor-pointer transition-all duration-1000 w-full">
+            {{$Category['name']}}
+        </a>
+        <div class="text-[14px] text-[#4A5568]  w-full line-clamp-5 leading-6 min-h-[120px] whitespace-normal
+         prose prose-a:no-underline prose-a:!text-black prose-p:text-black font-semibold">
+            {!! $Category['description'] !!}
+        </div>
 </div>
-
+</div>
 
 

@@ -1,10 +1,10 @@
 <div id="tripadvisorCard" class="sm:break-inside-avoid flex-shrink-0 w-[22rem] p-4">
     <blockquote class="bg-white rounded-lg shadow-custom p-6 line-clamp-[15] ">
         <div class="flex items-center gap-4">
-            <svg class="w-[2.25rem] h-[3rem]" fill="#000000" version="1.1" id="Capa_1"
+            <svg class="w-[2.25rem] h-[2.25rem] px-1 py-1 rounded-full" fill="#ffffff" version="1.1" id="Capa_1"
                  xmlns="http://www.w3.org/2000/svg"
                  xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 98.566 98.566" xml:space="preserve"
-                 stroke="#00af87"><g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                 stroke="#ffffff"><g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                 <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
                 <g id="SVGRepo_iconCarrier">
                     <g>

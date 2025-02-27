@@ -54,10 +54,10 @@ class ReviewController extends Controller
         }
 
 
-        public
-        function updateReview(StoreReviewRequest $request)
+
+        public function updateReview(StoreReviewRequest $request)
         {
-            $data = request()->all();
+            $data = $request->validated();
             $review = Review::find($data['id']);
             $review->update($data);
             return new ReviewResource($review);

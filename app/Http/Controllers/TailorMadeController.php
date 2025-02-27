@@ -14,10 +14,8 @@ class TailorMadeController extends Controller
     }
 
      public function submitting(Request $request){
-
-
         $customerTailor=$request->all();
-        \Mail::to('mahmodaborakika2@gmail.com')->send(new GuestTailorMail($customerTailor));
+            \Mail::to('mahmodaborakika2@gmail.com')->queue(new GuestTailorMail($customerTailor));
          $text="Your Message Has Been Sent !";
          $thanks="Thanks For Contacting Us";
          $route='TailorMade.index';

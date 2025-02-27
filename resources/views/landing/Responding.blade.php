@@ -14,9 +14,8 @@
             </div>
 
             <div class="text-center px-20">
-                <h3 class="md:text-2xl text-base text-gray-900 font-semibold text-center">{{$text}}</h3>
-                <p class="text-gray-600 my-2 font-semibold">{{$thanks}}</p>
-                <p class="font-semibold text-gray-600"> Have a Great day! </p>
+                <h3 class="md:text-2xl text-base text-gray-900 font-semibold text-center">{{__($text)}}</h3>
+                <p class="text-gray-600 my-2 font-semibold">{{__($thanks)}}</p>
             </div>
         </div>
     </div>

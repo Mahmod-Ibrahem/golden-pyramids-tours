@@ -1,9 +1,8 @@
 <section id="Testimonials"
          class="py-2">
     <div
-        class="parent_container max-w-7xl mx-auto">
-        <h2 class="parent_header">Dont Take Our Word For It
-            Trust Our Guest
+        class="parent_container max-w-7xl mx-auto mt-0">
+        <h2 class="parent_header">{{__('Hear It from Our Guests Their Experiences Say It All!')}}
         </h2>
         <div id="Testimonials_Cards"
              class="flex items-center    md:flex-row md:items-start   max-w-[24rem] md:max-w-full md:gap-2
@@ -15,7 +14,7 @@
         </div>
         <div class=" gap-2 flex">
             <div id="prevTestimonials" class="cursor-pointer">
-                <svg class="h-8 w-8 text-main  shadow-2xl transition-all"
+                <svg class="h-8 w-8 text-bg-main active:text-black  shadow-2xl transition-all"
                      viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                      stroke-linecap="round" stroke-linejoin="round">
                     <circle cx="12" cy="12" r="10"/>
@@ -25,7 +24,7 @@
             </div>
 
             <div id="nextTestimonials" class="cursor-pointer md:mb-2">
-                <svg class="h-8 w-8 text-main  transition-all" viewBox="0 0 24 24"
+                <svg class="h-8 w-8 text-bg-main active:text-black  transition-all" viewBox="0 0 24 24"
                      fill="none"
                      stroke="currentColor"
                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

@@ -49,7 +49,11 @@ const store = {
         loading: false,
         data: [],
     },
-    appLocale:'en'
+    appLocale:'en',
+    pageTexts: {
+        data: null,
+        loading: true,
+    },
 };
 
 export default store;

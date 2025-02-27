@@ -13,6 +13,7 @@ use App\Models\CategoryTranslation;
 use App\Traits\ImagesUtility;
 use App\Traits\TourUtility;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -44,7 +45,15 @@ class CategoryController extends Controller
     public function createCategoryTranslation(string $categoryId)
     {
         $category=Category::Find($categoryId);
-        $categoryTranslationData=\request()->all();
+        $categoryTranslationData=\request()->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'header' => 'required',
+            'bg_header' => 'required',
+            'title_meta' => 'required',
+            'description_meta' => 'required',
+            'locale' => 'required'
+        ]);
         if (!$category)
         {
             return response()->json('Blog Not Found Or Locale Not Given', 404);
@@ -58,6 +67,8 @@ class CategoryController extends Controller
 
     private function setCategoryTranslation(Category $category,$locale,$categoryValidatedData) : void
     {
+        $category->setTranslation('slug', $locale, Str::slug($categoryValidatedData['name']));
+        $category->setTranslation('slug', $locale,$categoryValidatedData['name']);
         $category->setTranslation('name', $locale,$categoryValidatedData['name']);
         $category->setTranslation('description', $locale,$categoryValidatedData['description']);
         $category->setTranslation('header', $locale,$categoryValidatedData['header']);
@@ -71,9 +82,7 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        $category = Category::find($category);
-
-        return new CategoryResource($category);
+        return is_null($category) ? response()->json('Category Not Found', 404) : new CategoryResource($category);
     }
 
     public function getCategoryForTranslation(Category $category)
@@ -121,5 +130,7 @@ class CategoryController extends Controller
         $category->type=$data['type'];
         $category->save();
     }
+
+
 
 }

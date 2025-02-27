@@ -79,6 +79,11 @@ export function setBlogs(state,data)
     state.blogs.loading=false
 }
 export function updateLocale(state, locale) {
-    console.log(locale)
     state.appLocale = locale;
   }
+
+export function setPageTexts(state,data)
+{
+    state.pageTexts.data=data.data
+    state.pageTexts.loading=false
+}

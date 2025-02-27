@@ -12,17 +12,13 @@
                 <div class="Category_titleContainer">
                     <h1 id="home_title"
                         class="backgroundImageHeader">
-                        {{$tours[0]['category']['category_translations'][0]['bg_header'] ?? 'Soon'}}
+                        Discover Top +{{$tours->count()}} {{$tours[0]['category']['name']}}
                     </h1>
                 </div>
             </div>
         </div>
     </div>
-    <div class="parent_container">
-    <div class="child_container">
     @component('ToursCategory',['tours'=>$tours])@endcomponent
-    </div>
-    </div>
 @endsection
 
 

@@ -40,9 +40,9 @@ class BookingController extends Controller
     {
         $data=$request->input('userData');
         $tourType=$tour->group;
-        $tour=$tour->load(['tourTranslations','category.categoryTranslations'])->toArray();
+//        $tour=$tour->load(['tourTranslations','category.categoryTranslations'])->toArray();
         Mail::to('mahmodaborakika2@gmail.com')->send(new \App\Mail\TourBookingMail($data,$tour));
-        Mail::to($data['email'])->send(new \App\Mail\InformUserForBookingMail());
+//        Mail::to($data['email'])->send(new \App\Mail\InformUserForBookingMail());
 
         $text="Your Tour Is Booked!";
         $thanks="Thanks For Booking With Us";

@@ -1,7 +1,7 @@
 <section id="RecommendedTours" class="bg-[#F5F5F5] py-6 select-none">
     <div class="parent_container gap-8">
         <div class="flex items-center gap-3">
-            <h1 class="parent_header">Recommended Tour Packages</h1>
+            <h1 class="parent_header">{{__('Recommended Tour Packages')}}</h1>
 
         </div>
         <div class="child_container gap-9">

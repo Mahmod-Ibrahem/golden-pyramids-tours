@@ -1,8 +1,7 @@
-<div class="flex flex-col items-center w-[380px] mx-3 bg-white rounded-3xl overflow-hidden border relative">
-    <div class="p-4 pb-0 w-full h-full">
-        <a href="{{ route($tour["group"].'.Tour', ['Category' => $tour['category']['category_translations'][0]['slug'],
-        'Tour' => $tour['tour_translations'][0]['slug']]) }}">
-            <div class="w-full h-60 overflow-hidden rounded-3xl hover:cursor-pointer">
+<div class="flex flex-col items-center w-[380px] mx-3 bg-white rounded-xl overflow-hidden border relative">
+    <div class=" w-full h-full">
+        <a href="{{ route($tour["group"].'.Tour', ['Category' => $tour['category']['slug'],'Tour' => $tour['slug']]) }}">
+            <div class="w-full h-60 overflow-hidden hover:cursor-pointer">
                 <img src="{{$image}}"
                      class="w-full h-full object-cover  hover:scale-110 transition-all duration-[0.5s]"
                      alt="Tour Card"/>
@@ -10,61 +9,72 @@
         </a>
     </div>
     <div class="flex flex-col items-center p-4 w-full h-full ">
-        <a class="mt-[6px] mb-[15px] text-[18px] font-bold text-[#1A2B48] hover:cursor-pointer hover:text-main transition-all duration-1000 w-full line-clamp-2 min-h-[50px]">
-            {{$tour['tour_translations'][0]['title']}}
+        <a class="mt-[6px] mb-3 text-[18px] font-bold text-bg-main hover:cursor-pointer hover:text-main transition-all duration-1000 w-full line-clamp-2 min-h-[50px]">
+            {{$tour['title']}}
         </a>
 
-        <p class="text-[14px] text-[#4A5568] border-b border-black/10 w-full line-clamp-3 leading-6 min-h-[80px] whitespace-normal">
-            {{$tour['tour_translations'][0]['description']}}
+        <p class="text-[14px] text-black border-b border-black/10 w-full line-clamp-5 leading-6 min-h-[120px] whitespace-normal">
+            {{$tour['description']}}
         </p>
 
-        <div class="py-[20px] flex justify-between w-full h-full border-b border-black/10 pb-4">
-            <div class="flex gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                    <path fill="#3b71fe"
-                          d="M7.5 10.5h-1c-.552 0-1 .448-1 1s.448 1 1 1h1c.552 0 1-.448 1-1s-.448-1-1-1zM12.5 10.5h-1c-.552 0-1 .448-1 1s.448 1 1 1h1c.552 0 1-.448 1-1s-.448-1-1-1zM17.5 10.5h-1c-.552 0-1 .448-1 1s.448 1 1 1h1c.552 0 1-.448 1-1s-.448-1-1-1zM7.5 14.5h-1c-.552 0-1 .448-1 1s.448 1 1 1h1c.552 0 1-.448 1-1s-.448-1-1-1zM12.5 14.5h-1c-.552 0-1 .448-1 1s.448 1 1 1h1c.552 0 1-.448 1-1s-.448-1-1-1zM17.5 14.5h-1c-.552 0-1 .448-1 1s.448 1 1 1h1c.552 0 1-.448 1-1s-.448-1-1-1zM7.5 18.5h-1c-.552 0-1 .448-1 1s.448 1 1 1h1c.552 0 1-.448 1-1s-.448-1-1-1zM12.5 18.5h-1c-.552 0-1 .448-1 1s.448 1 1 1h1c.552 0 1-.448 1-1s-.448-1-1-1zM17.5 18.5h-1c-.552 0-1 .448-1 1s.448 1 1 1h1c.552 0 1-.448 1-1s-.448-1-1-1z"></path>
-                    <path fill="#3b71fe" fill-rule="evenodd"
-                          d="M18.75 3h2.75c1.105 0 2 .895 2 2v17c0 1.105-.895 2-2 2h-19c-1.105 0-2-.895-2-2V5c0-1.105.895-2 2-2H4c.276 0 .5.224.5.5v2.25c0 .414.336.75.75.75S6 6.164 6 5.75V1c0-.552.448-1 1-1s1 .448 1 1v1.751c0 .138.112.249.25.249h6.25c.276 0 .5.224.5.5v2.25c0 .414.336.75.75.75s.75-.336.75-.75V1c0-.552.448-1 1-1s1 .448 1 1v1.75c0 .138.112.25.25.25zm2.75 19c.276 0 .5-.224.5-.5v-12c0-.276-.224-.5-.5-.5h-18c-.276 0-.5.224-.5.5v12c0 .276.224.5.5.5h18z"
-                          clip-rule="evenodd"></path>
+        <div class="py-[20px] flex justify-between w-full h-full border-b border-black/10 pb-4 text-Primary font-semibold">
+            <div class="flex gap-2 items-center">
+                <svg width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 511.999 511.999">
+                    <path
+                        d="M511.88 475.685l-40.224-221.6c-.4-2.212-1.773-4.128-3.74-5.22l-101.242-56.3a7.48 7.48 0 0 0-4.234-.91l18.42 237.608-.617.276 121.164 54.357a7.53 7.53 0 0 0 3.077.659 7.51 7.51 0 0 0 4.632-1.596 7.5 7.5 0 0 0 2.764-7.251zM256 246.375l-103.545-53.93c-1.24-.647-2.617-.9-3.972-.82.36-.022.72-.02 1.078.008L131.14 429.24l121.78 54.634a7.53 7.53 0 0 0 3.077.659h0v-238.16z"
+                        fill="#44c868"></path>
+                    <path
+                        d="M149.56 191.633a7.58 7.58 0 0 0-4.234.9l-101.243 56.3a7.51 7.51 0 0 0-3.74 5.22L.12 475.685c-.498 2.742.566 5.534 2.763 7.252 1.347 1.053 2.982 1.596 4.632 1.596a7.51 7.51 0 0 0 3.077-.659l120.504-54.06 18.463-238.18zm212.88-.005c-.996.077-1.98.342-2.894.818L256 246.376v238.158a7.51 7.51 0 0 0 3.078-.659l121.78-54.634-18.42-237.613z"
+                        fill="#4ce166"></path>
+                    <path d="M28.154 321.233l-8.17 45.02 120.994-63.906 3.275-42.25z" fill="#ffdb56"></path>
+                    <path
+                        d="M142.066 288.294l-1.09 14.052-120.994 63.906L.12 475.685c-.498 2.742.566 5.534 2.763 7.252 1.347 1.053 2.982 1.596 4.632 1.596a7.51 7.51 0 0 0 3.077-.659l120.504-54.06 10.97-141.52z"
+                        fill="#a8eefc"></path>
+                    <path
+                        d="M256.03 276.08l-111.778-15.983-3.275 42.25L256 477.025v-63.518L187.363 305.43l68.667 8.213zm203.916-31.66l-48.635-27.05-46.042 10.758 2.85 36.77z"
+                        fill="#ffbb24"></path>
+                    <path d="M372.202 317.576l-6.933-89.448-109.24 47.952v37.562l71.356-31.03z" fill="#ffdb56"></path>
+                    <path
+                        d="M511.88 475.685l-10.103-55.666-133.657-155.12 4.084 52.678 137.07 165.22a7.5 7.5 0 0 0 2.606-7.112z"
+                        fill="#ffbb24"></path>
+                    <path
+                        d="M256.48 27.465c-57.963 0-105.12 47.118-105.12 105.034 0 35.826 17.01 74.3 50.556 114.322 24.64 29.403 48.943 48.314 49.966 49.105 1.354 1.047 2.976 1.57 4.6 1.57s3.245-.523 4.6-1.57c1.022-.79 25.327-19.702 49.966-49.105 33.547-40.032 50.556-78.495 50.556-114.322-.002-57.916-47.16-105.034-105.122-105.034zm38.93 105.033c0 21.482-17.43 38.898-38.93 38.898s-38.93-17.415-38.93-38.898S234.98 93.6 256.48 93.6s38.93 17.416 38.93 38.898z"
+                        fill="#ff4a4a"></path>
+                    <path
+                        d="M256.48 27.465a105.71 105.71 0 0 0-13.559.872c51.583 6.667 91.562 50.836 91.562 104.162 0 35.826-17.01 74.3-50.556 114.322-15.845 18.908-31.54 33.467-41.005 41.67 5.254 4.552 8.596 7.154 8.96 7.436 1.354 1.047 2.976 1.57 4.6 1.57s3.245-.523 4.6-1.57c1.022-.79 25.327-19.702 49.966-49.105 33.547-40.032 50.556-78.495 50.556-114.322-.002-57.916-47.16-105.034-105.122-105.034z"
+                        fill="#e7343f"></path>
+                    <path d="M259.078 483.874l45.285-20.316L256 413.507v71.026a7.5 7.5 0 0 0 3.078-.659z"
+                          fill="#ffdb56"></path>
+                    <path
+                        d="M471.654 254.074c-.4-2.212-1.773-4.128-3.74-5.22l-7.97-4.433-91.827 20.477 133.656 155.12-30.12-165.944zM256 484.533v-7.508l-115.022-174.68-9.837 126.895 121.78 54.634a7.53 7.53 0 0 0 3.078.658z"
+                        fill="#1ea4e9"></path>
                 </svg>
-                <div class="flex flex-col">
-                    <span class="text-Primary text-[14px] font-medium   ">Duration</span>
                     <span
-                        class="text-[#6B7280] text-[14px] font-[400]">{{$tour['tour_translations'][0]['duration']}}</span>
-                </div>
+                        class="text-[14px] text-Primary font-semibold">{{$tour['duration']}}
+                    </span>
             </div>
-            <div class="flex gap-2">
-                <svg width="25px" height="25px" viewBox="0 0 24 24" fill="#3b71fe" xmlns="http://www.w3.org/2000/svg">
-                    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                    <g id="SVGRepo_iconCarrier">
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                              d="M12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9ZM11 12C11 11.4477 11.4477 11 12 11C12.5523 11 13 11.4477 13 12C13 12.5523 12.5523 13 12 13C11.4477 13 11 12.5523 11 12Z"
-                              fill="#3b71fe"></path>
-                        <path fill-rule="evenodd" clip-rule="evenodd"
-                              d="M21.83 11.2807C19.542 7.15186 15.8122 5 12 5C8.18777 5 4.45796 7.15186 2.17003 11.2807C1.94637 11.6844 1.94361 12.1821 2.16029 12.5876C4.41183 16.8013 8.1628 19 12 19C15.8372 19 19.5882 16.8013 21.8397 12.5876C22.0564 12.1821 22.0536 11.6844 21.83 11.2807ZM12 17C9.06097 17 6.04052 15.3724 4.09173 11.9487C6.06862 8.59614 9.07319 7 12 7C14.9268 7 17.9314 8.59614 19.9083 11.9487C17.9595 15.3724 14.939 17 12 17Z"
-                              fill="#3b71fe"></path>
-                    </g>
-                </svg>
-                <div class="flex flex-col">
-                    <span class="text-Primary text-[14px] font-medium   ">Views</span>
-                    <span class="text-[#6B7280] text-[14px] font-[400]">{{$tour['visit_count']}}</span>
-                </div>
+            <div class="flex gap-2 items-center">
+                <img src="{{ asset('Images/Icons/Price.png') }}" alt="Views" class="w-[24px] h-[24px]">
+                    <span class="font-semibold text-[14px] text-Primary">From: ${{$tour['price_six_twenty']}}</span>
             </div>
+            <div class="flex gap-2 items-center">
+                <img src="{{ asset('Images/Icons/Views.png') }}" alt="Views" class="w-[24px] h-[24px]">
+                    <span class="text-[14px] text-Primary font-semibold">{{$tour['visit_count']}}</span>
+            </div>
+
         </div>
-        <div class="flex justify-between items-center w-full h-full  p-4">
-            <span class="text-[#1A2B48] text-[24px] font-medium">${{$tour['price_per_person']}}</span>
-            <a href="{{ route($tour["group"].'.Tour', ['Category' => $tour['category']['category_translations'][0]['slug'],'Tour' => $tour['tour_translations'][0]['slug']]) }}"
-               class="main_button px-6 py-3 uppercase bg-main shadow-[0px_5px_0px_0px_rgba(0,0,0,0.25)] shadow-blue-800 hover:shadow-none hover:translate-y-[5px] transition-all
-               duration-1000
-             ">Explore</a>
+        <div class="flex items-center py-2">
+            <a href="{{ route($tour["group"].'.Tour', ['Category' => $tour['category']['slug'],'Tour' => $tour['slug']]) }}"
+               class="main_button px-12 py-3 uppercase bg-bg-main shadow-[0px_5px_0px_0px_rgba(0,0,0,0.25)] shadow-yellow-800 hover:shadow-none hover:translate-y-[5px] transition-all
+               duration-1000 text-secondary
+             ">{{__('Explore')}}</a>
         </div>
     </div>
     @if($tour['preference'])
         <a>
             <div
-                class="absolute left-0 top-[30px] bg-main h-[30px] w-[100px] text-[12px] text-center pt-[6px] font-medium text-white m-0">
-                Recommended
+                class="absolute font-semibold right-6 top-[20px] bg-bg-main h-[30px] w-[100px] text-[12px] text-center pt-[6px] text-secondary m-0">
+                {{__('Recommended')}}
             </div>
         </a>
     @endif

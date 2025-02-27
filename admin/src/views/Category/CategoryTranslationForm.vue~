@@ -1,0 +1,112 @@
+<template>
+    <div class="flex items-center justify-between mb-3">
+        <h1 v-if="!loading" class="text-3xl font-semibold">
+            Translate Category
+        </h1>
+    </div>
+    <div>
+        <Spinner v-if="loading"
+                 class="absolute left-0 top-0 bg-white right-0 bottom-0 flex items-center justify-center"/>
+
+        <form v-else @submit.prevent="onSubmit">
+            <div class="bg-white px-4 pt-5 pb-4">
+                <div class=" mb-2">
+                    <select
+                        name="type" v-model="category.locale"
+                        class="customInput w-full px-3 py-2 border focus:ring-indigo-500 focus:border-indigo-500 rounded-md"
+                        :class="{'border border-red-500': errors.locale && errors.localex[0]}">
+                        <option value="" selected>Choose Language</option>
+                        <option v-for="locale in category.availableLocales" :value="locale" :key="locale">
+                            {{ locale }}
+                        </option>
+                    </select>
+                </div>
+                <CustomInput class="mb-2" v-model="category.name" label="Category Name" :errors="errors.name"/>
+                <CustomInput class="mb-2" v-model="category.header" label="Category Header" :errors="errors.header"/>
+                <CustomInput class="mb-2" v-model="category.bg_header" label="Category BackGround Header" :errors="errors.bg_header"/>
+                <Editor v-model="category.description" editorStyle="height: 200px" placeholder="Category Description"
+                        :class="{'border border-red-500': errors.description && errors.description[0]}"/>
+                <span v-if="errors.description && errors.description[0]" class="text-red-500 text-sm font-semibold">{{errors.description[0]}}</span>
+                <CustomInput class="mb-2" v-model="category.title_meta" label="Category Meta Title" :errors="errors.title_meta"/>
+                <CustomInput class="mb-2" v-model="category.description_meta" label="Category Meta Description" :errors="errors.description_meta"/>
+            </div>
+            <footer class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button type="submit"
+                        class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-3">
+                    Save
+                </button>
+                <RouterLink :to="{ name: 'app.categories' }" type="button"
+                            class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                    Cancel
+                </RouterLink>
+            </footer>
+        </form>
+    </div>
+</template>
+
+<script setup>
+import Spinner from './../../components/Core/Spinner.vue'
+import {ref, onMounted, computed} from 'vue'
+import {useRoute, useRouter} from "vue-router";
+import store from "../../store/index.js"
+import CustomInput from '../../components/Core/CustomInput.vue';
+import Editor from "primevue/editor";
+
+const emit = defineEmits(['update:modelValue', 'close'])
+const route = useRoute()
+const router = useRouter()
+
+const loading = ref(false)
+const category = ref({})
+const errors = ref({})
+
+function onSubmit() {
+    loading.value = true
+    store.dispatch('createCategoryTranslation', category.value)
+        .then(() => {
+            loading.value = false;
+                store.commit('showToast', 'Translation has  successfully created')
+                store.dispatch('getCategories')
+                router.push({name: 'app.categories'})
+        })
+        .catch(err => {
+            loading.value = false;
+            if (err.response.status === 422) {
+                errors.value = err.response.data.errors
+            } else if (err.response.status === 409) {
+                store.commit('showErrorToast', err.response.data.message)
+            }
+        })
+}
+
+onMounted(() => {
+    loading.value = true
+    store.dispatch('getCategoryForTranslation', route.params.id)
+        .then(response => {
+            loading.value = false;
+            if (response.status === 200) {
+                category.value = response.data
+            }
+        })
+        .catch(err => {
+            loading.value = false;
+            if (err.response.status === 422) {
+                errors.value = err.response.data.errors
+            } else if (err.response.status === 409) {
+                store.commit('showErrorToast', err.response.data.message)
+            }
+        })
+})
+
+</script>
+<style scoped>
+::v-deep(.ql-editor a) {
+    text-decoration: none !important;
+    color: #ff6700 !important;
+}
+
+.ql-editor a {
+    color: #ff6700 !important;
+}
+</style>
+

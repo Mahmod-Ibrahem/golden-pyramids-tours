@@ -14,7 +14,7 @@ Route::get('/', [HomeController::class, 'home'])
 Route::get('/Daytours', [TourController::class, 'index'])
     ->name('DayTours.index');
 Route::get('/Daytours/{Category:slug}', [TourController::class, 'view'])->name('DayTours.view');
-Route::get('/Daytours/{Category:slug}/{Tour:title}', [TourController::class, 'Tour'])->name('DayTours.Tour');
+Route::get('/Daytours/{Category:slug}/{Tour:slug}', [TourController::class, 'Tour'])->name('DayTours.Tour');
 /* TourPackages Controller*/
 
 Route::get('/TourPackages', [\App\Http\Controllers\TourController::class, 'index'])->name('TourPackages.index');
@@ -51,5 +51,6 @@ Route::post('/checkout/{tour}/confirm',[\App\Http\Controllers\BookingController:
 Route::get('/Blog',[BlogController::class,'index'])->name('Blog.index');
 Route::get('/Blog/{city:slug}',[BlogController::class,'show'])->name('Blog.show');
 Route::get('/Blog/{city:slug}/{blog:slug}',[BlogController::class,'Attraction'])->name('Blog.attraction');
-
+/*Language*/
+Route::get('change-locale/{locale}', [\App\Http\Controllers\LanguageController::class, 'changeLocale'])->name('changeLocale');
 

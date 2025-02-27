@@ -1,7 +1,7 @@
-<div class="bg-white  rounded-xl pt-6 px-6 h-fit md:w-96 border-[3px] border-main/80">
+<div class="bg-white  rounded-xl pt-6 px-6 h-fit md:w-96">
     <h1
-     class="text-xl md:text-3xl font-medium text-main pb-3 mb-6  text-center border-b-2 border-Primary/20">
-     Booking Form</h1>
+     class="text-xl md:text-3xl font-medium text-bg-main pb-3 mb-6  text-center border-b-2 border-Primary/20">
+     {{__("Booking Form")}}</h1>
 
     <form method="POST" action="{{route('booking.checkout',['tour'=>$tour])}}">
        @csrf
@@ -12,7 +12,7 @@
                 <input id='name' name="name" value="{{ old('name') }}" required
                 class="peer input_style" placeholder="FullName" autocomplete="off">
                 <label for="name" class="input_label_style">
-                     FullName</label>
+                    {{__("Full Name")}}</label>
             </div>
 
             <div class="relative bg-white">
@@ -21,7 +21,7 @@
                 class="peer input_style" placeholder="email" autocomplete="off">
 
                 <label for="email" class="input_label_style">
-                     E-mail</label>
+                     {{__("E-mail")}}</label>
 
             </div>
 
@@ -31,7 +31,7 @@
                 class="peer input_style" placeholder="phone" autocomplete="off">
 
                 <label for="email" class="input_label_style">
-                     Phone</label>
+                    {{__("Phone")}}</label>
             </div>
 
             <div class="relative bg-white">
@@ -40,7 +40,7 @@
                 class="peer input_style" placeholder="Country" autocomplete="off">
 
                 <label for="nationality" class="input_label_style">
-                    Nationality</label>
+                    {{__("Nationality")}}</label>
             </div>
 
             <div class="relative bg-white">
@@ -49,7 +49,7 @@
                 class="peer input_style" placeholder="Adult" autocomplete="off">
 
                 <label for="Adult" class="input_label_style">
-                     Adult</label>
+                    {{__('Adult')}}</label>
             </div>
 
 
@@ -59,7 +59,7 @@
                        class="peer input_style" placeholder="Children_under_12" autocomplete="off">
 
                 <label for="Children_under_12" class="input_label_style">
-                    Children Under 12</label>
+                    {{__("Children Under 12")}}</label>
             </div>
 
             <div class="relative bg-white">
@@ -68,7 +68,7 @@
                        class="peer input_style" placeholder="Children Under 6" autocomplete="off">
 
                 <label for="Children_under_6" class="input_label_style">
-                    Children Under 6</label>
+                    {{__("Children Under 6")}}</label>
             </div>
 
             <div class="relative bg-white">
@@ -77,21 +77,22 @@
                        class="peer input_style" placeholder="Students" autocomplete="off">
 
                 <label for="students" class="input_label_style">
-                    Students</label>
+                    {{__("Students")}}</label>
             </div>
 
             <div class="relative bg-white">
 
                 <input id='Date' type="date" name="Date" value="{{ old('Date') }}" required
-                class="peer input_style" placeholder="Date" autocomplete="off">
+                class="peer input_style" placeholder="{{__('Date')}}" autocomplete="off">
 
                 <label for="Date" class="input_label_style">
-                     Date</label>
+                    {{__('Date')}}</label>
 
             </div>
       <button type="submit"
-            class="main_button w-full py-3 uppercase shadow-[0px_5px_0px_0px_rgba(0,0,0,0.25)] shadow-blue-800 hover:shadow-none hover:translate-y-[5px] transition-all duration-1000 bg-main">
-          Confirm
+            class="main_button w-full py-3 uppercase shadow-[0px_5px_0px_0px_rgba(0,0,0,0.25)] shadow-yellow-800 hover:shadow-none hover:translate-y-[5px]
+            transition-all duration-1000 bg-bg-main text-secondary">
+          {{__('Confirm')}}
         </button>
        </div>
     </form>

@@ -21,7 +21,9 @@
                     </select>
                 </div>
                 <CustomInput class="mb-2" v-model="blog.title" label="Blog Name" :errors="errors.title"/>
-                <Editor v-model="blog.blog" editorStyle="height: 320px" :errors="errors.blog" />
+                <Editor v-model="blog.blog" editorStyle="height: 320px" :errors="errors.blog"
+                        :class="{'border border-red-500': errors.blog && errors.blog}"/>
+                <span v-if="errors.blog && errors.blog" class="text-red-500 text-sm font-semibold">{{errors.blog}}</span>
                 <CustomInput type="file" class="mb-2" label="blog Image" @change="file => blog.image = file"
                              :errors="errors.image"/>
             </div>

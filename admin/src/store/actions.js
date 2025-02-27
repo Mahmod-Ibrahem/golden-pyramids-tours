@@ -212,7 +212,7 @@ export function createReview({commit}, review) {
     return axiosClient.post('/review', review)
 }
 
-export function updateReview({commit}, review) {
+export function updateReview(__,review) {
     const id = review.id;
     return axiosClient.put(`/review/${id}`, review);
 }
@@ -345,6 +345,38 @@ export function updateBlog({commit}, blog) {
 }
 export function deleteBlog({commit}, id) {
     return axiosClient.delete(`/blog/${id}`)
+}
+/*                                                  Page Texts*/
+
+export function getPageTexts({commit}) {
+    return axiosClient.get('/pageText').then(({data}) => {
+        commit('setPageTexts', data)
+    })
+}
+
+export function getPageText(__, id) {
+    return axiosClient.get(`/pageText/${id}`)
+}
+
+export function createPageText(__, pageText) {
+    return axiosClient.post('/pageText', pageText)
+}
+
+export function updatePageText(__, pageText) {
+    const id = pageText.id;
+    return axiosClient.put(`/pageText/${id}`, pageText);
+}
+
+export function deletePageText(__, id) {
+    return axiosClient.delete(`/pageText/${id}`)
+}
+
+export function getPageTextForTranslation(__,id){
+    return axiosClient.get(`/getPageTextForTranslation/${id}`)
+}
+
+export function createPageTextTranslation(__, pageText) {
+    return axiosClient.put(`/createPageTextTranslation/${pageText.id}`, pageText)
 }
 
 

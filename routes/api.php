@@ -25,6 +25,7 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::delete('/review/{id}', [\App\Http\Controllers\ReviewController::class, 'deleteReview']);
     /* Faq*/
     Route::apiResource('/faqs', \App\Http\Controllers\Api\FaqController::class);
+    Route::get('/faqs', [\App\Http\Controllers\Api\FaqController::class, 'index']);
     Route::put('/createFaqTranslation/{faqId}', [\App\Http\Controllers\Api\FaqController::class,'createFaqTranslation']);
     Route::get('/getFaqForTranslation/{faqId}', [\App\Http\Controllers\Api\FaqController::class,'getFaqForTranslation']);
     /* Cities*/
@@ -35,6 +36,10 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::apiResource('/blog', \App\Http\Controllers\Api\BlogApiController::class);
     Route::put('/createBlogTranslation/{blog}',[\App\Http\Controllers\Api\BlogApiController::class,'createTranslation']);
     Route::get('/getBlogForTranslation/{blog}',[\App\Http\Controllers\Api\BlogApiController::class,'getBlogForTranslation']);
+    /*Page Texts*/
+    Route::apiResource('/pageText', \App\Http\Controllers\Api\PageTextsController::class);
+    Route::put('/createPageTextTranslation/{pageText}',[\App\Http\Controllers\Api\PageTextsController::class,'createPageTextTranslation']);
+    Route::get('/getPageTextForTranslation/{pageText}',[\App\Http\Controllers\Api\PageTextsController::class,'getPageTextForTranslation']);
 });
 
 Route::post('/login', [AuthController::class, 'login']);

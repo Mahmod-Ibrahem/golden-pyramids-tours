@@ -17,13 +17,19 @@
                     <option value="TourPackages">Tour Packages</option>
                 </select>
                 <CustomInput class="mb-2" v-model="category.name" label="Category Name" :errors="errors.name"/>
-                <CustomInput class="mb-2" v-model="category.bg_header" label="BackGround Image Header" :errors="errors.bg_header"/>
+                <CustomInput class="mb-2" v-model="category.bg_header" label="BackGround Image Header"
+                             :errors="errors.bg_header"/>
                 <CustomInput class="mb-2" v-model="category.header" label="Category Header" :errors="errors.header"/>
-<!--                <CustomInput type="textarea" class="mb-2" v-model="category.description" label="Category Description" :errors="errors.description"/>-->
-                <Editor v-model="category.description" editorStyle="height: 200px" placeholder="Category Description" />
-                <CustomInput type="textarea" class="mb-2" v-model="category.title_meta" label="Title Keyword" :errors="errors.title_meta"/>
-                <CustomInput type="textarea" class="mb-2" v-model="category.description_meta" label="Description Keyword" :errors="errors.description_meta"/>
-                <CustomInput type="file" class="mb-2" label="category Image" @change="file => category.image = file" :errors="errors.image"/>
+                <Editor v-model="category.description" editorStyle="height: 200px" placeholder="Category Description"
+                        :class="{'border border-red-500': errors.description && errors.description[0]}"/>
+                <span v-if="errors.description && errors.description[0]"
+                      class="text-red-500 text-sm font-semibold">{{ errors.description[0] }}</span>
+                <CustomInput type="textarea" class="mb-2" v-model="category.title_meta" label="Title Keyword"
+                             :errors="errors.title_meta"/>
+                <CustomInput type="textarea" class="mb-2" v-model="category.description_meta"
+                             label="Description Keyword" :errors="errors.description_meta"/>
+                <CustomInput type="file" class="mb-2" label="category Image" @change="file => category.image = file"
+                             :errors="errors.image"/>
             </div>
             <footer class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                 <button type="submit"
@@ -66,17 +72,16 @@ const category = ref({
     type: '',
     name: '',
     image: '',
-    locale:'en',
+    locale: 'en',
     title_meta: '',
     description_meta: ''
 })
 
-const errors = ref({
-})
+const errors = ref({})
 
 function onSubmit($event, close = false) {
     loading.value = true;
-    errors.value={}
+    errors.value = {}
     const action = category.value.id ? 'updateCategory' : 'createCategory';
     const successStatus = action === 'updateCategory' ? 200 : 201;
     const successMessage = action === 'updateCategory' ? 'Category has successfully updated' : 'Category has successfully created';
@@ -88,10 +93,10 @@ function onSubmit($event, close = false) {
                 store.commit('showToast', successMessage);
                 store.dispatch('getCategories');
                 if (close) {
-                    router.push({ name: 'app.categories' });
+                    router.push({name: 'app.categories'});
                 } else if (action === 'createCategory') {
-                    category.value=response.data
-                    router.push({ name: 'app.categories.edit', params: { id: response.data.id } });
+                    category.value = response.data
+                    router.push({name: 'app.categories.edit', params: {id: response.data.id}});
                 }
             }
         })
@@ -107,10 +112,11 @@ function onSubmit($event, close = false) {
             }
         });
 }
+
 onMounted(() => {
     if (route.params.id) {
         loading.value = true
-        store.dispatch('getCategory', {id:route.params.id, locale: 'en'})
+        store.dispatch('getCategory', {id: route.params.id, locale: 'en'})
             .then((response) => {
                 loading.value = false;
                 category.value = response.data

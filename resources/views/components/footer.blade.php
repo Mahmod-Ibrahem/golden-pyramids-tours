@@ -1,10 +1,10 @@
-<footer class="w-full">
+<footer class="w-full bg-black">
     <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <!--Grid-->
         <div
             class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3 gap-y-8 md:gap-8 py-10 max-w-sm mx-auto sm:max-w-3xl lg:max-w-full">
             <div class="col-span-full mb-10 lg:col-span-2 lg:mb-0">
-                <a href="https://pagedone.io/" class="flex justify-center lg:justify-start mb-6">
+                <a href="#" class="flex justify-center lg:justify-start mb-6">
                     <div class="hidden md:block">
                         <img src="{{asset('/Images/logo.png')}}"
                              alt="logo"
@@ -17,74 +17,70 @@
                 >
                     <!-- Item 1 -->
                     <div class="h-10 group space-y-2">
-
                                 <span class="flex    pb-2">
-                                    <svg class="h-6 w-6 text-link-color"
+                                    <svg class="h-6 w-6 text-bg-main"
                                          width="24" height="24" viewBox="0 0 24 24"
                                          stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
                                          stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>
                                     <path
                                         d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"/>  <path
                                             d="M15 7a2 2 0 0 1 2 2"/>  <path d="M15 3a6 6 0 0 1 6 6"/></svg>
-                                    <span class="pl-3 text-link-color">+201101833336</span>
+                                    <span class="pl-3 text-secondary">+201101833336</span>
                                 </span>
-
                         <span class="flex">
-                                    <svg class="h-6 w-6 text-link-color" fill="none" viewBox="0 0 24 24"
+                                    <svg class="h-6 w-6 text-bg-main" fill="none" viewBox="0 0 24 24"
                                          stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                               d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
                                       </svg>
-
-                                      <span class="pl-3 mb-1 text-link-color">info@mregypttours.com</span>
+                                      <span class="pl-3 mb-1 text-secondary">info@GoldenPyramidsTravel.com</span>
                                 </span>
                     </div>
                 </div>
             </div>
             <!--End Col-->
             <div class="lg:mx-auto text-left text-Primary ">
-                <h4 class="footer_main">Main Pages</h4>
+                <h4 class="footer_main">{{__('Main Pages')}}</h4>
                 <ul class="text-sm  transition-all duration-500">
-                    <li class="footer_anchor"><a href="{{route('home')}}">Home</a></li>
-                    <li class="footer_anchor"><a href="{{route('Transfer.index')}}">Transfer Service</a></li>
-                    <li class="footer_anchor"><a href="{{route('Contact.index')}}">Contact</a></li>
-                    <li class="footer_anchor"><a href="{{route('about')}}">About</a></li>
+                    <li class="footer_anchor"><a href="{{route('home')}}">{{__('Home')}}</a></li>
+                    <li class="footer_anchor"><a href="{{route('Transfer.index')}}">{{__('Transfer Service')}}</a></li>
+                    <li class="footer_anchor"><a href="{{route('Contact.index')}}">{{__('Contact')}}</a></li>
+                    <li class="footer_anchor"><a href="{{route('about')}}">{{__('About Us')}}</a></li>
                 </ul>
             </div>
             <!--End Col-->
             <div class="lg:mx-auto text-left ">
-                <h4 class="footer_main">Categories</h4>
+                <h4 class="footer_main">{{__('Categories')}}</h4>
                 <ul class="text-sm  transition-all duration-500">
-                    <li class="footer_anchor"><a href="{{route('DayTours.index')}}">Day Tours</a></li>
+                    <li class="footer_anchor"><a href="{{route('DayTours.index')}}">{{__('Day Tours')}}</a></li>
 
-                    <li class="footer_anchor"><a href="{{route('TourPackages.index')}}">Tour Packages</a></li>
+                    <li class="footer_anchor"><a href="{{route('TourPackages.index')}}">{{__('Tour Packages')}}</a></li>
                 </ul>
             </div>
             <!--End Col-->
             <div class="lg:mx-auto text-left ">
-                <h4 class="footer_main">Day Tours</h4>
+                <h4 class="footer_main">{{__('Day Tours')}}</h4>
                 <ul class="text-sm  transition-all duration-500">
-                    <li class="footer_anchor"><a href="{{route('DayTours.view',['Category' => 'Cairo'])}}">Cairo
-                            Tours</a></li>
-                    <li class="footer_anchor"><a href="{{route('DayTours.view',['Category' => 'Luxor'])}}">Luxor
-                            Tours</a></li>
-                    <li class="footer_anchor"><a href="{{route('DayTours.view',['Category' => 'Aswan'])}}">Aswan
-                            Tours</a></li>
-                    <li class="footer_anchor"><a href="{{route('DayTours.view',['Category' => 'Alexandria'])}}">Alexandria
-                            Tours</a></li>
+                    <li class="footer_anchor"><a href="{{route('DayTours.view',['Category' => 'Cairo'])}}">{{__('Cairo Tours')}}</a></li>
+                    <li class="footer_anchor"><a href="{{route('DayTours.view',['Category' => 'Luxor'])}}">{{__('Luxor Tours')}}</a></li>
+                    <li class="footer_anchor"><a href="{{route('DayTours.view',['Category' => 'Aswan'])}}">{{__('Aswan Tours')}}</a></li>
+                    <li class="footer_anchor"><a href="{{route('DayTours.view',['Category' => 'Alexandria'])}}">{{__('Alexandria Tours')}}</a></li>
                 </ul>
             </div>
             <!--End Col-->
             <div class="lg:mx-auto text-left ">
-                <h4 class="footer_main">Tour Packages</h4>
+                <h4 class="footer_main">{{__('Tour Packages')}}</h4>
                 <ul class="text-sm  transition-all duration-500">
                     <li class="footer_anchor"><a
-                            href="{{route('TourPackages.view',['Category' => 'egypt-classic-tours'])}}">Egypt Classic
-                            Tours</a></li>
-                    <li class="footer_anchor"><a href="javascript:;">Luxury Egypt Tours</a></li>
-                    <li class="footer_anchor"><a href="javascript:;">Red Sea Packages</a></li>
-                    <li class="footer_anchor"><a href="javascript:;">Alexandria Tours</a></li>
-                    <li class="footer_anchor"><a href="javascript:;">Egypt Short Breaks</a></li>
+                            href="{{route('TourPackages.view',['Category' => 'egypt-classic-tours'])}}">{{__('Egypt Classic Tours')}}</a></li>
+                    <li class="footer_anchor"><a href="javascript:;">{{__('Egypt Luxury Tours')}}</a></li>
+                    <li class="footer_anchor"><a href="javascript:;">{{__('Egypt Christmas Tours')}}</a></li>
+                    <li class="footer_anchor"><a href="javascript:;">{{__('Egypt Family Tours')}}</a></li>
+                    <li class="footer_anchor"><a href="javascript:;">{{__('Egypt Honeymoon Tours')}}</a></li>
+                    <li class="footer_anchor"><a href="javascript:;">{{__('Egypt Sahara Tours')}}</a></li>
+                    <li class="footer_anchor"><a href="javascript:;">{{__('Egypt Short Break')}}</a></li>
+                    <li class="footer_anchor"><a href="javascript:;">{{__('Nile Cruise')}}</a></li>
+
                 </ul>
             </div>
             <!--End Col-->
@@ -92,12 +88,13 @@
         <!--Grid-->
         <div class="py-7 border-t border-gray-200">
             <div class="flex items-center justify-center flex-col lg:justify-between lg:flex-row">
-                <span class="text-sm font-medium ">©<a
-                        href="https://www.facebook    .com/profile.php?id=61553867837462&locale=ar_AR"
-                        class="text-main hover:text-link-color">Mahmoud Ibrahem</a> 2024, All rights reserved.</span>
+                <span class="text-sm font-medium text-secondary ">©<a
+                        href="https://www.facebook.com/profile.php?id=61553867837462&locale=ar_AR"
+                        class="text-bg-main">Mahmoud Ibrahem</a> 2024, {{__('All rights reserved.')}}.</span>
                 <div class="flex mt-4 space-x-4 sm:justify-center lg:mt-0 ">
 
-                    <a href="javascript:;" class="relative w-8 h-8 rounded-full transition-all duration-500 flex justify-center items-center bg-[linear-gradient(45deg,#FEE411_6.9%,#FEDB16_10.98%,#FEC125_17.77%,#FE983D_26.42%,#FE5F5E_36.5%,#FE2181_46.24%,#9000DC_85.57%)]  hover:bg-gradient-to-b from-gray-900 to-gray-900
+                    <a href="javascript:;" class="relative w-8 h-8 rounded-full transition-all duration-500 flex justify-center items-center
+                    bg-[linear-gradient(45deg,#FEE411_6.9%,#FEDB16_10.98%,#FEC125_17.77%,#FE983D_26.42%,#FE5F5E_36.5%,#FE2181_46.24%,#9000DC_85.57%)]
                         ">
                         <svg class="w-[1.25rem] h-[1.125rem] text-white" viewBox="0 0 16 16" fill="none"
                              xmlns="http://www.w3.org/2000/svg">
@@ -108,7 +105,7 @@
 
                     </a>
                     <a href="javascript:;"
-                       class="relative w-8 h-8 rounded-full transition-all duration-500 flex justify-center items-center bg-[#337FFF]  hover:bg-gray-900 ">
+                       class="relative w-8 h-8 rounded-full transition-all duration-500 flex justify-center items-center bg-[#337FFF]">
                         <svg class="w-[1rem] h-[1rem] text-white" viewBox="0 0 8 14" fill="none"
                              xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -118,18 +115,23 @@
 
                     </a>
                     <a href="javascript:;"
-                       class="relative w-8 h-8 rounded-full transition-all duration-500 flex justify-center items-center bg-[#FF0000]  hover:bg-gray-900 ">
+                       class="relative w-8 h-8 rounded-full transition-all duration-500 flex justify-center items-center bg-[#FF0000]">
                         <svg class="w-[1.25rem] h-[0.875rem] text-white" viewBox="0 0 16 12" fill="none"
                              xmlns="http://www.w3.org/2000/svg">
                             <path fill-rule="evenodd" clip-rule="evenodd"
-                                  d="M13.9191 1.10651C14.558 1.27906 15.0602 1.78251 15.2299 2.42069C15.5388 3.57887 15.5388 5.99687 15.5388 5.99687C15.5388 5.99687 15.5388 8.41487 15.2299 9.57306C15.0578 10.2136 14.5556 10.7171 13.9191 10.8872C12.7638 11.1969 8.12875 11.1969 8.12875 11.1969C8.12875 11.1969 3.49603 11.1969 2.33844 10.8872C1.69952 10.7147 1.19735 10.2112 1.0276 9.57306C0.71875 8.41487 0.71875 5.99687 0.71875 5.99687C0.71875 5.99687 0.71875 3.57887 1.0276 2.42069C1.1997 1.78015 1.70188 1.27669 2.33844 1.10651C3.49603 0.796875 8.12875 0.796875 8.12875 0.796875C8.12875 0.796875 12.7638 0.796875 13.9191 1.10651ZM10.4981 5.99687L6.6481 8.22578V3.76796L10.4981 5.99687Z"
+                                  d="M13.9191 1.10651C14.558 1.27906 15.0602 1.78251 15.2299 2.42069C15.5388 3.57887 15.5388 5.99687 15.5388
+                                  5.99687C15.5388 5.99687 15.5388 8.41487 15.2299 9.57306C15.0578 10.2136 14.5556 10.7171 13.9191 10.8872C12.7638
+                                  11.1969 8.12875 11.1969 8.12875 11.1969C8.12875 11.1969 3.49603 11.1969 2.33844 10.8872C1.69952 10.7147 1.19735
+                                  10.2112 1.0276 9.57306C0.71875 8.41487 0.71875 5.99687 0.71875 5.99687C0.71875 5.99687 0.71875 3.57887 1.0276
+                                  2.42069C1.1997 1.78015 1.70188 1.27669 2.33844 1.10651C3.49603 0.796875 8.12875 0.796875 8.12875
+                                  0.796875C8.12875 0.796875 12.7638 0.796875 13.9191 1.10651ZM10.4981 5.99687L6.6481 8.22578V3.76796L10.4981 5.99687Z"
                                   fill="white"/>
                         </svg>
 
                     </a>
 
                     <a href="javascript:;"
-                       class="relative w-8 h-8 rounded-full transition-all duration-500 flex justify-center items-center bg-[#00AF87]  hover:bg-green-400 ">
+                       class="relative w-8 h-8 rounded-full transition-all duration-500 flex justify-center items-center bg-[#00AF87]">
                         <svg class="w-[1.25rem] h-[2rem]" fill="#000000" version="1.1" id="Capa_1"
                              xmlns="http://www.w3.org/2000/svg"
                              xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 98.566 98.566" xml:space="preserve"

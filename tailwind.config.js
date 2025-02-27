@@ -23,7 +23,9 @@ export default {
             },
 
         colors:{
-            'main':'#2563EB',
+            'main':'#000000',
+            'bg-main':'#df7f11',
+            'secondary':'#ffffff',
             'link-color':'#1A2B48',
             Primary:'#443c3e'
         },

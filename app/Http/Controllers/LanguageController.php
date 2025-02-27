@@ -9,8 +9,7 @@ class LanguageController extends Controller
 {
     public function changeLocale($locale)
     {
-
-        $availableLocales = ['en', 'de'];
+        $availableLocales = ['en', 'sp','zh','pt','fr'];
 
         if (!in_array($locale, $availableLocales)) {
             abort(404);

@@ -1,0 +1,57 @@
+<?php
+
+namespace App\Console\Commands;
+
+use App\Models\Tour;
+use Illuminate\Console\Command;
+
+class switchToDomain extends Command
+{
+    /**
+     * The name and signature of the console command.
+     *
+     * @var string
+     */
+    protected $signature = 'app:switch-to-domain';
+
+    /**
+     * The console command description.
+     *
+     * @var string
+     */
+    protected $description = 'Command description';
+
+    /**
+     * Execute the console command.
+     */
+    public function handle()
+    {
+//        $blogs = Blog::all();
+//
+//        foreach ($blogs as $blog) {
+//            $translations = $blog->getTranslations('blog'); // Get all translations
+//
+//            foreach ($translations as $locale => $content) {
+//                $translations[$locale] = str_replace('mregypttours.com', 'GoldenPyramidsTravel.com', $content);
+//            }
+//
+//            $blog->setTranslations('blog', $translations); // Update all translations
+//            $blog->save();
+//        }
+//    $tours=Tour::all();
+//    foreach ($tours as $tour)
+//    {
+//        $tour->itenary_section = str_replace('mregypttours.com', 'GoldenPyramidsTravel.com', $tour->itenary_section);
+//        $tour->save();
+//    }
+
+        $categories=Category::all();
+        foreach ($categories as $category)
+        {
+            $category->description = str_replace('mregypttours.com', 'GoldenPyramidsTravel.com', $category->description);
+            $category->save();
+        }
+
+        $this->info('completed');
+    }
+}

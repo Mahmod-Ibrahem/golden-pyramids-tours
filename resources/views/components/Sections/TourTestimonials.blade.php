@@ -1,9 +1,8 @@
 <section id="Testimonials"
          class="py-2">
     <div
-        class="parent_container max-w-7xl mx-auto">
-        <h2 class="parent_header">Dont Take Our Word For It
-            Trust Our Guest
+        class="parent_container max-w-7xl mx-auto mt-0">
+        <h2 class="parent_header">{{__('Dont Take Our Word For It Trust Our Guests')}}
         </h2>
         <div id="Testimonials_Cards"
              class="flex items-center    md:flex-row md:items-start   max-w-[24rem] md:max-w-full md:gap-2

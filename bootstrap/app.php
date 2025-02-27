@@ -19,6 +19,13 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'verified' => \App\Http\Middleware\EnsureEmailIsVerified::class,
         ]);
+        $middleware->web(append: [
+            \App\Http\Middleware\LocaleMiddleware::class,
+        ]);
+
+        $middleware->alias([
+            'locale' => \App\Http\Middleware\LocaleMiddleware::class,
+        ]);
 
         //
     })

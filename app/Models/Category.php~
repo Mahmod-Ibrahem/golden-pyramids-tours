@@ -11,7 +11,7 @@ class Category extends Model
 {
     use HasFactory , HasTranslations,Sluggable;
     protected $fillable=['type','image','title_meta','description_meta','name','header','bg_header','description','slug'];
-    public $translatable=['slug','name','header','bg_header','description','title_meta','description_meta'];
+//    public $translatable=['slug','name','header','bg_header','description','title_meta','description_meta'];
 
     public function tours()
     {
@@ -25,9 +25,5 @@ class Category extends Model
                 'source' => 'name'
             ]
         ];
-    }
-    public function getRouteKeyName()
-    {
-        return 'id'; // Or 'slug' if you want to resolve by slug
     }
 }

@@ -30,7 +30,7 @@ class ProductRequest extends FormRequest
             'places' => 'required',
             'itenary_title' => 'required',
             'itenary_section' => 'required',
-            'locations'=>'required|json',
+            'locations'=>'required|string',
             'included' => 'required',
             'excluded' => 'required',
             'duration' => 'required',
@@ -49,15 +49,5 @@ class ProductRequest extends FormRequest
             $rules['tour_images.*'] = 'nullable|image';
         }
         return $rules;
-    }
-
-    protected function prepareForValidation() //runs before Validation
-    {
-        // Safely handle `locations` to ensure it's properly transformed if present
-        $locations = $this->locations ?? '';
-        if ($locations)
-        $this->merge([
-            'locations' => json_encode(array_map('trim', explode('/', $locations))),
-        ]);
     }
 }

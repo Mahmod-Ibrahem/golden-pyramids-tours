@@ -1,0 +1,97 @@
+<template>
+    <div class="flex items-center justify-between mb-3">
+        <h1 v-if="!loading" class="text-3xl font-semibold">
+            Translation Form
+        </h1>
+    </div>
+    <div>
+        <Spinner v-if="loading"
+                 class="absolute left-0 top-0 bg-white right-0 bottom-0 flex items-center justify-center"/>
+        <form v-else @submit.prevent="onSubmit">
+            <div class="bg-white px-4 pt-5 pb-4">
+                <div class=" mb-2">
+                    <select
+                        name="type" v-model="pageText.locale"
+                        class="customInput w-full px-3 py-2 border focus:ring-indigo-500 focus:border-indigo-500 rounded-md">
+                        <option value="" selected>Choose Language</option>
+                        <option v-for="locale in pageText.availableLocales" :value="locale" :key="locale">
+                            {{ locale }}
+                        </option>
+                    </select>
+                </div>
+                <Editor v-model="pageText.content" editorStyle="height: 200px" placeholder="Content"></Editor>
+            </div>
+            <footer class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                <button type="submit"
+                        class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-3">
+                    Save
+                </button>
+                <RouterLink :to="{ name: 'app.pageTexts' }" type="button"
+                            class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
+                    Cancel
+                </RouterLink>
+            </footer>
+        </form>
+    </div>
+</template>
+
+<script setup>
+import Spinner from './../../components/Core/Spinner.vue'
+import {ref, onMounted, computed} from 'vue'
+import {useRoute, useRouter} from "vue-router";
+import store from "../../store/index.js"
+import Editor from 'primevue/editor';
+const emit = defineEmits(['update:modelValue', 'close'])
+const route = useRoute()
+const router = useRouter()
+
+const loading = ref(false)
+const pageText = ref({
+    id: null,
+    content: '',
+})
+
+const errors = ref({})
+
+function onSubmit() {
+    loading.value = true
+    store.dispatch('createPageTextTranslation', pageText.value)
+        .then(response => {
+            loading.value = false;
+            if (response.status === 200) {
+                store.commit('showToast', 'Translation has  successfully created')
+                store.dispatch('getPageTexts')
+                router.push({name: 'app.pageTexts'})
+            }
+        })
+        .catch(err => {
+            loading.value = false;
+            if (err.response.status === 422) {
+                errors.value = err.response.data.errors
+            } else if (err.response.status === 409) {
+                store.commit('showErrorToast', err.response.data.message)
+            }
+        })
+}
+
+onMounted(() => {
+    loading.value = true
+    store.dispatch('getPageTextForTranslation', route.params.id)
+        .then(response => {
+            loading.value = false;
+            if (response.status === 200) {
+                pageText.value = response.data
+            }
+        })
+        .catch(err => {
+            loading.value = false;
+            if (err.response.status === 422) {
+                errors.value = err.response.data.errors
+            } else if (err.response.status === 409) {
+                store.commit('showErrorToast', err.response.data.message)
+            }
+        })
+})
+
+</script>
+

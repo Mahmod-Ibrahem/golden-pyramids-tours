@@ -13,7 +13,8 @@
                 <div class=" mb-2">
                     <select
                         name="type" v-model="category.locale"
-                        class="customInput w-full px-3 py-2 border focus:ring-indigo-500 focus:border-indigo-500 rounded-md">
+                        class="customInput w-full px-3 py-2 border focus:ring-indigo-500 focus:border-indigo-500 rounded-md"
+                        :class="{'border border-red-500': errors.locale && errors.localex[0]}">
                         <option value="" selected>Choose Language</option>
                         <option v-for="locale in category.availableLocales" :value="locale" :key="locale">
                             {{ locale }}
@@ -21,9 +22,11 @@
                     </select>
                 </div>
                 <CustomInput class="mb-2" v-model="category.name" label="Category Name" :errors="errors.name"/>
-                <CustomInput class="mb-2" v-model="category.header" label="Category Header" :errors="errors.header"/>
                 <CustomInput class="mb-2" v-model="category.bg_header" label="Category BackGround Header" :errors="errors.bg_header"/>
-                <Editor class="mb-2" v-model="category.description" label="Category Description" :errors="errors.description" editorStyle="height: 100px"/>
+                <CustomInput class="mb-2" v-model="category.header" label="Category Header" :errors="errors.header"/>
+                <Editor v-model="category.description" editorStyle="height: 200px" placeholder="Category Description"
+                        :class="{'border border-red-500': errors.description && errors.description[0]}"/>
+                <span v-if="errors.description && errors.description[0]" class="text-red-500 text-sm font-semibold">{{errors.description[0]}}</span>
                 <CustomInput class="mb-2" v-model="category.title_meta" label="Category Meta Title" :errors="errors.title_meta"/>
                 <CustomInput class="mb-2" v-model="category.description_meta" label="Category Meta Description" :errors="errors.description_meta"/>
             </div>
@@ -67,7 +70,6 @@ function onSubmit() {
                 router.push({name: 'app.categories'})
         })
         .catch(err => {
-            debugger
             loading.value = false;
             if (err.response.status === 422) {
                 errors.value = err.response.data.errors

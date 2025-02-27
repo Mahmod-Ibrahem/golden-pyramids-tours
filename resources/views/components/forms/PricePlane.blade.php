@@ -3,7 +3,7 @@
     <div class="flex flex-col tourDetail_container ">
     <div class="flex justify-between items-center ">
         <p class="text-sm text-gray-900 md:text-[16px] font-semibold">Price Per Person</p>
-        <div class="flex items-center  text-main ">
+        <div class="flex items-center  text-bg-main ">
             <p class="text-sm md:text-lg font-semibold">{{$one}}</p>
             <svg class="h-4 w-6 md:h-4 md:w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -14,7 +14,7 @@
     </div>
         <div class="flex justify-between items-center">
             <p class="text-sm text-gray-900 md:text-[16px] font-semibold">Price for children above 6 Y & Students :</p>
-            <div class="flex items-center  text-main ">
+            <div class="flex items-center text-bg-main ">
                 <p class="text-sm md:text-lg font-semibold">{{$one *0.5}}</p>
                 <svg class="h-4 w-6 md:h-4 md:w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -29,7 +29,7 @@
     <div class="flex flex-col tourDetail_container">
     <div class="flex justify-between items-center  ">
         <p class="text-sm text-gray-900 md:text-[16px] font-semibold">Price for Groups of 2-5 People</p>
-        <div class="flex items-center  text-main ">
+        <div class="flex items-center text-bg-main ">
             <p class="text-sm md:text-lg font-semibold">{{$two}}</p>
             <svg class="h-4 w-6 md:h-4 md:w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -41,7 +41,7 @@
 
         <div class="flex justify-between items-center  ">
             <p class="text-sm text-gray-900 md:text-[16px] font-semibold">Price for children above 6 Y & Students :</p>
-            <div class="flex items-center  text-main ">
+            <div class="flex items-center text-bg-main ">
                 <p class="text-sm md:text-lg font-semibold">{{$two *0.5}}</p>
                 <svg class="h-4 w-6 md:h-4 md:w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -56,7 +56,7 @@
     <div class="flex flex-col tourDetail_container">
     <div class="flex justify-between items-center  ">
         <p class="text-sm text-gray-900 md:text-[16px] font-semibold">Price for Groups of 6-20 People</p>
-        <div class="flex items-center  text-main ">
+        <div class="flex items-center text-bg-main ">
             <p class="text-sm md:text-lg font-semibold">{{$three}}</p>
             <svg class="h-4 w-6 md:h-4 md:w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -68,7 +68,7 @@
 
         <div class="flex justify-between items-center  ">
             <p class="text-sm text-gray-900 md:text-[16px] font-semibold">Price for children above 6 Y & Students :</p>
-            <div class="flex items-center  text-main ">
+            <div class="flex items-center text-bg-main">
                 <p class="text-sm md:text-lg font-semibold">{{$three *0.5}}</p>
                 <svg class="h-4 w-6 md:h-4 md:w-8" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                      stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

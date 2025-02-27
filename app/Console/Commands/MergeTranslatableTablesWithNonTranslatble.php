@@ -29,7 +29,7 @@ class MergeTranslatableTablesWithNonTranslatble extends Command
         $faqs = Faq::with('translations')->get();
         Faq::query()->delete();
         foreach ($faqs as $faq) {
-            $answer=['en' => $faq->translations[0]->answer];
+            $answer=['en' => $faq->translations[0]->question];
             $question=['en' => $faq->translations[0]->answer];
             Faq::create([
                 'question' => $question, // Fixing structure
@@ -39,6 +39,11 @@ class MergeTranslatableTablesWithNonTranslatble extends Command
         $CategoryTranslations = \App\Models\CategoryTranslation::all();
         foreach ($CategoryTranslations as $CategoryTranslation) {
             $category = \App\Models\Category::where('id', $CategoryTranslation->category_id)->first();
+
+            $category->slug = [
+                'en'=>$CategoryTranslation->slug
+            ];
+
             $category->name = [
                 'en'=>$CategoryTranslation->name
             ];
@@ -91,7 +96,7 @@ class MergeTranslatableTablesWithNonTranslatble extends Command
                 'en'=>$tourTranslation->places
             ];
             $tour->locations = [
-                'en'=>$tourTranslation->locations
+                'en' => json_decode($tourTranslation->locations)
             ];
             $tour->save();
         }

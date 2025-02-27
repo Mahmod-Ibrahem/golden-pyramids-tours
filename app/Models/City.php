@@ -25,9 +25,6 @@ class City extends Model
             ]
         ];
     }
-    public function getRouteKeyName(): string //reslove this model by slug not id
-    {
-        return 'slug';
-    }
+
 
 }

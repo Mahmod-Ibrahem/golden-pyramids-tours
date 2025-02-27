@@ -12,13 +12,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->string('slug');
-            $table->string('name');
-            $table->string('header');
-            $table->string('bg_header');
+            $table->text('slug');
+            $table->text('name');
+            $table->text('header');
+            $table->text('bg_header');
             $table->text('description');
-            $table->string('title_meta');
-            $table->string('description_meta');
+            $table->text('title_meta');
+            $table->text('description_meta');
         });
     }
 

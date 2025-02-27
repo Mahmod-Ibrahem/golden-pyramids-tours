@@ -7,7 +7,6 @@ use App\Http\Requests\CityRequest;
 use App\Http\Resources\CityResource;
 use App\Models\City;
 use App\Traits\ImagesUtility;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 class CityApiController extends Controller
@@ -85,16 +84,19 @@ class CityApiController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(City $city)
+    public function destroy(string $cityId)
     {
-        $city->delete();
-        return response()->noContent();
+        $city=City::find($cityId);
+        return $city ? $city->delete() : response()->json('City Not Found',404);
     }
 
     public function createCityTranslation(string $cityId)
     {
         $city=City::find($cityId);
-        $cityValidatedData=\request()->all();
+        $cityValidatedData=\request()->validate([
+            'name'=>'required',
+            'locale'=>'required'
+        ]);
         if(!$city)
         {
             return response()->json('Attraction Not Found',404);

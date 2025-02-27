@@ -5,13 +5,19 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Mail\GuestTailorMail;
 use App\Mail\TransferServic;
+use App\Models\PageText;
 use Illuminate\Http\Request;
 
 class TransferController extends Controller
 {
     public function index()
     {
-        return view('TransferService');
+        $locale=request('locale','en');
+        $transferImageHeader=PageText::where('type','transferBackGroundImageTitle')
+            ->where('content->'.$locale,'!=','')->first();
+        $transferDescription=PageText::where('type','transferContent')
+            ->where('content->'.$locale,'!=','')->first();
+        return view('TransferService',compact('transferImageHeader','transferDescription'));
     }
     public function submitting(Request $request){
 
@@ -19,7 +25,7 @@ class TransferController extends Controller
         $data=$request->all();
 
         \Mail::to('mrboogiewoogie719@gmail.com')->send(new TransferServic($data));
-        $text="Welcome To Our Family !";
+        $text="";
         $thanks="Thanks For Booking With Us";
         $route='Transfer.index';
         return view('landing.Responding',compact('text','thanks','route'));      }

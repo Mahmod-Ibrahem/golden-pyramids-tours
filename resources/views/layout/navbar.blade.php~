@@ -1,0 +1,89 @@
+<div class="flex justify-around items-center py-1 bg-black">
+    <!-- Start Of NavBar For Both-->
+    <!--Language icon-->
+
+        <div class="md:hidden z-20 ">
+            <img src="{{asset('/Images/logo.png')}}" class="h-[4rem]" alt="logo" />
+        </div>
+
+    <div class="md:order-2 relative z-20">
+        <a href="{{ route('TailorMade.index') }}"
+           class="main_button bg-bg-main text-secondary hover:bg-white hover:text-black px-4 py-2 md:px-10 md:py-4 uppercase">
+            {{__('Tailor Made Tours')}}
+        </a>
+    </div>
+
+
+    <div class="hidden md:block h-[4.5rem] my-1 ">
+        <img src="{{asset('/Images/Logo.png')}}"
+             alt="logo"
+             width="140" height="72"
+             class=" object-cover w-full h-full">
+    </div>
+
+    <!--PC NavBar Or Menu-->
+    <div class="hidden md:flex items-center gap-7  font-medium text-lg ">
+        <div class="nav_anch_div">
+            <a href="{{route('home')}}" class="nav_anch_p active:text-main  @if(Route::currentRouteName() == 'home') text-bg-main @endif" ><p >
+                {{__('Home')}}</p></a>
+        </div>
+        <div class="nav_anch_div">
+            <a href="{{route('DayTours.index',['type' => 'dayTours'])}}"  class="nav_anch_p @if(Route::currentRouteName() == 'DayTours.index') text-bg-main @endif">
+                <p >{{__('Day Tours')}}</p></a>
+        </div>
+
+        <div class="nav_anch_div">
+            <a href="{{route('TourPackages.index',['type' => 'tourPackages'])}}" class="nav_anch_p @if(Route::currentRouteName() == 'TourPackages.index') text-bg-main @endif ">
+                <p >{{__('Tour Packages')}}</p></a>
+
+        </div>
+{{--        <div class="nav_anch_div">--}}
+{{--            <a href="{{route('Transfer.index')}}" class="nav_anch_p @if(Route::currentRouteName() == 'Transfer.index') text-bg-main @endif "><p >TRANSFER SERVICES</p></a>--}}
+{{--        </div>--}}
+        <div class="nav_anch_div">
+            <a href="{{route('Blog.index')}}" class="nav_anch_p @if(Route::currentRouteName() == 'Blog.index') text-bg-main @endif">
+                <p >{{__('Blog')}}</p></a>
+        </div>
+
+        <div class="nav_anch_div">
+            <a href="{{route('Contact.index')}}" class="nav_anch_p @if(Route::currentRouteName() == 'Contact.index') text-bg-main @endif">
+                <p>{{__('Contact')}}</p></a>
+        </div>
+
+        <div class="nav_anch_div">
+            <a href="{{route('Contact.index')}}" class="nav_anch_p @if(Route::currentRouteName() == 'about') text-bg-main @endif">
+                <p>{{__('About Us')}}</p></a>
+        </div>
+
+        </div>
+    <!--End of PC NavBar Or Menu-->
+      <!-- Mobile Menu -->
+    <!--hamburger button-->
+    <div class="md:hidden z-20">
+      <button id="menu-btn" type="button" class="hamburger md:hidden focus:outline-none ">
+          <span class="hamburger-top"></span>
+          <span class="hamburger-middle"></span>
+          <span class="hamburger-bottom"></span>
+      </button>
+  </div>
+</div>
+<div id="menu" class="absolute z-10 bottom-0 w-screen hidden  ">
+    <!-- Text overlay -->
+    <ul
+        class=" flex flex-col font-bold text-sm  lg:hidden   tracking-wide gap-2 p-3
+        bg-black">
+        <a href="{{route('home')}}" class="nav_anch_p">{{__('Home')}}</a>
+        <p class="border-b border-gray-300 "></p>
+        <a href="{{route('DayTours.index',['type' => 'dayTours'])}}" class="nav_anch_p">{{__('Day Tours')}}</a>
+        <p class="border-b border-gray-300 "></p>
+        <a href="{{route('TourPackages.index',['type' => 'tourPackages'])}}" class="nav_anch_p">{{__('Tour Packages')}}</a>
+        <p class="border-b border-gray-300 "></p>
+{{--        <a href="{{route('Transfer.index')}}" class="nav_anch_p">{{__('Transfers Service')}}</a>--}}
+{{--        <p class="border-b border-gray-300 "></p>--}}
+        <a href="{{route('Contact.index')}}" class="nav_anch_p">{{__('Contact')}}</a>
+        <p class="border-b border-gray-300 "></p>
+        <a href="{{route('Blog.index')}}" class="nav_anch_p">{{__('Blog')}}</a>
+        <p class="border-b border-gray-300 "></p>
+        <a href="{{route('about')}}" class="nav_anch_p">{{__('About')}}</a>
+    </ul>
+</div>

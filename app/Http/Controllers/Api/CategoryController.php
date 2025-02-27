@@ -4,15 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequeust;
-use App\Http\Requests\TranslationOfCategoryRequest;
 use App\Http\Resources\CategoryListResource;
 use App\Http\Resources\CategoryResource;
-use App\Http\Resources\NonTranslatedCategoriesListResource;
 use App\Models\Category;
-use App\Models\CategoryTranslation;
 use App\Traits\ImagesUtility;
 use App\Traits\TourUtility;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
@@ -44,7 +42,15 @@ class CategoryController extends Controller
     public function createCategoryTranslation(string $categoryId)
     {
         $category=Category::Find($categoryId);
-        $categoryTranslationData=\request()->all();
+        $categoryTranslationData=\request()->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'header' => 'required',
+            'bg_header' => 'required',
+            'title_meta' => 'required',
+            'description_meta' => 'required',
+            'locale' => 'required'
+        ]);
         if (!$category)
         {
             return response()->json('Blog Not Found Or Locale Not Given', 404);
@@ -58,6 +64,8 @@ class CategoryController extends Controller
 
     private function setCategoryTranslation(Category $category,$locale,$categoryValidatedData) : void
     {
+        $category->setTranslation('slug', $locale, Str::slug($categoryValidatedData['name']));
+        $category->setTranslation('slug', $locale,$categoryValidatedData['name']);
         $category->setTranslation('name', $locale,$categoryValidatedData['name']);
         $category->setTranslation('description', $locale,$categoryValidatedData['description']);
         $category->setTranslation('header', $locale,$categoryValidatedData['header']);
@@ -119,5 +127,7 @@ class CategoryController extends Controller
         $category->type=$data['type'];
         $category->save();
     }
+
+
 
 }
