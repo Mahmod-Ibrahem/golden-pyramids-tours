@@ -9,8 +9,6 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::get('/user', [AuthController::class, 'getUser']);
     Route::apiResource('/categories', CategoryController::class);
-    Route::put('/createCategoryTranslation/{category}', [\App\Http\Controllers\Api\CategoryController::class,'createCategoryTranslation']);
-    Route::get('/getCategoryForTranslation/{category}', [\App\Http\Controllers\Api\CategoryController::class,'getCategoryForTranslation']);
     /** Tours*/
     Route::apiResource('/products', ProductController::class);
     Route::delete('/products/deleteImage/{id}', [ProductController::class, 'deleteImage']);
@@ -26,20 +24,24 @@ Route::middleware(['auth:sanctum'])->group(function () {
     /* Faq*/
     Route::apiResource('/faqs', \App\Http\Controllers\Api\FaqController::class);
     Route::get('/faqs', [\App\Http\Controllers\Api\FaqController::class, 'index']);
-    Route::put('/createFaqTranslation/{faqId}', [\App\Http\Controllers\Api\FaqController::class,'createFaqTranslation']);
-    Route::get('/getFaqForTranslation/{faqId}', [\App\Http\Controllers\Api\FaqController::class,'getFaqForTranslation']);
     /* Cities*/
     Route::apiResource('/city', \App\Http\Controllers\Api\CityApiController::class);
-    Route::put('/createCityTranslation/{city}',[\App\Http\Controllers\Api\CityApiController::class,'createCityTranslation']);
-    Route::get('/getCityForTranslation/{city}',[\App\Http\Controllers\Api\CityApiController::class,'getCityForTranslation']);
     /*Blogs*/
     Route::apiResource('/blog', \App\Http\Controllers\Api\BlogApiController::class);
-    Route::put('/createBlogTranslation/{blog}',[\App\Http\Controllers\Api\BlogApiController::class,'createTranslation']);
-    Route::get('/getBlogForTranslation/{blog}',[\App\Http\Controllers\Api\BlogApiController::class,'getBlogForTranslation']);
+    Route::put('/createBlogTranslation/{blog}', [\App\Http\Controllers\Api\BlogApiController::class, 'createTranslation']);
+    Route::get('/getBlogForTranslation/{blog}', [\App\Http\Controllers\Api\BlogApiController::class, 'getBlogForTranslation']);
     /*Page Texts*/
     Route::apiResource('/pageText', \App\Http\Controllers\Api\PageTextsController::class);
-    Route::put('/createPageTextTranslation/{pageText}',[\App\Http\Controllers\Api\PageTextsController::class,'createPageTextTranslation']);
-    Route::get('/getPageTextForTranslation/{pageText}',[\App\Http\Controllers\Api\PageTextsController::class,'getPageTextForTranslation']);
+    Route::put('/createPageTextTranslation/{pageText}', [\App\Http\Controllers\Api\PageTextsController::class, 'createPageTextTranslation']);
+    Route::get('/getPageTextForTranslation/{pageText}', [\App\Http\Controllers\Api\PageTextsController::class, 'getPageTextForTranslation']);
+    /* YouTube Embed Links */
+    Route::apiResource('/video', \App\Http\Controllers\Api\YoutubeVideoController::class);
+    /* Booking List */
+    Route::apiResource('/booking', \App\Http\Controllers\Api\BookingController::class);
+
+    /* ContactLeads */
+    Route::apiResource('/contact', \App\Http\Controllers\Api\ContactController::class);
+    /* ContactLeads */
 });
 
 Route::post('/login', [AuthController::class, 'login']);

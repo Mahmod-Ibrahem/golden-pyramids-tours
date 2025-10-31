@@ -7,7 +7,7 @@
                     ID
                 </TableHeadingCell>
                 <TableHeadingCell @click="sortProduct" class="border-b-2 p-2 text-left" field="type">
-                    Type
+                    Name
                 </TableHeadingCell>
                 <TableHeadingCell @click="sortProduct" class="border-b-2 p-2 text-left" field="content">
 
@@ -35,7 +35,7 @@
                 </td>
 
                 <td class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis">{{
-                        pageText.type
+                        pageText.name
                     }}
                 </td>
                 <td class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis">
@@ -104,8 +104,8 @@
 </template>
 
 <script setup>
-import Spinner from "../../components/Core/Spinner.vue";
-import TableHeadingCell from "../../components/Core/Table/TableHeadingCell.vue";
+import Spinner from "../../components/core/Spinner.vue";
+import TableHeadingCell from "../../components/core/Table/TableHeadingCell.vue";
 import {ref, computed, onMounted} from 'vue';
 import store from "../../store";
 import {Menu, MenuButton, MenuItem, MenuItems} from "@headlessui/vue";

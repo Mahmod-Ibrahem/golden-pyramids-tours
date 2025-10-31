@@ -34,6 +34,7 @@ class PageTextsController extends Controller
         $pageText = PageText::find($textId);
         $pageTextTranslationData = $request->validate([
             'locale' => 'required',
+            'name' => 'required|string',
             'content' => 'required|string',
         ]);
         if (!$pageText) {
@@ -79,9 +80,13 @@ class PageTextsController extends Controller
         } else {
             $pageTextTranslationData = $request->validate([
                 'locale' => 'required',
+                'name' => 'required|string',
                 'content' => 'required|string',
             ]);
-            $this->setPageTextTranslation($pageText, $pageTextTranslationData['locale'], $pageTextTranslationData);//update translatable attribute of blog
+            $this->setPageTextTranslation($pageText, $pageTextTranslationData['locale'], $pageTextTranslationData);
+            $pageText->update([
+                'name' => $pageTextTranslationData['name']
+            ]);
             return response()->json([
                 'message' => 'Page Text Translation Updated Successfully'
             ]);

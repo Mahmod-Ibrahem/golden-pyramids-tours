@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CityRequest;
 use App\Http\Resources\CityResource;
+use App\Jobs\TranslateJob;
 use App\Models\City;
 use App\Traits\ImagesUtility;
 use Illuminate\Support\Facades\Storage;
@@ -12,14 +13,15 @@ use Illuminate\Support\Facades\Storage;
 class CityApiController extends Controller
 {
     use ImagesUtility;
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $locale=\request('locale');
-        $cities = City::whereNotNull('name->'.$locale)->get();
-        return  CityResource::collection($cities);
+        $locale = \request('locale');
+        $cities = City::whereNotNull('name->' . $locale)->get();
+        return CityResource::collection($cities);
     }
 
     /**
@@ -30,7 +32,8 @@ class CityApiController extends Controller
         $validatedCityData = $request->validated();
         $storedImage = $this->storeImage($validatedCityData['image'], 'city');
         $validatedCityData['image'] = $storedImage;
-        $createdCity=City::create($validatedCityData);
+        $createdCity = City::create($validatedCityData);
+        $this->translateCity($createdCity, ['fr', 'es', 'pt', 'zh'], $validatedCityData);
         return new CityResource($createdCity);
     }
 
@@ -39,45 +42,27 @@ class CityApiController extends Controller
      */
     public function show(string $cityId)
     {
-        return City::Find($cityId) ? new CityResource(City::Find($cityId)) :  response (['message' => 'City Not Found'], 404);
+        return City::Find($cityId) ? new CityResource(City::Find($cityId)) : response(['message' => 'City Not Found'], 404);
     }
 
-    public function getCityForTranslation(string $cityId)
-    {
-        $city=City::find($cityId);
-        if(!$city)
-        {
-            return response()->json('City Not Found',404);
-        }
-        return response()->json([
-            'id'=>$city->id,
-            'availableLocales'=>array_diff(['en','fr','sp','zh','pt'],$city->locales()),
-            'locale'=>''
-        ]);
-    }
 
     /**
      * Update the specified resource in storage.
      */
     public function update(CityRequest $request, string $cityId)
     {
-        $city=City::find($cityId);
-        $locale=request('locale');
+        $city = City::find($cityId);
         $validatedCityData = $request->validated();
-        if ($validatedCityData['image'] ?? false)
-        {
+        if ($validatedCityData['image'] ?? false) {
             if ($city->image ?? false) {
                 $relativePath = $this->getRelativePath($city->image);
                 Storage::delete($relativePath);
             }
             $city->image = $this->storeImage($validatedCityData['image'], 'blog');
-        } else
-        {
+        } else {
             $city->image = $city['image']; //34an lma agy 23ml insert myb2a5 null lo mfi4 image asln
         }
-        $this->setCityTranslation($city,$locale,$validatedCityData);
-        $city->save();
-        //        $city->update($validatedCityData);
+        $this->translateCity($city, ['en','fr', 'es', 'pt', 'zh'], $validatedCityData);
         return new CityResource($city);
     }
 
@@ -86,28 +71,14 @@ class CityApiController extends Controller
      */
     public function destroy(string $cityId)
     {
-        $city=City::find($cityId);
-        return $city ? $city->delete() : response()->json('City Not Found',404);
+        $city = City::find($cityId);
+        return $city ? $city->delete() : response()->json('City Not Found', 404);
     }
 
-    public function createCityTranslation(string $cityId)
+    private function translateCity(City $city, $locale, $cityValidatedData)
     {
-        $city=City::find($cityId);
-        $cityValidatedData=\request()->validate([
-            'name'=>'required',
-            'locale'=>'required'
-        ]);
-        if(!$city)
-        {
-            return response()->json('Attraction Not Found',404);
-        }
-        $this->setCityTranslation($city,$cityValidatedData['locale'],$cityValidatedData);
-        $city->save();
-        return new CityResource($city);
-    }
-
-    private function setCityTranslation(City $city , $locale , $cityValidatedData )
-    {
-        $city->setTranslation('name',$locale,$cityValidatedData['name']);
+        TranslateJob::dispatch([
+            'name' => $cityValidatedData['name']
+        ], $locale, $city);
     }
 }

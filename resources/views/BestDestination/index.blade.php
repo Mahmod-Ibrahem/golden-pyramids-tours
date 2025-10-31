@@ -12,7 +12,7 @@
                 <div class="Category_titleContainer">
                     <h1 id="home_title"
                         class="Category_title">
-                        Best {{$location}} Tours With Endless Experiences
+                        {{__('Best')}} {{__($location)}} {{__('Tours With Endless Experiences')}}
                     </h1>
                 </div>
             </div>

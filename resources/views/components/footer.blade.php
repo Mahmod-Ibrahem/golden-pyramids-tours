@@ -61,10 +61,15 @@
             <div class="lg:mx-auto text-left ">
                 <h4 class="footer_main">{{__('Day Tours')}}</h4>
                 <ul class="text-sm  transition-all duration-500">
-                    <li class="footer_anchor"><a href="{{route('DayTours.view',['Category' => 'Cairo'])}}">{{__('Cairo Tours')}}</a></li>
-                    <li class="footer_anchor"><a href="{{route('DayTours.view',['Category' => 'Luxor'])}}">{{__('Luxor Tours')}}</a></li>
-                    <li class="footer_anchor"><a href="{{route('DayTours.view',['Category' => 'Aswan'])}}">{{__('Aswan Tours')}}</a></li>
-                    <li class="footer_anchor"><a href="{{route('DayTours.view',['Category' => 'Alexandria'])}}">{{__('Alexandria Tours')}}</a></li>
+                    <li class="footer_anchor"><a
+                            href="{{route('DayTours.view',['Category' => 'Cairo'])}}">{{__('Cairo Tours')}}</a></li>
+                    <li class="footer_anchor"><a
+                            href="{{route('DayTours.view',['Category' => 'Luxor'])}}">{{__('Luxor Tours')}}</a></li>
+                    <li class="footer_anchor"><a
+                            href="{{route('DayTours.view',['Category' => 'Aswan'])}}">{{__('Aswan Tours')}}</a></li>
+                    <li class="footer_anchor"><a
+                            href="{{route('DayTours.view',['Category' => 'Alexandria'])}}">{{__('Alexandria Tours')}}</a>
+                    </li>
                 </ul>
             </div>
             <!--End Col-->
@@ -72,7 +77,8 @@
                 <h4 class="footer_main">{{__('Tour Packages')}}</h4>
                 <ul class="text-sm  transition-all duration-500">
                     <li class="footer_anchor"><a
-                            href="{{route('TourPackages.view',['Category' => 'egypt-classic-tours'])}}">{{__('Egypt Classic Tours')}}</a></li>
+                            href="{{route('TourPackages.view',['Category' => 'egypt-classic-tours'])}}">{{__('Egypt Classic Tours')}}</a>
+                    </li>
                     <li class="footer_anchor"><a href="javascript:;">{{__('Egypt Luxury Tours')}}</a></li>
                     <li class="footer_anchor"><a href="javascript:;">{{__('Egypt Christmas Tours')}}</a></li>
                     <li class="footer_anchor"><a href="javascript:;">{{__('Egypt Family Tours')}}</a></li>
@@ -88,9 +94,10 @@
         <!--Grid-->
         <div class="py-7 border-t border-gray-200">
             <div class="flex items-center justify-center flex-col lg:justify-between lg:flex-row">
-                <span class="text-sm font-medium text-secondary ">©<a
-                        href="https://www.facebook.com/profile.php?id=61553867837462&locale=ar_AR"
-                        class="text-bg-main">Mahmoud Ibrahem</a> 2024, {{__('All rights reserved.')}}.</span>
+                <a href="https://www.instagram.com/mi_digital_works/"
+                   class="font-semibold text-secondary inline-flex items-center">{{__('Designed By')}} <img class="w-20"
+                                                                                                            src="{{asset('Images/devlogo.png')}}"
+                                                                                                            alt="logo"></a>
                 <div class="flex mt-4 space-x-4 sm:justify-center lg:mt-0 ">
 
                     <a href="javascript:;" class="relative w-8 h-8 rounded-full transition-all duration-500 flex justify-center items-center

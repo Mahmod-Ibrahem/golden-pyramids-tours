@@ -18,14 +18,14 @@ const store = {
         loading: true,
         total: null
     },
-    reviews:{
-        data:null,
-        loading:true,
+    reviews: {
+        data: null,
+        loading: true,
         from: null,
         to: null,
         total: null,
-        limit:10,
-        link:[]
+        limit: 10,
+        link: []
     },
     toast: {
         show: false,
@@ -49,11 +49,35 @@ const store = {
         loading: false,
         data: [],
     },
-    appLocale:'en',
+    bookings: {
+        loading: true,
+        data: null,
+        from: null,
+        to: null,
+        total: null,
+        limit: 10,
+        link: [],
+        page: 1
+    },
+    contactLeads:{
+        loading: true,
+        data: null,
+        from: null,
+        to: null,
+        total: null,
+        limit: 10,
+        link: [],
+        page: 1
+    },
+    appLocale: 'en',
     pageTexts: {
         data: null,
         loading: true,
     },
+    videos: {
+        data: null,
+        loading: true,
+    }
 };
 
 export default store;

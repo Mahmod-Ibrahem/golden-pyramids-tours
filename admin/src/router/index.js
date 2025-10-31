@@ -23,6 +23,12 @@ import ProductTranslationForm from "../views/Products/ProductTranslationForm.vue
 import PageText from "../views/PageText/PageText.vue";
 import PageTextForm from "../views/PageText/PageTextForm.vue";
 import PageTextTranslationForm from "../views/PageText/PageTextTranslationForm.vue";
+import YouTubeVideos from "../views/YouTubeVideos/YouTubeVideos.vue";
+import YouTubeVideosForm from "../views/YouTubeVideos/YouTubeVideosForm.vue";
+import TourBookings from "../views/TourBookings/TourBookings.vue";
+import TourBookingForm from "../views/TourBookings/TourBookingForm.vue";
+import ContactLeads from "../views/ContactLeads/ContactLeads.vue";
+import ContactLeadForm from "../views/ContactLeads/ContactLeadForm.vue";
 
 const routes = [
     {
@@ -141,23 +147,23 @@ const routes = [
                 component: CityTranslationForm
             },
             {
-                path:'blog',
-                name:'app.blogs',
+                path: 'blog',
+                name: 'app.blogs',
                 component: Blogs
             },
             {
-                path:'blog/create',
-                name:'app.blogs.create',
+                path: 'blog/create',
+                name: 'app.blogs.create',
                 component: BlogsForm
             },
             {
-                path:'blog/:id',
-                name:'app.blogs.edit',
+                path: 'blog/:id',
+                name: 'app.blogs.edit',
                 component: BlogsForm
             },
             {
-                path:'blogTranslate/:id',
-                name:'app.blogs.createTranslation',
+                path: 'blogTranslate/:id',
+                name: 'app.blogs.createTranslation',
                 component: BlogsTranslationForm
             },
             {
@@ -166,21 +172,65 @@ const routes = [
                 component: PageText,
             },
             {
-                path:'pageTexts/create',
-                name:'app.pageTexts.create',
+                path: 'pageTexts/create',
+                name: 'app.pageTexts.create',
                 component: PageTextForm
             },
             {
-                path:'pageTexts/:id',
-                name:'app.pageTexts.edit',
+                path: 'pageTexts/:id',
+                name: 'app.pageTexts.edit',
                 component: PageTextForm
             },
             {
-                path:'pageTextTranslation/:id',
-                name:'app.pageTexts.createTranslation',
+                path: 'pageTextTranslation/:id',
+                name: 'app.pageTexts.createTranslation',
                 component: PageTextTranslationForm
             },
-
+            {
+                path: "youtube-videos",
+                name: "app.youtube-videos",
+                component: YouTubeVideos
+            },
+            {
+                path: "youtube-videos/create",
+                name: "app.youtube-videos.create",
+                component: YouTubeVideosForm
+            },
+            {
+                path: "youtube-videos/:id",
+                name: "app.youtube-videos.edit",
+                component: YouTubeVideosForm
+            },
+            {
+                path: "tour-bookings",
+                name: "app.tourbookings",
+                component: TourBookings
+            },
+            {
+                path: "tour-bookings/create",
+                name: "app.tourbookings.create",
+                component: TourBookingForm
+            },
+            {
+                path: "tour-bookings/:id",
+                name: "app.tourbookings.edit",
+                component: TourBookingForm
+            },
+            {
+                path: "contact-leads",
+                name: "app.contact-leads",
+                component: ContactLeads
+            },
+            {
+                path: "contact-leads/:id",
+                name: "app.contact-leads.edit",
+                component: ContactLeadForm
+            },
+            {
+                path: "contact-leads/create",
+                name: "app.contact-leads.create",
+                component: ContactLeadForm
+            },
         ],
     },
 

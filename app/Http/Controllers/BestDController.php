@@ -16,7 +16,6 @@ class BestDController extends Controller
         ->with('category')
         ->get();
 
-        //ToDo Fix This
         return view('BestDestination.index', compact('tours', 'location'));
     }
 }

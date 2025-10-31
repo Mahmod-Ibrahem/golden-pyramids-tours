@@ -24,10 +24,7 @@ class ReviewController extends Controller
         $perPage = request('perPage', 10);
 
         // Eager load 'category' relationship
-        $reviews = Review::with(['tour.tourTranslations' => function ($query) {
-            $query->where('locale', 'en');
-        }])
-            ->orderBy($SortField, $SortDirection);
+        $reviews = Review::with('tour')->orderBy($SortField, $SortDirection);
 
         if ($search) {
             $reviews->where('title', 'LIKE', "%$search%")
@@ -41,54 +38,53 @@ class ReviewController extends Controller
         return ReviewListResource::collection($reviews->paginate($perPage));
     }
 
-        public
-        function getReview($id)
-        {
-            $review = Review::find($id);
+    public
+    function getReview($id)
+    {
+        $review = Review::find($id);
 
-            if ($review) {
-                return new ReviewResource($review);
-            } else {
-                return response()->json(['message' => 'Review not found'], 404);
-            }
-        }
-
-
-
-        public function updateReview(StoreReviewRequest $request)
-        {
-            $data = $request->validated();
-            $review = Review::find($data['id']);
-            $review->update($data);
+        if ($review) {
             return new ReviewResource($review);
+        } else {
+            return response()->json(['message' => 'Review not found'], 404);
         }
-
-        /**
-         * Show the form for creating a new resource.
-         */
-        public
-        function create(StoreReviewRequest $request)
-        {
-            $data = $request->validated();
-            $review = Review::create($data);
-            return new ReviewResource($review);
-        }
-
-        public
-        function deleteReview($id)
-        {
-
-            $review = Review::find($id);
-            if ($review == null) {
-                return response()->json(['message' => 'Review not found'], 404);
-            }
-            $review->delete();
-            return response()->noContent();
-        }
-
-
-        /**
-         * Store a newly created resource in storage.
-         */
-
     }
+
+
+    public function updateReview(StoreReviewRequest $request)
+    {
+        $data = $request->validated();
+        $review = Review::find($data['id']);
+        $review->update($data);
+        return new ReviewResource($review);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     */
+    public
+    function create(StoreReviewRequest $request)
+    {
+        $data = $request->validated();
+        $review = Review::create($data);
+        return new ReviewResource($review);
+    }
+
+    public
+    function deleteReview($id)
+    {
+
+        $review = Review::find($id);
+        if ($review == null) {
+            return response()->json(['message' => 'Review not found'], 404);
+        }
+        $review->delete();
+        return response()->noContent();
+    }
+
+
+    /**
+     * Store a newly created resource in storage.
+     */
+
+}

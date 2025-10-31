@@ -1,11 +1,8 @@
 <template>
   <div class="flex items-center justify-between mb-3">
-    <h1 class="text-3xl font-semibold">Faqs</h1>
+    <h1 class="view_title">Faqs</h1>
     <RouterLink :to="{name:'app.faq.create'}"
-      class="py-2 px-4 border border-transparent text-sm font-medium
-      rounded-md text-white bg-indigo-600 hover:bg-indigo-700
-      focus:outline-none focus:ring-2 focus:ring-offset-2
-      focus:ring-indigo-500">
+      class="create_button">
       Add new Faq
     </RouterLink>
   </div>

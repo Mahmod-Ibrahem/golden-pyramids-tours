@@ -5,22 +5,22 @@
         <table class="table_tag ">
             <thead>
             <tr>
-                <TableHeadingCell  class="border-b-2 p-2 text-left " field="Id"
+                <TableHeadingCell class="border-b-2 p-2 text-left " field="Id"
                                   :sort-field="sortField" :sort-direction="sortDirection">
                     ID
                 </TableHeadingCell>
 
-                <TableHeadingCell  class="border-b-2 p-2 text-left" field="title"
+                <TableHeadingCell class="border-b-2 p-2 text-left" field="title"
                                   :sort-field="sortField" :sort-direction="sortDirection">
 
                     Type
                 </TableHeadingCell>
-                <TableHeadingCell  class="border-b-2 p-2 text-left" field="quantity"
+                <TableHeadingCell class="border-b-2 p-2 text-left" field="quantity"
                                   :sort-field="sortField" :sort-direction="sortDirection">
 
                     Name
                 </TableHeadingCell>
-                <TableHeadingCell  class="border-b-2 p-2 text-left" field="price"
+                <TableHeadingCell class="border-b-2 p-2 text-left" field="price"
                                   :sort-field="sortField" :sort-direction="sortDirection">
                     Image
                 </TableHeadingCell>
@@ -50,7 +50,7 @@
                 <td class="border-b p-2">
                     {{ category.name }}
                 </td>
-                 <td class="border-b p-2 ">
+                <td class="border-b p-2 ">
                     <img class="w-16 h-16 object-cover" :src="category.image_url" :alt="category.title">
                 </td>
 
@@ -59,7 +59,7 @@
                         <div>
                             <MenuButton
                                 class="inline-flex items-center justify-center  rounded-full w-10 h-10 bg-black bg-opacity-0 text-sm font-medium text-white hover:bg-opacity-5 focus:bg-opacity-5 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">
-                                <EllipsisVerticalIcon class="h-5 w-5 text-indigo-500" aria-hidden="true" />
+                                <EllipsisVerticalIcon class="h-5 w-5 text-indigo-500" aria-hidden="true"/>
                             </MenuButton>
                         </div>
 
@@ -73,35 +73,26 @@
                                 class="absolute z-10 right-0 mt-2 w-32 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                 <div class="px-1 py-1">
                                     <MenuItem v-slot="{ active }">
-                                        <RouterLink :to="{ name: 'app.categories.translation', params: { id: category.id } }" :class="[
+                                        <RouterLink :to="{ name: 'app.categories.edit', params: { id: category.id } }"
+                                                    :class="[
                                                 active ? 'bg-indigo-600 text-white' : 'text-gray-900',
                                                 'group flex w-full items-center rounded-md px-2 py-2 text-sm',
                                             ]">
                                             <PencilIcon :active="active" class="mr-2 h-5 w-5 text-indigo-400"
-                                                        aria-hidden="true" />
-                                            Translate Category
-                                        </RouterLink>
-                                    </MenuItem>
-                                    <MenuItem v-slot="{ active }">
-                                        <RouterLink :to="{ name: 'app.categories.edit', params: { id: category.id } }" :class="[
-                                                active ? 'bg-indigo-600 text-white' : 'text-gray-900',
-                                                'group flex w-full items-center rounded-md px-2 py-2 text-sm',
-                                            ]">
-                                            <PencilIcon :active="active" class="mr-2 h-5 w-5 text-indigo-400"
-                                                        aria-hidden="true" />
+                                                        aria-hidden="true"/>
                                             Edit
                                         </RouterLink>
                                     </MenuItem>
-<!--                                    <MenuItem v-slot="{ active }">-->
-<!--                                        <button :class="[-->
-<!--                                                active ? 'bg-indigo-600 text-white' : 'text-gray-900',-->
-<!--                                                'group flex w-full items-center rounded-md px-2 py-2 text-sm',-->
-<!--                                            ]" @click="deleteCategory(category)">-->
-<!--                                            <TrashIcon :active="active" class="mr-2 h-5 w-5 text-indigo-400"-->
-<!--                                                       aria-hidden="true" />-->
-<!--                                            Delete-->
-<!--                                        </button>-->
-<!--                                    </MenuItem>-->
+                                    <MenuItem v-slot="{ active }">
+                                        <button :class="[
+                                                active ? 'bg-indigo-600 text-white' : 'text-gray-900',
+                                                'group flex w-full items-center rounded-md px-2 py-2 text-sm',
+                                            ]" @click="deleteCategory(category)">
+                                            <TrashIcon :active="active" class="mr-2 h-5 w-5 text-indigo-400"
+                                                       aria-hidden="true"/>
+                                            Delete
+                                        </button>
+                                    </MenuItem>
                                 </div>
                             </MenuItems>
                         </transition>
@@ -138,7 +129,7 @@ const categoryloading = ref('true')
 
 function getCategories(url = null) {
     store.dispatch('getCategories', {
-        locale:'en'
+        locale: 'en'
     }).then(() => {
         categoryloading.value = false
     })
@@ -170,16 +161,18 @@ function sortProduct(field) {
 //     emit('clickEdit', category)
 // }
 
-// function deleteCategory(category) {
-//     if (!confirm('Are You Sure you want to delete the category ? ')) {
-//         return
-//     }
-//     store.dispatch('deleteCategory', category.id)
-//         .then(res => {
-//             store.commit('showToast', 'Category Deleted Successfully')
-//             store.dispatch('getCategories')
-//         })
-// }
+function deleteCategory(category) {
+    if (!confirm('Are You Sure you want to delete the category ? ')) {
+        return
+    }
+    store.dispatch('deleteCategory', category.id)
+        .then(res => {
+            store.commit('showToast', 'Category Deleted Successfully')
+            store.dispatch('getCategories')
+        }).catch(err => {
+        store.commit('showErrorToast', 'Cannot Delete Category Because It Has Tours , Remove Tours First')
+    })
+}
 
 onMounted(() => {
 

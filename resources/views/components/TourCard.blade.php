@@ -17,7 +17,8 @@
             {{$tour['description']}}
         </p>
 
-        <div class="py-[20px] flex justify-between w-full h-full border-b border-black/10 pb-4 text-Primary font-semibold">
+        <div
+            class="py-[20px] flex justify-between w-full h-full border-b border-black/10 pb-4 text-Primary font-semibold">
             <div class="flex gap-2 items-center">
                 <svg width="25" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 511.999 511.999">
                     <path
@@ -49,17 +50,17 @@
                         d="M471.654 254.074c-.4-2.212-1.773-4.128-3.74-5.22l-7.97-4.433-91.827 20.477 133.656 155.12-30.12-165.944zM256 484.533v-7.508l-115.022-174.68-9.837 126.895 121.78 54.634a7.53 7.53 0 0 0 3.078.658z"
                         fill="#1ea4e9"></path>
                 </svg>
-                    <span
-                        class="text-[14px] text-Primary font-semibold">{{$tour['duration']}}
+                <span
+                    class="text-[14px] text-Primary font-semibold">{{$tour['duration']}}
                     </span>
             </div>
             <div class="flex gap-2 items-center">
                 <img src="{{ asset('Images/Icons/Price.png') }}" alt="Views" class="w-[24px] h-[24px]">
-                    <span class="font-semibold text-[14px] text-Primary">From: ${{$tour['price_six_twenty']}}</span>
+                <span class="font-semibold text-[14px] text-Primary">From: ${{$tour['price_six_twenty']}}</span>
             </div>
             <div class="flex gap-2 items-center">
                 <img src="{{ asset('Images/Icons/Views.png') }}" alt="Views" class="w-[24px] h-[24px]">
-                    <span class="text-[14px] text-Primary font-semibold">{{$tour['visit_count']}}</span>
+                <span class="text-[14px] text-Primary font-semibold">{{$tour['visit_count']}}</span>
             </div>
 
         </div>

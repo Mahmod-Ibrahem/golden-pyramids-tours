@@ -42,7 +42,7 @@
 
                     Content
                 </TableHeadingCell>
-                <TableHeadingCell  class="border-b-2 p-2 text-left" field="action">
+                <TableHeadingCell class="border-b-2 p-2 text-left" field="action">
 
                     Action
                 </TableHeadingCell>
@@ -59,11 +59,16 @@
             </tbody>
             <tbody v-else class="table-body">
             <tr v-for="(review, index) of reviews.data">
-                <td class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis">{{ review.id }}</td>
-                <td class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis">{{ review.tour?.tour_translations[0]?.title ?? 'HomePage' }}</td>
+                <td class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis">{{
+                        review.id
+                    }}
+                </td>
+                <td class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis">
+                    {{ review.tourName ? review.tourName : 'HomePage' }}
+                </td>
 
                 <td class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis ">
-                    {{review.title }}
+                    {{ review.title }}
                 </td>
                 <td class="border-b p-2 max-w-[200px] whitespace-nowrap overflow-hidden text-ellipsis ">
                     {{ review.content }}
@@ -138,12 +143,12 @@
 </template>
 
 <script setup>
-import Spinner from "../../components/Core/Spinner.vue";
-import TableHeadingCell from "../../components/Core/Table/TableHeadingCell.vue";
+import Spinner from "../../components/core/Spinner.vue";
+import TableHeadingCell from "../../components/core/Table/TableHeadingCell.vue";
 import {ref, computed, onMounted} from 'vue';
 import store from "../../store";
 import {Menu, MenuButton, MenuItem, MenuItems} from "@headlessui/vue";
-import {EllipsisVerticalIcon, PencilIcon, TrashIcon,ChevronDoubleRightIcon} from '@heroicons/vue/24/outline'
+import {EllipsisVerticalIcon, PencilIcon, TrashIcon, ChevronDoubleRightIcon} from '@heroicons/vue/24/outline'
 import {RouterLink} from "vue-router";
 
 
@@ -162,7 +167,7 @@ const reviewloading = ref('true')
 
 
 function getReviews(url = null) {
-    reviewloading.value=true
+    reviewloading.value = true
     store.dispatch('getReviews', {
         url,
         search: search.value,

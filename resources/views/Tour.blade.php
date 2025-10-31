@@ -18,7 +18,8 @@
         </div>
     </div>
 
-    <div class="parent_container  text-gray-900 pb-4 mt-0 bg-[#f5f3f3]" style="background-image: url('{{ asset('Images/hero-bg.png') }}')">
+    <div class="parent_container  text-gray-900 pb-4 mt-0 bg-[#f5f3f3]"
+         style="background-image: url('{{ asset('Images/hero-bg.png') }}')">
         <div class="flex gap-2 md:mt-4 items-center py-6">
             <p class="text-lg md:text-2xl font-medium text- ">{{$tour->locations}}</p>
             <svg class="h-5 w-5 md:h-8 md:w-8 text-bg-main" fill="none" viewBox="0 0 24 24"
@@ -81,6 +82,8 @@
                         @endforelse
                     </div>
                 </div>
+                @component('components.TourComponent.Description', ['tour' => $tour])
+                @endcomponent
                 <!--Tap Collapse (itenary..etc)-->
                 <div id="tabContainer" class="w-full mt-6">
                     <div class="w-full">

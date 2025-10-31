@@ -1,6 +1,6 @@
 <template>
     <div class="w-[200px]  transition-all bg-indigo-700 text-white py-4 px-2">
-        <RouterLink :to="{name:'app.categories'}"  class="sidebar_router">
+        <RouterLink :to="{name:'app.categories'}" class="sidebar_router">
             <span class="mr-2 text-gray-300">
                 <ListBulletIcon class="w-5"></ListBulletIcon>
             </span>
@@ -8,7 +8,7 @@
                 Categories
             </span>
         </RouterLink>
-        <RouterLink :to="{name:'app.products'}"  class="sidebar_router">
+        <RouterLink :to="{name:'app.products'}" class="sidebar_router">
             <span class="mr-2 text-gray-300">
                 <ListBulletIcon class="w-5"></ListBulletIcon>
             </span>
@@ -56,6 +56,30 @@
                Page Texts
             </span>
         </RouterLink>
+        <RouterLink :to="{name:'app.youtube-videos'}" class="sidebar_router">
+            <span class="mr-2 text-gray-300">
+                <ListBulletIcon class="w-5"></ListBulletIcon>
+            </span>
+            <span class="text-xs">
+               YouTube Videos
+            </span>
+        </RouterLink>
+        <RouterLink :to="{name:'app.tourbookings'}" class="sidebar_router">
+            <span class="mr-2 text-gray-300">
+                <ListBulletIcon class="w-5"></ListBulletIcon>
+            </span>
+            <span class="text-xs">
+               Bookings
+            </span>
+        </RouterLink>
+        <RouterLink :to="{name:'app.contact-leads'}" class="sidebar_router">
+            <span class="mr-2 text-gray-300">
+                <ListBulletIcon class="w-5"></ListBulletIcon>
+            </span>
+            <span class="text-xs">
+               Contact Leads
+            </span>
+        </RouterLink>
     </div>
 </template>
 
@@ -66,6 +90,7 @@ import {
 import {computed} from 'vue';
 import {RouterLink} from 'vue-router';
 import store from "../store";
+
 const user = computed(() => store.state.user.data)
 
 </script>

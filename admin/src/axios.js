@@ -2,9 +2,11 @@ import axios from "axios";
 import store from "./store"
 import router from "./router/index.js";
 import {computed} from "vue";
+// baseURL: 'http://localhost:8000/api',
+// baseURL: 'https://goldenpyramidstravel.com/api',
 
 const axiosClient = axios.create({
-        baseURL: 'http://127.0.0.1:8000/api',
+baseURL: 'https://goldenpyramidstravel.com/api',
 });
 
 axiosClient.interceptors.request.use(config=>{

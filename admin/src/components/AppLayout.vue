@@ -4,12 +4,12 @@
         <SideBar :class="{ '-ml-[200px]': !sidebarOpened }"></SideBar>
         <!--End OF SideBar-->
         <!--Nav Bar-->
-        <div class="flex-1">
+        <div class="w-screen overflow-x-auto">
             <NavBar @toggle-sidebar="toggleSideBar"></NavBar>
             <!-- End ofNav Bar-->
             <!--Content-->
-            <main class="p-6">
-                <div :key="store.state.appLocale" class="p-4 rounded bg-white shadow">
+            <main class="p-6 overflow-x-auto">
+                <div :key="store.state.appLocale" class="p-4 rounded bg-white shadow overflow-x-auto">
                     <router-view></router-view>
                 </div>
             </main>

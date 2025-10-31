@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CategoryRequeust;
 use App\Http\Resources\CategoryListResource;
 use App\Http\Resources\CategoryResource;
+use App\Jobs\TranslateJob;
 use App\Models\Category;
 use App\Traits\ImagesUtility;
 use App\Traits\TourUtility;
@@ -37,42 +38,12 @@ class CategoryController extends Controller
         $validatedCategoryData['image'] = $storedImage;
         $validatedCategoryData['description'] = str_replace('target="_blank"', '', $validatedCategoryData['description']);
         $createdCategory = Category::create($validatedCategoryData);
+        $this->translateCategory($createdCategory, ['es', 'zh', 'pt', 'fr'], $validatedCategoryData);
         return new CategoryResource($createdCategory);
     }
-    public function createCategoryTranslation(string $categoryId)
-    {
-        $category=Category::Find($categoryId);
-        $categoryTranslationData=\request()->validate([
-            'name' => 'required',
-            'description' => 'required',
-            'header' => 'required',
-            'bg_header' => 'required',
-            'title_meta' => 'required',
-            'description_meta' => 'required',
-            'locale' => 'required'
-        ]);
-        if (!$category)
-        {
-            return response()->json('Blog Not Found Or Locale Not Given', 404);
-        }
-        else {
-            $this->setCategoryTranslation($category,$categoryTranslationData['locale'],$categoryTranslationData);//update translatable attribute of Category
-            $category->save();
-            return response()->json('Category Translation Created Successfully', 200);
-        }
-    }
 
-    private function setCategoryTranslation(Category $category,$locale,$categoryValidatedData) : void
-    {
-        $category->setTranslation('slug', $locale, Str::slug($categoryValidatedData['name']));
-        $category->setTranslation('slug', $locale,$categoryValidatedData['name']);
-        $category->setTranslation('name', $locale,$categoryValidatedData['name']);
-        $category->setTranslation('description', $locale,$categoryValidatedData['description']);
-        $category->setTranslation('header', $locale,$categoryValidatedData['header']);
-        $category->setTranslation('bg_header', $locale,$categoryValidatedData['bg_header']);
-        $category->setTranslation('title_meta', $locale,$categoryValidatedData['title_meta']);
-        $category->setTranslation('description_meta', $locale,$categoryValidatedData['description_meta']);
-    }
+
+
 
     /**
      * Display the specified resource.
@@ -84,7 +55,7 @@ class CategoryController extends Controller
 
     public function getCategoryForTranslation(Category $category)
     {
-        return !is_null($category) ?  response()->json([
+        return !is_null($category) ? response()->json([
             'id' => $category->id,
             'availableLocales' => array_diff(['en', 'fr', 'sp', 'zh', 'pt'], $category->locales()),
             'locale' => ''
@@ -107,8 +78,8 @@ class CategoryController extends Controller
             $data['image'] = $category['image']; //34an lma agy 23ml insert myb2a5 null lo mfi4 image asln
         }
         $data['description'] = str_replace('target="_blank"', '', $data['description']);
-        $this->setCategoryTranslation($category,$data['locale'], $data);
         $this->updateCategoryMain($category, $data);
+        $this->translateCategory($category, ['es', 'zh', 'pt', 'fr', 'en'], $data);
         return response()->json(['message' => 'Category updated successfully'], 200);
     }
 
@@ -123,11 +94,22 @@ class CategoryController extends Controller
 
     private function updateCategoryMain(Category $category, array $data)
     {
-        $category->image=$data['image'];
-        $category->type=$data['type'];
+        $category->image = $data['image'];
+        $category->type = $data['type'];
         $category->save();
     }
+    private function translateCategory(Category $category, $locale, $categoryValidatedData): void
+    {
 
-
+        TranslateJob::dispatch([
+            'slug' => Str::slug($categoryValidatedData['name']),
+            'name' => $categoryValidatedData['name'],
+            'description' => $categoryValidatedData['description'],
+            'header' => $categoryValidatedData['header'],
+            'bg_header' => $categoryValidatedData['bg_header'],
+            'title_meta' => $categoryValidatedData['title_meta'],
+            'description_meta' => $categoryValidatedData['description_meta'],
+        ], $locale, $category, 'category');
+    }
 
 }

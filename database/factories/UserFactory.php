@@ -27,13 +27,13 @@ class UserFactory extends Factory
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => static::$password ??= Hash::make('123'),
+            'password' => static::$password ??= Hash::make('AmrMostafa#2025'),
             'remember_token' => Str::random(10),
         ];
     }
 
     /**
-     * Indicate that the model's email address should be unverified.
+     * Indicate that the model's email address should be unverified.a
      */
     public function unverified(): static
     {

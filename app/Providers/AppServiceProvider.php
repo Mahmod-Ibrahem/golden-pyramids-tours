@@ -2,8 +2,18 @@
 
 namespace App\Providers;
 
-use App\Models\City;
-use App\Models\Blog;
+use App\Models\Category;
+use App\Models\Faq;
+use App\Models\PageText;
+use App\Models\Review;
+use App\Models\Tour;
+use App\Models\YoutubeVideo;
+use App\Observers\CategoryObserver;
+use App\Observers\FaqObserver;
+use App\Observers\PageTextObserver;
+use App\Observers\ReviewObserver;
+use App\Observers\TourObserver;
+use App\Observers\YoutubeVideoObserver;
 use Illuminate\Auth\Notifications\ResetPassword;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
@@ -26,6 +36,14 @@ class AppServiceProvider extends ServiceProvider
         ResetPassword::createUrlUsing(function (object $notifiable, string $token) {
             return config('app.frontend_url')."/password-reset/$token?email={$notifiable->getEmailForPasswordReset()}";
         });
+
+        // Register model observers for cache invalidation
+        Category::observe(CategoryObserver::class);
+        Tour::observe(TourObserver::class);
+        YoutubeVideo::observe(YoutubeVideoObserver::class);
+        Review::observe(ReviewObserver::class);
+        Faq::observe(FaqObserver::class);
+        PageText::observe(PageTextObserver::class);
 
 //        $models=[
 //            'city'=>City::class,

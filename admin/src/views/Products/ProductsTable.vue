@@ -116,17 +116,17 @@
                             <MenuItems
                                 class="absolute z-10 right-0 mt-2 w-32 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
                                 <div class="px-1 py-1">
-                                    <MenuItem v-slot="{ active }">
-                                        <RouterLink :to="{ name: 'app.product.translation', params: { id: product.id } }"
-                                                    :class="[
-                                                active ? 'bg-indigo-600 text-white' : 'text-gray-900',
-                                                'group flex w-full items-center rounded-md px-2 py-2 text-sm',
-                                            ]">
-                                            <PencilIcon :active="active" class="mr-2 h-5 w-5 text-indigo-400"
-                                                        aria-hidden="true"/>
-                                            Tour Translate
-                                        </RouterLink>
-                                    </MenuItem>
+<!--                                    <MenuItem v-slot="{ active }">-->
+<!--                                        <RouterLink :to="{ name: 'app.product.translation', params: { id: product.id } }"-->
+<!--                                                    :class="[-->
+<!--                                                active ? 'bg-indigo-600 text-white' : 'text-gray-900',-->
+<!--                                                'group flex w-full items-center rounded-md px-2 py-2 text-sm',-->
+<!--                                            ]">-->
+<!--                                            <PencilIcon :active="active" class="mr-2 h-5 w-5 text-indigo-400"-->
+<!--                                                        aria-hidden="true"/>-->
+<!--                                            Tour TranslateJob-->
+<!--                                        </RouterLink>-->
+<!--                                    </MenuItem>-->
                                     <MenuItem v-slot="{ active }">
                                         <RouterLink :to="{ name: 'app.products.edit', params: { id: product.id } }"
                                                     :class="[
@@ -138,26 +138,26 @@
                                             Edit
                                         </RouterLink>
                                     </MenuItem>
-                                    <MenuItem  v-slot="{ active }">
-                                        <RouterLink :to="{name:'app.products.view',params:{id:product.id}}" :class="[
-                                            active ? 'bg-indigo-600 text-white' : 'text-gray-900',
-                                            'group flex w-full items-center rounded-md px-2 py-2 text-sm',
-                                        ]" >
-                                            <ChevronDoubleRightIcon :active="active" class="mr-2 h-5 w-5 text-indigo-400"
-                                                                    aria-hidden="true" />
-                                            Tour Images
-                                        </RouterLink>
-                                    </MenuItem>
-<!--                                    <MenuItem v-slot="{ active }">-->
-<!--                                        <button :class="[-->
-<!--                                                active ? 'bg-indigo-600 text-white' : 'text-gray-900',-->
-<!--                                                'group flex w-full items-center rounded-md px-2 py-2 text-sm',-->
-<!--                                            ]" @click="deleteProduct(product)">-->
-<!--                                            <TrashIcon :active="active" class="mr-2 h-5 w-5 text-indigo-400"-->
-<!--                                                       aria-hidden="true"/>-->
-<!--                                            Delete-->
-<!--                                        </button>-->
+<!--                                    <MenuItem  v-slot="{ active }">-->
+<!--                                        <RouterLink :to="{name:'app.products.view',params:{id:product.id}}" :class="[-->
+<!--                                            active ? 'bg-indigo-600 text-white' : 'text-gray-900',-->
+<!--                                            'group flex w-full items-center rounded-md px-2 py-2 text-sm',-->
+<!--                                        ]" >-->
+<!--                                            <ChevronDoubleRightIcon :active="active" class="mr-2 h-5 w-5 text-indigo-400"-->
+<!--                                                                    aria-hidden="true" />-->
+<!--                                            Tour Images-->
+<!--                                        </RouterLink>-->
 <!--                                    </MenuItem>-->
+                                    <MenuItem v-slot="{ active }">
+                                        <button :class="[
+                                                active ? 'bg-indigo-600 text-white' : 'text-gray-900',
+                                                'group flex w-full items-center rounded-md px-2 py-2 text-sm',
+                                            ]" @click="deleteProduct(product)">
+                                            <TrashIcon :active="active" class="mr-2 h-5 w-5 text-indigo-400"
+                                                       aria-hidden="true"/>
+                                            Delete
+                                        </button>
+                                    </MenuItem>
                                 </div>
                             </MenuItems>
                         </transition>
@@ -247,16 +247,16 @@ function sortProduct(field) {
     getProducts()
 }
 
-// function deleteProduct(product) {
-//     if (!confirm('Are You Sure you want to delete the product ? ')) {
-//         return
-//     }
-//     store.dispatch('deleteProduct', product.id)
-//         .then(res => {
-//             store.commit('showToast', 'Product Deleted Successfully')
-//             store.dispatch('getProducts')
-//         })
-// }
+function deleteProduct(product) {
+    if (!confirm('Are You Sure you want to delete the product ? ')) {
+        return
+    }
+    store.dispatch('deleteProduct', product.id)
+        .then(res => {
+            store.commit('showToast', 'Product Deleted Successfully')
+            store.dispatch('getProducts')
+        })
+}
 
 onMounted(() => {
 

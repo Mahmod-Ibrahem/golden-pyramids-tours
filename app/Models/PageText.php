@@ -8,9 +8,9 @@ use Spatie\Translatable\HasTranslations;
 
 class PageText extends Model
 {
-    use HasFactory , HasTranslations;
+    use HasFactory, HasTranslations;
 
-    protected $fillable=['content','type'];
+    protected $fillable = ['name', 'content', 'type'];
 
-    public $translatable=['content'];
+    public $translatable = ['content'];
 }

@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductRequest;
-use App\Http\Requests\TourTranslationRequest;
-use App\Http\Resources\nonTranslatedTourResource;
 use App\Http\Resources\ProductListResource;
 use App\Http\Resources\ProductResource;
+use App\Jobs\TranslateJob;
 use App\Models\Tour;
 use App\Models\TourImage;
-use App\Models\TourTranslation;
+use App\Services\Translator;
 use App\Traits\ImagesUtility;
 use App\Traits\TourUtility;
 use Exception;
@@ -25,6 +24,11 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function __construct(protected Translator $translator)
+    {
+    }
+
     public function index()
     {
         $SortField = request('sortField', 'created_at');
@@ -32,7 +36,7 @@ class ProductController extends Controller
         $search = request('search');
         $perPage = request('perPage', 10);
         $locale = request('locale');
-        $products = Tour::where('title->'.$locale, '!=', '')->orderBy($SortField, $SortDirection);
+        $products = Tour::where('title->' . $locale, '!=', '')->orderBy($SortField, $SortDirection);
 
         if ($search) {
             $products->where(function ($query) use ($search) {
@@ -49,15 +53,10 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $TourValidatedData = $request->validated();
-        //Check if the tour exists
-        if ($this->isTourExist($TourValidatedData['title'])) {
-            return $this->showError('Tour with this title Already Exists', 409); //409 Conflict
-        }
-        //store Tour Cover Image
+
         $TourValidatedData['tour_cover'] = $this->storeImage($TourValidatedData['tour_cover'], 'tourCover'); //store public path
-        //Store Tour to get its id and assign to it images model
         $CreatedTour = Tour::create($TourValidatedData);
-        //handling Tour Images
+        $this->translateTour($CreatedTour, ['fr', 'es', 'pt', 'zh'], $TourValidatedData);
         $tourImages = $TourValidatedData['tour_images'];
 
         foreach ($tourImages as $image) {
@@ -74,25 +73,6 @@ class ProductController extends Controller
         return $this->showError('Tour created successfully', 201);
     }
 
-    public function createTourTranslation(string $tourId)
-    {
-        $tour = $this->findTour($tourId);
-        $tourData=request()->validate([
-            'locale' => 'required|in:en,fr,sp,pt,zh',
-            'title' => 'required',
-            'description' => 'required',
-            'included' => 'required',
-            'excluded' => 'required',
-            'duration' => 'required',
-            'locations' => 'required',
-            'places' => 'required',
-            'itenary_title' => 'required',
-            'itenary_section' => 'required',
-        ]);
-        $this->setTourTranslation($tour,$tourData['locale'],$tourData);
-        return response()->json(['message' => 'Tour created successfully'], 200);
-    }
-
     /**
      * Display the specified resource.
      */
@@ -105,6 +85,7 @@ class ProductController extends Controller
     public function getTourForTranslation(string $tourId)
     {
         $tour = $this->findTour($tourId);
+        return $tour->locale();
         return is_null($tour) ? $this->showError('Tour not found', 404) : response()->json([
             'id' => $tour->id,
             'availableLocales' => array_diff(['en', 'fr', 'sp', 'zh', 'pt'], $tour->locales()),
@@ -120,6 +101,8 @@ class ProductController extends Controller
         //
         $data = $request->all();
         $tour = $this->findTour($id);
+
+        $this->handleDeletedImages($data);
         //Check if new image exist , if delete it and store new
         if ($data['tour_cover'] ?? false) {
             if ($tour->tour_cover ?? false) {
@@ -131,8 +114,11 @@ class ProductController extends Controller
         } else {
             $data['tour_cover'] = $tour->tour_cover;
         }
+        $this->handleNewProductImages($tour, $data['tour_images'] ?? []);
+
+
         $data['visit_count'] = $tour->visit_count; //keep old visit count
-        $this->setTourTranslation($tour, $data['locale'], $data);
+        $this->translateTour($tour, ['fr', 'es', 'pt', 'zh'], $data);
         $this->updateTourMain($tour, $data);
         return response()->json(['message' => 'Tour updated successfully'], 200);
     }
@@ -145,16 +131,6 @@ class ProductController extends Controller
         $product->delete();
 
         return response()->noContent();
-    }
-
-
-    private function isTourExist($title)
-    {
-        $tour = TourTranslation::where('title', $title)->first();
-        if ($tour) {
-            return true;
-        }
-        return false;
     }
 
     private function showError($message, $status)
@@ -196,35 +172,57 @@ class ProductController extends Controller
         return Tour::find($id);
     }
 
-//    private function convertLocationToJson($location)
-//    {
-//        return json_encode(array_map('trim', explode('/', $location)));
-//    }
-    private function setTourTranslation($tour, mixed $locale, array $tourData)
+    private function translateTour($tour, mixed $locale, array $TourValidatedData)
     {
-        $tour->setTranslation('title', $locale, $tourData['title']);
-        $tour->setTranslation('description', $locale, $tourData['description']);
-        $tour->setTranslation('itenary_title', $locale, $tourData['itenary_title']);
-        $tour->setTranslation('itenary_section', $locale, $tourData['itenary_section']);
-        $tour->setTranslation('included', $locale, $tourData['included']);
-        $tour->setTranslation('excluded', $locale, $tourData['excluded']);
-        $tour->setTranslation('duration', $locale, $tourData['duration']);
-        $tour->setTranslation('locations', $locale, array_map('trim', explode('/', $tourData['locations'])));
-        $tour->setTranslation('places', $locale, $tourData['places']);
-        $tour->setTranslation('slug', $locale, Str::slug($tourData['title']));
-        $tour->save();
+        TranslateJob::dispatch([
+            'title' => $TourValidatedData['title'],
+            'description' => $TourValidatedData['description'],
+            'itenary_title' => $TourValidatedData['itenary_title'],
+            'itenary_section' => $TourValidatedData['itenary_section'],
+            'included' => $TourValidatedData['included'],
+            'excluded' => $TourValidatedData['excluded'],
+            'duration' => $TourValidatedData['duration'],
+            'locations' => $TourValidatedData['locations'],
+            'places' => $TourValidatedData['places'],
+        ], $locale, $tour, 'tour');
     }
 
     private function updateTourMain(Tour $tour, mixed $tourValidatedData)
     {
-        $tour->category_id=$tourValidatedData['category_id'];
-        $tour->preference=$tourValidatedData['preference'];
-        $tour->group=$tourValidatedData['group'];
-        $tour->tour_cover=$tourValidatedData['tour_cover'];
-        $tour->price_per_person=$tourValidatedData['price_per_person'];
-        $tour->price_two_five=$tourValidatedData['price_two_five'];
-        $tour->price_six_twenty=$tourValidatedData['price_six_twenty'];
+        $tour->category_id = $tourValidatedData['category_id'];
+        $tour->preference = $tourValidatedData['preference'];
+        $tour->group = $tourValidatedData['group'];
+        $tour->tour_cover = $tourValidatedData['tour_cover'];
+        $tour->price_per_person = $tourValidatedData['price_per_person'];
+        $tour->price_two_five = $tourValidatedData['price_two_five'];
+        $tour->price_six_twenty = $tourValidatedData['price_six_twenty'];
         $tour->save();
+    }
+
+    protected function handleDeletedImages(array $validated): void
+    {
+        if (empty($validated['deleted_images_ids'])) return;
+
+        TourImage::whereIn('id', $validated['deleted_images_ids'])->each(function ($image) {
+            Storage::delete($this->getRelativePath($image->path));
+            $image->delete();
+        });
+    }
+
+    protected function handleNewProductImages(Tour $tour, array $images): void
+    {
+        foreach ($images as $image) {
+//            try {
+            $stored = $this->storeImage($image, 'tour');
+            TourImage::create([
+                'tours_id' => $tour->id,
+                'path' => $stored,
+            ]);
+//            } catch (\Exception $e) {
+//                // You can log the error or throw if critical
+//                throw new \RuntimeException('Error processing product image.');
+//            }
+        }
     }
 
 

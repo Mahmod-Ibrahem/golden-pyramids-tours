@@ -1,7 +1,7 @@
 <template>
     <div class="flex items-center justify-between mb-3">
         <h1 v-if="!loading" class="text-3xl font-semibold">
-            {{ pageText.id ? `Update Text: "${pageText.title}"` : 'Create New Texts' }}
+            {{ pageText.id ? `Update Text: "${pageText.name}"` : 'Create New Texts' }}
         </h1>
     </div>
     <div class="">
@@ -10,11 +10,11 @@
 
         <form v-else @submit.prevent="onSubmit">
             <div class="bg-white px-4 pt-5 pb-4">
-                <select name="type" v-model="pageText.type"
+                <select v-if="!pageText.id" name="type" v-model="pageText.type"
                         class="customInput w-full px-3 py-2 border focus:ring-indigo-500 focus:border-indigo-500">
                     <option value="" disabled selected>Select Text Type</option>
                     <option value="homeTitle">Home Title</option>
-                    <!--                    <option value="bestDestinationTitle">Best Destination Title</option>-->
+                    <option value="bestDestinationDescription">Best Destination Description</option>
                     <option value="services">Services Content</option>
                     <option value="homeTailorTitle">Home Tailor Title</option>
                     <option value="homeTailorContent">Home Tailor Content</option>
@@ -24,18 +24,16 @@
                     <option value="transferContent">Transfer Services Content</option>
                 </select>
 
+                <CustomInput class="mb-2" v-model="pageText.name" label="name" :errors="errors.name"/>
+
                 <Editor v-model="pageText.content" editorStyle="height: 200px" placeholder="Content"></Editor>
 
             </div>
             <footer class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                <button type="submit"
-                        class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-3">
-                    Save
-                </button>
                 <button type="button"
                         @click="onSubmit($event,true)"
                         class="py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 ml-3">
-                    Save & Close
+                    Save
                 </button>
                 <RouterLink :to="{ name: 'app.pageTexts' }" type="button"
                             class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">
@@ -52,6 +50,7 @@ import {ref, onMounted, computed} from 'vue'
 import {useRoute, useRouter} from "vue-router";
 import store from "../../store/index.js"
 import Editor from 'primevue/editor';
+import CustomInput from "../../components/core/CustomInput.vue";
 
 const emit = defineEmits(['update:modelValue', 'close'])
 const route = useRoute()
@@ -60,6 +59,7 @@ const router = useRouter()
 const loading = ref(false)
 const pageText = ref({
     id: null,
+    name: '',
     type: '',
     content: '',
     locale: 'en',
@@ -67,6 +67,7 @@ const pageText = ref({
 
 const errors = ref({
     content: [],
+    name: [],
 })
 
 

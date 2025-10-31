@@ -34,7 +34,7 @@
                     </MenuItems>
                 </transition>
             </Menu>
-<!--            <LanguageDropdown />-->
+            <LanguageDropdown />
         </div>
     </header>
 </template>

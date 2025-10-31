@@ -3,7 +3,7 @@
     <label class="sr-only">{{ label }}</label>
     <div class="mt-1 flex rounded-md shadow-sm">
       <span v-if="prepend"
-            class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+            class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm font-semibold">
         {{ prepend }}
       </span>
       <template v-if="type === 'select'">
@@ -54,7 +54,7 @@
                step="0.01"/>
       </template>
       <span v-if="append"
-            class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+            class="inline-flex items-center px-3 rounded-r-md border border-l-0 border-gray-300 bg-gray-50 text-gray-500 text-sm font-semibold">
         {{ append }}
       </span>
     </div>

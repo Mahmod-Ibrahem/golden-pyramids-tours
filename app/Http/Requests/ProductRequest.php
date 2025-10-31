@@ -21,7 +21,7 @@ class ProductRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules= [
+        $rules = [
             'category_id' => 'nullable',
             'group' => 'required',
             'preference' => 'nullable',
@@ -30,13 +30,14 @@ class ProductRequest extends FormRequest
             'places' => 'required',
             'itenary_title' => 'required',
             'itenary_section' => 'required',
-            'locations'=>'required|string',
+            'locations' => 'required|string',
             'included' => 'required',
             'excluded' => 'required',
             'duration' => 'required',
             'price_per_person' => 'required',
+            'deleted_images_ids' => 'nullable|array',
             'price_two_five' => 'required',
-            'price_six_twenty'=> 'required'
+            'price_six_twenty' => 'required'
         ];
 
         if ($this->isMethod('POST')) {
@@ -44,9 +45,8 @@ class ProductRequest extends FormRequest
             $rules['tour_images'] = 'required|array';
             $rules['tour_images.*'] = 'required|image';
         } else {
-            $rules['tour_cover'] = 'nullable|image|mimes:jpg,png,jpeg,gif,svg,webp|max:2048';
+            $rules['tour_cover'] = 'nullable';
             $rules['tour_images'] = 'nullable|array';
-            $rules['tour_images.*'] = 'nullable|image';
         }
         return $rules;
     }

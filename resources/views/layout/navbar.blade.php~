@@ -51,7 +51,7 @@
         </div>
 
         <div class="nav_anch_div">
-            <a href="{{route('Contact.index')}}" class="nav_anch_p @if(Route::currentRouteName() == 'about') text-bg-main @endif">
+            <a href="{{route('about')}}" class="nav_anch_p @if(Route::currentRouteName() == 'about') text-bg-main @endif">
                 <p>{{__('About Us')}}</p></a>
         </div>
 
@@ -67,7 +67,7 @@
       </button>
   </div>
 </div>
-<div id="menu" class="absolute z-10 bottom-0 w-screen hidden  ">
+<div id="menu" class="absolute z-10 bottom-0 w-screen hidden ">
     <!-- Text overlay -->
     <ul
         class=" flex flex-col font-bold text-sm  lg:hidden   tracking-wide gap-2 p-3
