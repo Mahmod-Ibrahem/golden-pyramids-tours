@@ -1,66 +1,246 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🏺 Golden Pyramids Tours - Egypt Travel Booking Platform
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A comprehensive, multilingual tourism and travel booking platform built with Laravel 11, designed for managing and booking Egypt tours, day trips, and travel packages. This platform offers a seamless experience for both travelers and administrators with features including multi-language support, automated translations, intelligent caching, and a modern service-oriented architecture.
 
-## About Laravel
+## 📋 Table of Contents
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- [Features](#-features)
+- [Technology Stack](#-technology-stack)
+- [Installation](#-installation)
+- [Configuration](#-configuration)
+- [Project Structure](#-project-structure)
+- [Key Features Explained](#-key-features-explained)
+- [API Documentation](#-api-documentation)
+- [Contributing](#-contributing)
+- [License](#-license)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## ✨ Features
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 🎯 Core Functionality
+- **Tour Management**: Day tours and tour packages with categories
+- **Booking System**: Complete booking workflow with pricing calculations
+- **Multi-language Support**: English, French, Spanish, Portuguese, Chinese (Arabic support ready)
+- **Blog System**: City-based blog posts and attractions
+- **Review System**: Customer reviews and ratings
+- **FAQ Management**: Dynamic frequently asked questions
+- **Contact Forms**: Contact and inquiry submission
+- **Tailor-Made Tours**: Custom tour request system
+- **Transfer Services**: Airport and hotel transfer bookings
 
-## Learning Laravel
+### 🚀 Advanced Features
+- **Automated Translations**: Azure Translator integration for automatic content translation
+- **Intelligent Caching**: Service-layer caching for optimal performance
+- **Image Management**: Advanced image handling with Intervention Image
+- **SEO-Friendly URLs**: Slug-based routing for all content
+- **Payment Integration**: PayPal payment gateway support
+- **Admin Panel**: Vue.js-based admin interface for content management
+- **API Endpoints**: RESTful API for admin operations
+- **Visit Tracking**: Tour visit count tracking with IP management
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🛠 Technology Stack
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Backend
+- **Laravel 11** - PHP framework
+- **PHP 8.2+** - Server-side language
+- **MySQL** - Database
+- **Laravel Sanctum** - API authentication
+- **Spatie Laravel Translatable** - Multi-language content management
+- **Eloquent Sluggable** - SEO-friendly URL generation
+- **Intervention Image** - Image processing
+- **PayPal SDK** - Payment processing
+- **Azure Translator API** - Automated translations
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Frontend
+- **Blade Templates** - Server-side rendering
+- **Vite** - Build tool
+- **Tailwind CSS** - Utility-first CSS framework
+- **Vue.js 3** - Admin panel framework
+- **PrimeVue** - Vue UI component library
 
-## Laravel Sponsors
+### Development Tools
+- **Laravel Breeze** - Authentication scaffolding
+- **Laravel Pint** - Code style fixer
+- **PHPUnit** - Testing framework
+- **Laravel Sail** - Docker development environment
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 📦 Installation
 
-### Premium Partners
+### Prerequisites
+- PHP 8.2 or higher
+- Composer
+- Node.js and npm
+- MySQL or MariaDB
+- Redis (optional, for caching)
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+### Step 1: Clone the Repository
+```bash
+git clone https://github.com/yourusername/golden-pyramids-tours.git
+cd golden-pyramids-tours
+```
 
-## Contributing
+### Step 2: Install Dependencies
+```bash
+# Install PHP dependencies
+composer install
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+# Install Node dependencies
+npm install
+```
 
-## Code of Conduct
+### Step 3: Environment Configuration
+```bash
+# Copy environment file
+cp .env.example .env
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# Generate application key
+php artisan key:generate
+```
 
-## Security Vulnerabilities
+### Step 4: Configure Environment Variables
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```
 
-## License
+### Step 5: Database Setup
+```bash
+# Run migrations
+php artisan migrate
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+# Seed database (optional)
+php artisan db:seed
+```
+
+### Step 6: Build Assets
+```bash
+# Development
+npm run dev
+
+```
+
+### Step 7: Start Development Server
+```bash
+php artisan serve
+```
+
+## ⚙️ Configuration
+
+### Cache Configuration
+The application uses Laravel's cache system. Configure in `.env`:
+```env
+CACHE_DRIVER=redis  # or file, database, etc.
+```
+
+### Translation Setup
+1. Obtain Azure Translator API credentials
+2. Add credentials to `.env`
+3. Use the `Translator` service for automatic translations
+
+### Image Storage
+Images are stored in `storage/app/public`. Create symlink:
+```bash
+php artisan storage:link
+```
+
+## 🎨 Key Features Explained
+
+### Service Layer Architecture
+The application follows a service-oriented architecture pattern where business logic is extracted into dedicated service classes:
+
+- **TourService**: Manages tour-related operations with caching
+- **BlogService**: Handles blog and city attraction logic
+- **CityService**: City management and retrieval
+- **PageTextService**: Dynamic page content management
+- **ReviewService**: Customer review management
+- **FaqService**: FAQ content management
+
+Example usage:
+```php
+// In controller
+public function __construct(
+    private TourService $tourService,
+    private BlogService $blogService
+) {}
+
+public function index()
+{
+    $tours = $this->tourService->getRecommendedDayTours();
+    // ...
+}
+```
+
+### Multi-language Support
+Content is translatable using Spatie's Laravel Translatable:
+- Models use `HasTranslations` trait
+- Translations stored in JSON columns
+- Automatic slug generation for each locale
+- Language switching via route parameter
+
+### Caching Strategy
+- **Long-term caching**: Static content (all cities, all page texts)
+- **Short-term caching**: Dynamic content (tours by category, blogs by city)
+- **Cache invalidation**: Clear cache methods in each service
+
+### Booking System
+- Tiered pricing based on group size
+- Support for adults, children, and students
+- Price calculations with automatic discounts
+- Booking confirmation emails
+
+### SEO Optimization
+- Slug-based URLs for all content
+- Multi-language slugs
+- SEO-friendly routing structure
+
+## 📡 API Documentation
+
+### Authentication
+All API endpoints (except public routes) require Sanctum authentication.
+
+### Available Endpoints
+
+#### Tours
+- `GET /api/products` - List all tours
+- `GET /api/products/{id}` - Get tour details
+- `POST /api/products` - Create tour
+- `PUT /api/products/{id}` - Update tour
+- `DELETE /api/products/{id}` - Delete tour
+
+#### Blogs
+- `GET /api/blog` - List all blogs
+- `POST /api/blog` - Create blog
+- `PUT /api/blog/{id}` - Update blog
+- `DELETE /api/blog/{id}` - Delete blog
+
+#### Cities
+- `GET /api/city` - List all cities
+- `POST /api/city` - Create city
+- `PUT /api/city/{id}` - Update city
+
+#### Bookings
+- `GET /api/bookings` - List bookings (paginated)
+- `GET /api/bookings/{id}` - Get booking details
+
+#### Reviews
+- `GET /api/reviews` - List reviews
+- `POST /api/review` - Create review
+
+#### FAQs
+- `GET /api/faqs` - List FAQs
+- `POST /api/faqs` - Create FAQ
+
+
+
+
+### Server Requirements
+- PHP 8.2+
+- MySQL 5.7+ or MariaDB 10.3+
+- Redis (recommended)
+- Composer
+- Node.js 18+ (for building assets)
+
+
+
+- Built with [Laravel](https://laravel.com)
+- UI Components: [PrimeVue](https://primevue.org)
+- Styling: [Tailwind CSS](https://tailwindcss.com)
+- Translations: [Azure Translator](https://azure.microsoft.com/services/cognitive-services/translator/)
+
