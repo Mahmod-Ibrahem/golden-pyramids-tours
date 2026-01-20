@@ -1,183 +1,231 @@
-<footer class="w-full bg-black">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <!--Grid-->
-        <div
-            class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3 gap-y-8 md:gap-8 py-10 max-w-sm mx-auto sm:max-w-3xl lg:max-w-full">
-            <div class="col-span-full mb-10 lg:col-span-2 lg:mb-0">
-                <a href="#" class="flex justify-center lg:justify-start mb-6">
-                    <div class="hidden md:block">
-                        <img src="{{asset('/Images/logo.png')}}"
-                             alt="logo"
-                             width="140" height="72"
-                             class="w-[7rem] md:w-[8rem] h-18 object-cover">
-                    </div>
+<footer class="bg-gradient-to-b from-gray-900 to-black text-gray-300">
+    {{-- Main Footer Content --}}
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-12 lg:gap-8">
+            {{-- Brand & Contact Info --}}
+            <div class="lg:col-span-2 space-y-6">
+                {{-- Logo --}}
+                <a href="{{ route('home') }}" class="inline-block">
+                    <img src="{{ asset('/Images/logo.png') }}" alt="Golden Pyramids Travel Logo"
+                        class="h-16 w-auto object-contain hover:opacity-80 transition-opacity duration-300">
                 </a>
-                <div
-                    class="flex flex-col md:flex-row items-start md:space-y-8  mt-3 md:mt-0 text-Primary font-medium"
-                >
-                    <!-- Item 1 -->
-                    <div class="h-10 group space-y-2">
-                                <span class="flex    pb-2">
-                                    <svg class="h-6 w-6 text-bg-main"
-                                         width="24" height="24" viewBox="0 0 24 24"
-                                         stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
-                                         stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>
-                                    <path
-                                        d="M5 4h4l2 5l-2.5 1.5a11 11 0 0 0 5 5l1.5 -2.5l5 2v4a2 2 0 0 1 -2 2a16 16 0 0 1 -15 -15a2 2 0 0 1 2 -2"/>  <path
-                                            d="M15 7a2 2 0 0 1 2 2"/>  <path d="M15 3a6 6 0 0 1 6 6"/></svg>
-                                    <span class="pl-3 text-secondary">+201101833336</span>
-                                </span>
-                        <span class="flex">
-                                    <svg class="h-6 w-6 text-bg-main" fill="none" viewBox="0 0 24 24"
-                                         stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                              d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
-                                      </svg>
-                                      <span class="pl-3 mb-1 text-secondary">info@GoldenPyramidsTravel.com</span>
-                                </span>
-                    </div>
+
+                {{-- Contact Details --}}
+                <div class="space-y-4">
+                    <a href="tel:+201101833336"
+                        class="flex items-center gap-3 group hover:text-amber-400 transition-colors duration-300">
+                        <span
+                            class="flex-shrink-0 w-10 h-10 bg-amber-500/10 rounded-lg flex items-center justify-center group-hover:bg-amber-500/20 transition-colors duration-300">
+                            <svg class="w-5 h-5 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                            </svg>
+                        </span>
+                        <span class="font-medium">+201101833336</span>
+                    </a>
+                    <a href="mailto:info@GoldenPyramidsTravel.com"
+                        class="flex items-center gap-3 group hover:text-amber-400 transition-colors duration-300">
+                        <span
+                            class="flex-shrink-0 w-10 h-10 bg-amber-500/10 rounded-lg flex items-center justify-center group-hover:bg-amber-500/20 transition-colors duration-300">
+                            <svg class="w-5 h-5 text-amber-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                                stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                            </svg>
+                        </span>
+                        <span class="font-medium text-sm">info@GoldenPyramidsTravel.com</span>
+                    </a>
                 </div>
             </div>
-            <!--End Col-->
-            <div class="lg:mx-auto text-left text-Primary ">
-                <h4 class="footer_main">{{__('Main Pages')}}</h4>
-                <ul class="text-sm  transition-all duration-500">
-                    <li class="footer_anchor"><a href="{{route('home')}}">{{__('Home')}}</a></li>
-                    <li class="footer_anchor"><a href="{{route('Transfer.index')}}">{{__('Transfer Service')}}</a></li>
-                    <li class="footer_anchor"><a href="{{route('Contact.index')}}">{{__('Contact')}}</a></li>
-                    <li class="footer_anchor"><a href="{{route('about')}}">{{__('About Us')}}</a></li>
-                </ul>
-            </div>
-            <!--End Col-->
-            <div class="lg:mx-auto text-left ">
-                <h4 class="footer_main">{{__('Categories')}}</h4>
-                <ul class="text-sm  transition-all duration-500">
-                    <li class="footer_anchor"><a href="{{route('DayTours.index')}}">{{__('Day Tours')}}</a></li>
 
-                    <li class="footer_anchor"><a href="{{route('TourPackages.index')}}">{{__('Tour Packages')}}</a></li>
-                </ul>
-            </div>
-            <!--End Col-->
-            <div class="lg:mx-auto text-left ">
-                <h4 class="footer_main">{{__('Day Tours')}}</h4>
-                <ul class="text-sm  transition-all duration-500">
-                    <li class="footer_anchor"><a
-                            href="{{route('DayTours.view',['Category' => 'Cairo'])}}">{{__('Cairo Tours')}}</a></li>
-                    <li class="footer_anchor"><a
-                            href="{{route('DayTours.view',['Category' => 'Luxor'])}}">{{__('Luxor Tours')}}</a></li>
-                    <li class="footer_anchor"><a
-                            href="{{route('DayTours.view',['Category' => 'Aswan'])}}">{{__('Aswan Tours')}}</a></li>
-                    <li class="footer_anchor"><a
-                            href="{{route('DayTours.view',['Category' => 'Alexandria'])}}">{{__('Alexandria Tours')}}</a>
+            {{-- Main Pages --}}
+            <div>
+                <h4 class="text-white font-bold text-lg mb-6 relative">
+                    {{ __('Main Pages') }}
+                    <span class="absolute -bottom-2 left-0 w-8 h-0.5 bg-amber-500 rounded-full"></span>
+                </h4>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="{{ route('home') }}"
+                            class="text-gray-400 hover:text-amber-400 hover:pl-2 transition-all duration-300">
+                            {{ __('Home') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('Transfer.index') }}"
+                            class="text-gray-400 hover:text-amber-400 hover:pl-2 transition-all duration-300">
+                            {{ __('Transfer Service') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('Contact.index') }}"
+                            class="text-gray-400 hover:text-amber-400 hover:pl-2 transition-all duration-300">
+                            {{ __('Contact') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('about') }}"
+                            class="text-gray-400 hover:text-amber-400 hover:pl-2 transition-all duration-300">
+                            {{ __('About Us') }}
+                        </a>
                     </li>
                 </ul>
             </div>
-            <!--End Col-->
-            <div class="lg:mx-auto text-left ">
-                <h4 class="footer_main">{{__('Tour Packages')}}</h4>
-                <ul class="text-sm  transition-all duration-500">
-                    <li class="footer_anchor"><a
-                            href="{{route('TourPackages.view',['Category' => 'egypt-classic-tours'])}}">{{__('Egypt Classic Tours')}}</a>
-                    </li>
-                    <li class="footer_anchor"><a href="javascript:;">{{__('Egypt Luxury Tours')}}</a></li>
-                    <li class="footer_anchor"><a href="javascript:;">{{__('Egypt Christmas Tours')}}</a></li>
-                    <li class="footer_anchor"><a href="javascript:;">{{__('Egypt Family Tours')}}</a></li>
-                    <li class="footer_anchor"><a href="javascript:;">{{__('Egypt Honeymoon Tours')}}</a></li>
-                    <li class="footer_anchor"><a href="javascript:;">{{__('Egypt Sahara Tours')}}</a></li>
-                    <li class="footer_anchor"><a href="javascript:;">{{__('Egypt Short Break')}}</a></li>
-                    <li class="footer_anchor"><a href="javascript:;">{{__('Nile Cruise')}}</a></li>
 
+            {{-- Categories --}}
+            <div>
+                <h4 class="text-white font-bold text-lg mb-6 relative">
+                    {{ __('Categories') }}
+                    <span class="absolute -bottom-2 left-0 w-8 h-0.5 bg-amber-500 rounded-full"></span>
+                </h4>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="{{ route('DayTours.index') }}"
+                            class="text-gray-400 hover:text-amber-400 hover:pl-2 transition-all duration-300">
+                            {{ __('Day Tours') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('TourPackages.index') }}"
+                            class="text-gray-400 hover:text-amber-400 hover:pl-2 transition-all duration-300">
+                            {{ __('Tour Packages') }}
+                        </a>
+                    </li>
                 </ul>
             </div>
-            <!--End Col-->
+
+            {{-- Day Tours --}}
+            <div>
+                <h4 class="text-white font-bold text-lg mb-6 relative">
+                    {{ __('Day Tours') }}
+                    <span class="absolute -bottom-2 left-0 w-8 h-0.5 bg-amber-500 rounded-full"></span>
+                </h4>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="{{ route('DayTours.view', ['Category' => 'Cairo']) }}"
+                            class="text-gray-400 hover:text-amber-400 hover:pl-2 transition-all duration-300">
+                            {{ __('Cairo Tours') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('DayTours.view', ['Category' => 'Luxor']) }}"
+                            class="text-gray-400 hover:text-amber-400 hover:pl-2 transition-all duration-300">
+                            {{ __('Luxor Tours') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('DayTours.view', ['Category' => 'Aswan']) }}"
+                            class="text-gray-400 hover:text-amber-400 hover:pl-2 transition-all duration-300">
+                            {{ __('Aswan Tours') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('DayTours.view', ['Category' => 'Alexandria']) }}"
+                            class="text-gray-400 hover:text-amber-400 hover:pl-2 transition-all duration-300">
+                            {{ __('Alexandria Tours') }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            {{-- Tour Packages --}}
+            <div>
+                <h4 class="text-white font-bold text-lg mb-6 relative">
+                    {{ __('Tour Packages') }}
+                    <span class="absolute -bottom-2 left-0 w-8 h-0.5 bg-amber-500 rounded-full"></span>
+                </h4>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="{{ route('TourPackages.view', ['Category' => 'egypt-classic-tours']) }}"
+                            class="text-gray-400 hover:text-amber-400 hover:pl-2 transition-all duration-300">
+                            {{ __('Egypt Classic Tours') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;"
+                            class="text-gray-400 hover:text-amber-400 hover:pl-2 transition-all duration-300">
+                            {{ __('Egypt Luxury Tours') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;"
+                            class="text-gray-400 hover:text-amber-400 hover:pl-2 transition-all duration-300">
+                            {{ __('Egypt Family Tours') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:;"
+                            class="text-gray-400 hover:text-amber-400 hover:pl-2 transition-all duration-300">
+                            {{ __('Nile Cruise') }}
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <!--Grid-->
-        <div class="py-7 border-t border-gray-200">
-            <div class="flex items-center justify-center flex-col lg:justify-between lg:flex-row">
-                <a href="https://www.instagram.com/mi_digital_works/"
-                   class="font-semibold text-secondary inline-flex items-center">{{__('Designed By')}} <img class="w-20"
-                                                                                                            src="{{asset('Images/devlogo.png')}}"
-                                                                                                            alt="logo"></a>
-                <div class="flex mt-4 space-x-4 sm:justify-center lg:mt-0 ">
+    </div>
 
-                    <a href="javascript:;" class="relative w-8 h-8 rounded-full transition-all duration-500 flex justify-center items-center
-                    bg-[linear-gradient(45deg,#FEE411_6.9%,#FEDB16_10.98%,#FEC125_17.77%,#FE983D_26.42%,#FE5F5E_36.5%,#FE2181_46.24%,#9000DC_85.57%)]
-                        ">
-                        <svg class="w-[1.25rem] h-[1.125rem] text-white" viewBox="0 0 16 16" fill="none"
-                             xmlns="http://www.w3.org/2000/svg">
+    {{-- Bottom Bar --}}
+    <div class="border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-4">
+                {{-- Credits --}}
+                <a href="https://www.instagram.com/mi_digital_works/" target="_blank"
+                    class="flex items-center gap-2 text-gray-500 hover:text-amber-400 transition-colors duration-300">
+                    <span>{{ __('Designed By') }}</span>
+                    <img src="{{ asset('Images/devlogo.png') }}" alt="Developer Logo"
+                        class="h-6 w-auto opacity-70 hover:opacity-100 transition-opacity duration-300">
+                </a>
+
+                {{-- Social Links --}}
+                <div class="flex items-center gap-3">
+                    {{-- Instagram --}}
+                    <a href="javascript:;" class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-600 via-pink-500 to-orange-400 
+                              flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-pink-500/30 
+                              transition-all duration-300">
+                        <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
                             <path
-                                d="M5.63434 7.99747C5.63434 6.69062 6.6941 5.63093 8.00173 5.63093C9.30936 5.63093 10.3697 6.69062 10.3697 7.99747C10.3697 9.30431 9.30936 10.364 8.00173 10.364C6.6941 10.364 5.63434 9.30431 5.63434 7.99747ZM4.35427 7.99747C4.35427 10.0108 5.98723 11.6427 8.00173 11.6427C10.0162 11.6427 11.6492 10.0108 11.6492 7.99747C11.6492 5.98418 10.0162 4.3522 8.00173 4.3522C5.98723 4.3522 4.35427 5.98418 4.35427 7.99747ZM10.9412 4.20766C10.9411 4.37615 10.991 4.54087 11.0846 4.681C11.1783 4.82113 11.3113 4.93037 11.4671 4.99491C11.6228 5.05945 11.7942 5.07639 11.9595 5.04359C12.1249 5.01078 12.2768 4.92971 12.3961 4.81062C12.5153 4.69153 12.5966 4.53977 12.6295 4.37453C12.6625 4.2093 12.6457 4.03801 12.5812 3.88232C12.5168 3.72663 12.4076 3.59354 12.2674 3.49988C12.1273 3.40622 11.9625 3.35619 11.7939 3.35612H11.7936C11.5676 3.35623 11.3509 3.44597 11.1911 3.60563C11.0313 3.76529 10.9414 3.98182 10.9412 4.20766ZM5.132 13.7759C4.43946 13.7444 4.06304 13.6291 3.81289 13.5317C3.48125 13.4027 3.24463 13.249 2.99584 13.0007C2.74705 12.7524 2.59305 12.5161 2.46451 12.1847C2.367 11.9348 2.25164 11.5585 2.22016 10.8664C2.18572 10.1181 2.17885 9.89331 2.17885 7.99752C2.17885 6.10174 2.18629 5.87758 2.22016 5.12866C2.2517 4.43654 2.36791 4.06097 2.46451 3.81035C2.59362 3.47891 2.7474 3.24242 2.99584 2.99379C3.24428 2.74515 3.48068 2.59124 3.81289 2.46278C4.06292 2.36532 4.43946 2.25004 5.132 2.21857C5.88074 2.18416 6.10566 2.17729 8.00173 2.17729C9.89779 2.17729 10.1229 2.18472 10.8723 2.21857C11.5648 2.25009 11.9406 2.36623 12.1914 2.46278C12.5231 2.59124 12.7597 2.74549 13.0085 2.99379C13.2573 3.24208 13.4107 3.47891 13.5398 3.81035C13.6373 4.06023 13.7527 4.43654 13.7841 5.12866C13.8186 5.87758 13.8255 6.10174 13.8255 7.99752C13.8255 9.89331 13.8186 10.1175 13.7841 10.8664C13.7526 11.5585 13.6367 11.9347 13.5398 12.1847C13.4107 12.5161 13.2569 12.7526 13.0085 13.0007C12.76 13.2488 12.5231 13.4027 12.1914 13.5317C11.9414 13.6292 11.5648 13.7444 10.8723 13.7759C10.1236 13.8103 9.89865 13.8172 8.00173 13.8172C6.10481 13.8172 5.88051 13.8103 5.132 13.7759ZM5.07318 0.941429C4.31699 0.975845 3.80027 1.09568 3.34902 1.27116C2.88168 1.45239 2.48605 1.69552 2.09071 2.09C1.69537 2.48447 1.45272 2.88049 1.27139 3.34755C1.0958 3.79882 0.975892 4.31494 0.941455 5.07068C0.90645 5.82761 0.898438 6.0696 0.898438 7.99747C0.898438 9.92534 0.90645 10.1673 0.941455 10.9243C0.975892 11.68 1.0958 12.1961 1.27139 12.6474C1.45272 13.1142 1.69543 13.5106 2.09071 13.9049C2.48599 14.2992 2.88168 14.542 3.34902 14.7238C3.80113 14.8993 4.31699 15.0191 5.07318 15.0535C5.83096 15.0879 6.0727 15.0965 8.00173 15.0965C9.93075 15.0965 10.1729 15.0885 10.9303 15.0535C11.6865 15.0191 12.2029 14.8993 12.6544 14.7238C13.1215 14.542 13.5174 14.2994 13.9127 13.9049C14.3081 13.5105 14.5502 13.1142 14.7321 12.6474C14.9077 12.1961 15.0281 11.68 15.062 10.9243C15.0964 10.1668 15.1044 9.92534 15.1044 7.99747C15.1044 6.0696 15.0964 5.82761 15.062 5.07068C15.0276 4.31489 14.9077 3.79853 14.7321 3.34755C14.5502 2.88077 14.3075 2.4851 13.9127 2.09C13.518 1.69489 13.1215 1.45239 12.655 1.27116C12.2029 1.09568 11.6865 0.975277 10.9308 0.941429C10.1735 0.907013 9.93132 0.898438 8.00229 0.898438C6.07327 0.898438 5.83096 0.906445 5.07318 0.941429Z"
-                                fill="white"/>
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
                         </svg>
-
                     </a>
-                    <a href="javascript:;"
-                       class="relative w-8 h-8 rounded-full transition-all duration-500 flex justify-center items-center bg-[#337FFF]">
-                        <svg class="w-[1rem] h-[1rem] text-white" viewBox="0 0 8 14" fill="none"
-                             xmlns="http://www.w3.org/2000/svg">
+                    {{-- Facebook --}}
+                    <a href="javascript:;" class="w-10 h-10 rounded-full bg-blue-600 
+                              flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-blue-500/30 
+                              transition-all duration-300">
+                        <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
                             <path
-                                d="M7.04111 7.81204L7.41156 5.46043H5.1296V3.93188C5.1296 3.28886 5.44818 2.66054 6.46692 2.66054H7.51899V0.657999C6.90631 0.560385 6.28723 0.507577 5.66675 0.5C3.78857 0.5 2.56239 1.62804 2.56239 3.66733V5.46043H0.480469V7.81204H2.56239V13.5H5.1296V7.81204H7.04111Z"
-                                fill="currentColor"/>
-                        </svg>
-
-                    </a>
-                    <a href="javascript:;"
-                       class="relative w-8 h-8 rounded-full transition-all duration-500 flex justify-center items-center bg-[#FF0000]">
-                        <svg class="w-[1.25rem] h-[0.875rem] text-white" viewBox="0 0 16 12" fill="none"
-                             xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd"
-                                  d="M13.9191 1.10651C14.558 1.27906 15.0602 1.78251 15.2299 2.42069C15.5388 3.57887 15.5388 5.99687 15.5388
-                                  5.99687C15.5388 5.99687 15.5388 8.41487 15.2299 9.57306C15.0578 10.2136 14.5556 10.7171 13.9191 10.8872C12.7638
-                                  11.1969 8.12875 11.1969 8.12875 11.1969C8.12875 11.1969 3.49603 11.1969 2.33844 10.8872C1.69952 10.7147 1.19735
-                                  10.2112 1.0276 9.57306C0.71875 8.41487 0.71875 5.99687 0.71875 5.99687C0.71875 5.99687 0.71875 3.57887 1.0276
-                                  2.42069C1.1997 1.78015 1.70188 1.27669 2.33844 1.10651C3.49603 0.796875 8.12875 0.796875 8.12875
-                                  0.796875C8.12875 0.796875 12.7638 0.796875 13.9191 1.10651ZM10.4981 5.99687L6.6481 8.22578V3.76796L10.4981 5.99687Z"
-                                  fill="white"/>
-                        </svg>
-
-                    </a>
-
-                    <a href="javascript:;"
-                       class="relative w-8 h-8 rounded-full transition-all duration-500 flex justify-center items-center bg-[#00AF87]">
-                        <svg class="w-[1.25rem] h-[2rem]" fill="#000000" version="1.1" id="Capa_1"
-                             xmlns="http://www.w3.org/2000/svg"
-                             xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 98.566 98.566" xml:space="preserve"
-                             stroke="#00af87"><g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                            <g id="SVGRepo_iconCarrier">
-                                <g>
-                                    <g>
-                                        <path
-                                            d="M60.401,20.996c2.751,0.389,5.445,1.08,8.107,1.898c4.647,1.431,9.032,3.419,13.156,5.998 c0.287,0.178,0.67,0.291,1.008,0.291c4.844,0.02,9.686,0.013,14.526,0.017c0.39,0,0.778,0.041,1.167,0.063 c0,0.095,0.014,0.135-0.002,0.157c-0.226,0.348-0.455,0.691-0.682,1.038c-1.643,2.52-3.047,5.156-3.876,8.07 c-0.09,0.313-0.109,0.575,0.103,0.882c4.312,6.192,5.688,12.99,3.886,20.318c-1.58,6.427-5.264,11.438-10.862,14.986 c-4.001,2.537-8.421,3.745-13.143,3.771c-1.984,0.012-3.958-0.255-5.896-0.757c-4.722-1.225-8.77-3.579-12.106-7.144 c-0.44-0.468-0.854-0.957-1.323-1.486c-1.764,2.629-3.5,5.215-5.278,7.869c-1.771-2.646-3.483-5.207-5.191-7.758 c-0.118,0.062-0.152,0.069-0.175,0.091c-0.039,0.032-0.072,0.071-0.103,0.108c-4.035,4.765-9.111,7.686-15.295,8.663 c-3.44,0.545-6.847,0.349-10.188-0.572c-4.735-1.301-8.759-3.799-12.01-7.485c-3.177-3.604-5.153-7.788-5.895-12.545 c-0.849-4.44,0.185-8.721,0.443-9.76c0.748-3.02,2.052-5.793,3.842-8.343c0.126-0.181,0.17-0.501,0.11-0.717 c-0.73-2.677-1.988-5.112-3.461-7.444c-0.374-0.593-0.822-1.142-1.236-1.711c0-0.065,0-0.132,0-0.198 c0.083,0.01,0.165,0.026,0.246,0.026c4.956,0.002,9.911,0.004,14.867-0.006c0.216,0,0.456-0.089,0.64-0.207 c3.482-2.234,7.192-4.004,11.09-5.382c2.811-0.992,5.681-1.766,8.608-2.333c2.834-0.548,5.683-0.934,8.562-1.124 C51.059,19.73,56.669,20.473,60.401,20.996z M54.188,53.727c0,10.883,8.83,19.774,19.674,19.732 c10.885-0.039,19.675-8.68,19.667-19.683c-0.008-11.339-9.206-19.863-20.089-19.642C62.696,34.357,54.286,43.017,54.188,53.727z M24.677,34.059C14.091,33.967,4.861,42.802,5.046,54.056c0.172,10.495,8.822,19.392,19.851,19.297 c10.784-0.092,19.452-8.898,19.472-19.562C44.386,42.835,35.612,34.059,24.677,34.059z M25.653,28.925 c5.98,0.365,11.233,2.449,15.671,6.485c4.429,4.028,7.024,9.053,7.967,14.962c0.97-5.839,3.497-10.817,7.843-14.805 c4.353-3.992,9.536-6.087,15.418-6.53c-6.98-3.103-14.34-4.421-21.916-4.567C42.026,24.301,33.651,25.57,25.653,28.925z"></path>
-                                        <path
-                                            d="M73.822,41.311c6.735-0.011,12.19,5.415,12.19,12.143c0,6.754-5.362,11.975-11.688,12.216 c-7.065,0.271-12.718-5.358-12.716-12.186C61.614,46.578,67.307,41.197,73.822,41.311z M81.766,53.484 c-0.003-4.39-3.552-7.958-7.912-7.958c-4.41,0-8,3.549-8.018,7.926c-0.016,4.358,3.592,7.984,7.961,7.996 C78.173,61.465,81.768,57.866,81.766,53.484z"></path>
-                                        <path
-                                            d="M24.417,41.311c6.731-0.007,12.194,5.429,12.177,12.156c-0.019,6.809-5.386,11.916-11.601,12.199 c-7.093,0.324-12.816-5.33-12.803-12.195C12.204,46.516,17.936,41.195,24.417,41.311z M32.352,53.457 c-0.013-4.417-3.585-7.938-8.044-7.93c-4.301,0.008-7.905,3.638-7.895,7.955c0.011,4.367,3.611,7.958,7.992,7.97 C28.759,61.462,32.363,57.836,32.352,53.457z"></path>
-                                        <path
-                                            d="M73.828,49.443c2.232-0.002,4.062,1.829,4.041,4.048c-0.022,2.224-1.821,4.026-4.016,4.027 c-2.26,0-4.077-1.786-4.072-3.999C69.785,51.223,71.55,49.445,73.828,49.443z"></path>
-                                        <path
-                                            d="M24.396,49.407c2.266-0.002,4.087,1.808,4.096,4.067c0.009,2.24-1.829,4.079-4.084,4.084 c-2.309,0.005-4.09-1.779-4.088-4.1C20.32,51.179,22.097,49.41,24.396,49.407z"></path>
-                                    </g>
-                                </g>
-                            </g></svg>
-                    </a>
-                    <a class="relative w-8 h-8 rounded-full transition-all duration-500 flex justify-center items-center bg-[#010101]  hover:bg-gray-900 cursor-pointer ">
-                        <svg class="w-[1.25rem] h-[2rem]" fill="#FFFFFF" viewBox="0 0 24 24" id="tiktok"
-                             data-name="Line Color" xmlns="http://www.w3.org/2000/svg" class="icon line-color"
-                             stroke="#FFFFFF">
-                            <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                            <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                            <g id="SVGRepo_iconCarrier">
-                                <path id="primary"
-                                      d="M21,7H20a4,4,0,0,1-4-4H12V14.5a2.5,2.5,0,1,1-4-2V8.18a6.5,6.5,0,1,0,8,6.32V9.92A8,8,0,0,0,20,11h1Z"
-                                      style="fill: none; stroke: #ffffff; stroke-linecap: round; stroke-linejoin: round; stroke-width: 2;"></path>
-                            </g>
+                                d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
                         </svg>
                     </a>
-
+                    {{-- YouTube --}}
+                    <a href="javascript:;" class="w-10 h-10 rounded-full bg-red-600 
+                              flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-red-500/30 
+                              transition-all duration-300">
+                        <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                        </svg>
+                    </a>
+                    {{-- TripAdvisor --}}
+                    <a href="javascript:;" class="w-10 h-10 rounded-full bg-emerald-500 
+                              flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-emerald-500/30 
+                              transition-all duration-300">
+                        <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12.006 4.295c-2.67 0-5.338.784-7.645 2.353H0l1.963 2.135a5.997 5.997 0 0 0 4.04 10.432 5.976 5.976 0 0 0 4.075-1.6L12 19.5l1.922-1.885a5.976 5.976 0 0 0 4.075 1.6 5.997 5.997 0 0 0 4.04-10.432L24 6.648h-4.35a13.573 13.573 0 0 0-7.644-2.353zM6.003 17.216a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zm11.994 0a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998zM6.003 11.217a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm11.994 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4z" />
+                        </svg>
+                    </a>
+                    {{-- TikTok --}}
+                    <a href="javascript:;" class="w-10 h-10 rounded-full bg-gray-800 
+                              flex items-center justify-center hover:scale-110 hover:shadow-lg hover:shadow-gray-500/30 
+                              transition-all duration-300">
+                        <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="currentColor">
+                            <path
+                                d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z" />
+                        </svg>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
 </footer>
-

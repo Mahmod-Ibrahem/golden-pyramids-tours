@@ -11,15 +11,15 @@ use App\Http\Controllers\HomeController;
 Route::get('/', [HomeController::class, 'home'])
     ->name('home');
 /* DayTours Controller*/
-Route::get('/Daytours', [TourController::class, 'index'])
+Route::get('/day-tours', [TourController::class, 'index'])
     ->name('DayTours.index');
-Route::get('/Daytours/{Category:slug}', [TourController::class, 'view'])->name('DayTours.view');
-Route::get('/Daytours/{Category:slug}/{Tour:slug}', [TourController::class, 'Tour'])->name('DayTours.Tour');
+Route::get('/day-tours/{Category:slug}', [TourController::class, 'view'])->name('DayTours.view');
+Route::get('/day-tours/{Category:slug}/{Tour:slug}', [TourController::class, 'Tour'])->name('DayTours.Tour');
 /* TourPackages Controller*/
 
-Route::get('/TourPackages', [\App\Http\Controllers\TourController::class, 'index'])->name('TourPackages.index');
-Route::get('/TourPackages/{Category:slug}', [\App\Http\Controllers\TourController::class, 'view'])->name('TourPackages.view');
-Route::get('/TourPackages/{Category:slug}/{Tour:title}', [\App\Http\Controllers\TourController::class, 'Tour'])->name('TourPackages.Tour');
+Route::get('/tour-packages', [TourController::class, 'index'])->name('TourPackages.index');
+Route::get('/tour-packages/{Category:slug}', [TourController::class, 'view'])->name('TourPackages.view');
+Route::get('/tour-packages/{Category:slug}/{Tour:title}', [TourController::class, 'Tour'])->name('TourPackages.Tour');
 
 
 Route::get('/BestDestination/{location}', [\App\Http\Controllers\BestDController::class, 'index'])->name('BestDestination.index');
@@ -53,5 +53,5 @@ Route::get('/Blog/{city:slug}/{blog:slug}', [BlogController::class, 'Attraction'
 Route::get('change-locale/{locale}', [\App\Http\Controllers\LanguageController::class, 'changeLocale'])->name('changeLocale');
 
 Route::get('/test-translate', function (\App\Services\Translator $t) {
-    return $t->translate('Hello world', ['fr','ar']);
+    return $t->translate('Hello world', ['fr', 'ar']);
 });

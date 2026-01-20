@@ -1,89 +1,156 @@
-<div class="flex justify-around items-center py-1 bg-black">
-    <!-- Start Of NavBar For Both-->
-    <!--Language icon-->
+{{-- Main Navigation Bar --}}
+<nav class="relative bg-gradient-to-r from-gray-900 via-black to-gray-900 shadow-xl">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-20">
+            {{-- Mobile Logo --}}
+            <div class="md:hidden flex-shrink-0">
+                <a href="{{ route('home') }}" class="block">
+                    <img src="{{ asset('/Images/logo.png') }}" class="h-14 w-auto object-contain"
+                        alt="Golden Pyramids Travel Logo">
+                </a>
+            </div>
 
-        <div class="md:hidden z-20 ">
-            <img src="{{asset('/Images/logo.png')}}" class="h-[4rem]" alt="logo" />
+            {{-- Desktop Logo (Center) --}}
+            <div class="hidden md:flex">
+                <a href="{{ route('home') }}" class="block">
+                    <img src="{{ asset('/Images/Logo.png') }}" alt="Golden Pyramids Travel Logo"
+                        class="h-16 w-auto object-contain hover:scale-105 transition-transform duration-300">
+                </a>
+            </div>
+
+            {{-- Desktop Navigation Links --}}
+            <div class="hidden md:flex items-center gap-1">
+                <a href="{{ route('home') }}" class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300
+                          {{ Route::currentRouteName() == 'home'
+    ? 'text-amber-400 bg-amber-400/10'
+    : 'text-gray-300 hover:text-amber-400 hover:bg-white/5' }}">
+                    {{ __('Home') }}
+                </a>
+                <a href="{{ route('DayTours.index', ['type' => 'dayTours']) }}" class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300
+                          {{ Route::currentRouteName() == 'DayTours.index'
+    ? 'text-amber-400 bg-amber-400/10'
+    : 'text-gray-300 hover:text-amber-400 hover:bg-white/5' }}">
+                    {{ __('Day Tours') }}
+                </a>
+                <a href="{{ route('TourPackages.index', ['type' => 'tourPackages']) }}" class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300
+                          {{ Route::currentRouteName() == 'TourPackages.index'
+    ? 'text-amber-400 bg-amber-400/10'
+    : 'text-gray-300 hover:text-amber-400 hover:bg-white/5' }}">
+                    {{ __('Tour Packages') }}
+                </a>
+                <a href="{{ route('Blog.index') }}" class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300
+                          {{ Route::currentRouteName() == 'Blog.index'
+    ? 'text-amber-400 bg-amber-400/10'
+    : 'text-gray-300 hover:text-amber-400 hover:bg-white/5' }}">
+                    {{ __('Blog') }}
+                </a>
+                <a href="{{ route('Contact.index') }}" class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300
+                          {{ Route::currentRouteName() == 'Contact.index'
+    ? 'text-amber-400 bg-amber-400/10'
+    : 'text-gray-300 hover:text-amber-400 hover:bg-white/5' }}">
+                    {{ __('Contact') }}
+                </a>
+                <a href="{{ route('about') }}" class="px-4 py-2 text-sm font-medium rounded-lg transition-all duration-300
+                          {{ Route::currentRouteName() == 'about'
+    ? 'text-amber-400 bg-amber-400/10'
+    : 'text-gray-300 hover:text-amber-400 hover:bg-white/5' }}">
+                    {{ __('About Us') }}
+                </a>
+            </div>
+
+            {{-- CTA Button --}}
+            <div class="flex items-center gap-4">
+                {{-- Mobile Menu Button --}}
+                <button id="mobile-menu-button" type="button" class="md:hidden p-2 rounded-lg text-gray-300 hover:text-amber-400 hover:bg-white/10 
+                               transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-amber-400/50">
+                    <span class="sr-only">Open menu</span>
+                    {{-- Hamburger Icon --}}
+                    <svg id="hamburger-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                    {{-- Close Icon --}}
+                    <svg id="close-icon" class="hidden w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
         </div>
-
-    <div class="md:order-2 relative z-20">
-        <a href="{{ route('TailorMade.index') }}"
-           class="main_button bg-bg-main text-secondary hover:bg-white hover:text-black px-4 py-2 md:px-10 md:py-4 uppercase">
-            {{__('Tailor Made Tours')}}
-        </a>
     </div>
 
-
-    <div class="hidden md:block h-[4.5rem] my-1 ">
-        <img src="{{asset('/Images/Logo.png')}}"
-             alt="logo"
-             width="140" height="72"
-             class=" object-cover w-full h-full">
+    {{-- Mobile Menu --}}
+    <div id="mobile-menu"
+        class="hidden md:hidden absolute top-full left-0 right-0 bg-gray-900 border-t border-white/10 shadow-2xl z-50 overflow-hidden transition-all duration-300 max-h-0">
+        <div class="px-4 py-6 space-y-2">
+            <a href="{{ route('home') }}" class="block px-4 py-3 rounded-xl text-base font-medium transition-all duration-300
+                      {{ Route::currentRouteName() == 'home'
+    ? 'text-amber-400 bg-amber-400/10'
+    : 'text-gray-300 hover:text-amber-400 hover:bg-white/5' }}">
+                {{ __('Home') }}
+            </a>
+            <a href="{{ route('DayTours.index', ['type' => 'dayTours']) }}" class="block px-4 py-3 rounded-xl text-base font-medium transition-all duration-300
+                      {{ Route::currentRouteName() == 'DayTours.index'
+    ? 'text-amber-400 bg-amber-400/10'
+    : 'text-gray-300 hover:text-amber-400 hover:bg-white/5' }}">
+                {{ __('Day Tours') }}
+            </a>
+            <a href="{{ route('TourPackages.index', ['type' => 'tourPackages']) }}" class="block px-4 py-3 rounded-xl text-base font-medium transition-all duration-300
+                      {{ Route::currentRouteName() == 'TourPackages.index'
+    ? 'text-amber-400 bg-amber-400/10'
+    : 'text-gray-300 hover:text-amber-400 hover:bg-white/5' }}">
+                {{ __('Tour Packages') }}
+            </a>
+            <a href="{{ route('Blog.index') }}" class="block px-4 py-3 rounded-xl text-base font-medium transition-all duration-300
+                      {{ Route::currentRouteName() == 'Blog.index'
+    ? 'text-amber-400 bg-amber-400/10'
+    : 'text-gray-300 hover:text-amber-400 hover:bg-white/5' }}">
+                {{ __('Blog') }}
+            </a>
+            <a href="{{ route('Contact.index') }}" class="block px-4 py-3 rounded-xl text-base font-medium transition-all duration-300
+                      {{ Route::currentRouteName() == 'Contact.index'
+    ? 'text-amber-400 bg-amber-400/10'
+    : 'text-gray-300 hover:text-amber-400 hover:bg-white/5' }}">
+                {{ __('Contact') }}
+            </a>
+            <a href="{{ route('about') }}" class="block px-4 py-3 rounded-xl text-base font-medium transition-all duration-300
+                      {{ Route::currentRouteName() == 'about'
+    ? 'text-amber-400 bg-amber-400/10'
+    : 'text-gray-300 hover:text-amber-400 hover:bg-white/5' }}">
+                {{ __('About Us') }}
+            </a>
+        </div>
     </div>
+</nav>
 
-    <!--PC NavBar Or Menu-->
-    <div class="hidden md:flex items-center gap-7  font-medium text-lg ">
-        <div class="nav_anch_div">
-            <a href="{{route('home')}}" class="nav_anch_p active:text-main  @if(Route::currentRouteName() == 'home') text-bg-main @endif" ><p >
-                {{__('Home')}}</p></a>
-        </div>
-        <div class="nav_anch_div">
-            <a href="{{route('DayTours.index',['type' => 'dayTours'])}}"  class="nav_anch_p @if(Route::currentRouteName() == 'DayTours.index') text-bg-main @endif">
-                <p >{{__('Day Tours')}}</p></a>
-        </div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const button = document.getElementById('mobile-menu-button');
+        const menu = document.getElementById('mobile-menu');
+        const hamburgerIcon = document.getElementById('hamburger-icon');
+        const closeIcon = document.getElementById('close-icon');
+        let isOpen = false;
 
-        <div class="nav_anch_div">
-            <a href="{{route('TourPackages.index',['type' => 'tourPackages'])}}" class="nav_anch_p @if(Route::currentRouteName() == 'TourPackages.index') text-bg-main @endif ">
-                <p >{{__('Tour Packages')}}</p></a>
+        button.addEventListener('click', function () {
+            isOpen = !isOpen;
 
-        </div>
-{{--        <div class="nav_anch_div">--}}
-{{--            <a href="{{route('Transfer.index')}}" class="nav_anch_p @if(Route::currentRouteName() == 'Transfer.index') text-bg-main @endif "><p >TRANSFER SERVICES</p></a>--}}
-{{--        </div>--}}
-        <div class="nav_anch_div">
-            <a href="{{route('Blog.index')}}" class="nav_anch_p @if(Route::currentRouteName() == 'Blog.index') text-bg-main @endif">
-                <p >{{__('Blog')}}</p></a>
-        </div>
-
-        <div class="nav_anch_div">
-            <a href="{{route('Contact.index')}}" class="nav_anch_p @if(Route::currentRouteName() == 'Contact.index') text-bg-main @endif">
-                <p>{{__('Contact')}}</p></a>
-        </div>
-
-        <div class="nav_anch_div">
-            <a href="{{route('about')}}" class="nav_anch_p @if(Route::currentRouteName() == 'about') text-bg-main @endif">
-                <p>{{__('About Us')}}</p></a>
-        </div>
-
-        </div>
-    <!--End of PC NavBar Or Menu-->
-      <!-- Mobile Menu -->
-    <!--hamburger button-->
-    <div class="md:hidden z-20">
-      <button id="menu-btn" type="button" class="hamburger md:hidden focus:outline-none ">
-          <span class="hamburger-top"></span>
-          <span class="hamburger-middle"></span>
-          <span class="hamburger-bottom"></span>
-      </button>
-  </div>
-</div>
-<div id="menu" class="absolute z-10 bottom-0 w-screen hidden  ">
-    <!-- Text overlay -->
-    <ul
-        class=" flex flex-col font-bold text-sm  lg:hidden   tracking-wide gap-2 p-3
-        bg-black">
-        <a href="{{route('home')}}" class="nav_anch_p">{{__('Home')}}</a>
-        <p class="border-b border-gray-300 "></p>
-        <a href="{{route('DayTours.index',['type' => 'dayTours'])}}" class="nav_anch_p">{{__('Day Tours')}}</a>
-        <p class="border-b border-gray-300 "></p>
-        <a href="{{route('TourPackages.index',['type' => 'tourPackages'])}}" class="nav_anch_p">{{__('Tour Packages')}}</a>
-        <p class="border-b border-gray-300 "></p>
-{{--        <a href="{{route('Transfer.index')}}" class="nav_anch_p">{{__('Transfers Service')}}</a>--}}
-{{--        <p class="border-b border-gray-300 "></p>--}}
-        <a href="{{route('Contact.index')}}" class="nav_anch_p">{{__('Contact')}}</a>
-        <p class="border-b border-gray-300 "></p>
-        <a href="{{route('Blog.index')}}" class="nav_anch_p">{{__('Blog')}}</a>
-        <p class="border-b border-gray-300 "></p>
-        <a href="{{route('about')}}" class="nav_anch_p">{{__('About')}}</a>
-    </ul>
-</div>
+            if (isOpen) {
+                menu.classList.remove('hidden');
+                // Use a small timeout to allow the transition to trigger
+                setTimeout(() => {
+                    menu.style.maxHeight = '500px'; // Approximation for menu height
+                }, 10);
+                hamburgerIcon.classList.add('hidden');
+                closeIcon.classList.remove('hidden');
+            } else {
+                menu.style.maxHeight = '0px';
+                hamburgerIcon.classList.remove('hidden');
+                closeIcon.classList.add('hidden');
+                // Hide after transition
+                setTimeout(() => {
+                    if (!isOpen) menu.classList.add('hidden');
+                }, 300);
+            }
+        });
+    });
+</script>

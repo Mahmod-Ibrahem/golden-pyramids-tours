@@ -47,7 +47,6 @@
         </div>
     </section>
     @component('HomeView.Faq',['faqs' => $faqs])@endcomponent
-
 @endsection
 
 

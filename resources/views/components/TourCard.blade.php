@@ -1,19 +1,21 @@
-<div class="flex flex-col items-center w-[380px] mx-3 bg-white rounded-xl overflow-hidden border relative">
+<div class="flex flex-col items-center mx-3 bg-white rounded-xl overflow-hidden border relative">
     <div class=" w-full h-full">
-        <a href="{{ route($tour["group"].'.Tour', ['Category' => $tour['category']['slug'],'Tour' => $tour['slug']]) }}">
+        <a
+            href="{{ route($tour["group"] . '.Tour', ['Category' => $tour['category']['slug'], 'Tour' => $tour['slug']]) }}">
             <div class="w-full h-60 overflow-hidden hover:cursor-pointer">
-                <img src="{{$image}}"
-                     class="w-full h-full object-cover  hover:scale-110 transition-all duration-[0.5s]"
-                     alt="Tour Card"/>
+                <img src="{{$image}}" class="w-full h-full object-cover  hover:scale-110 transition-all duration-[0.5s]"
+                    alt="Tour Card" />
             </div>
         </a>
     </div>
     <div class="flex flex-col items-center p-4 w-full h-full ">
-        <a class="mt-[6px] mb-3 text-[18px] font-bold text-bg-main hover:cursor-pointer hover:text-main transition-all duration-1000 w-full line-clamp-2 min-h-[50px]">
+        <a
+            class="mt-[6px] mb-3 text-[18px] font-bold text-bg-main hover:cursor-pointer hover:text-main transition-all duration-1000 w-full line-clamp-2 min-h-[50px]">
             {{$tour['title']}}
         </a>
 
-        <p class="text-[14px] text-black border-b border-black/10 w-full line-clamp-5 leading-6 min-h-[120px] whitespace-normal">
+        <p
+            class="text-[14px] text-black border-b border-black/10 w-full line-clamp-5 leading-6 min-h-[120px] whitespace-normal">
             {{$tour['description']}}
         </p>
 
@@ -45,14 +47,13 @@
                         d="M256.48 27.465a105.71 105.71 0 0 0-13.559.872c51.583 6.667 91.562 50.836 91.562 104.162 0 35.826-17.01 74.3-50.556 114.322-15.845 18.908-31.54 33.467-41.005 41.67 5.254 4.552 8.596 7.154 8.96 7.436 1.354 1.047 2.976 1.57 4.6 1.57s3.245-.523 4.6-1.57c1.022-.79 25.327-19.702 49.966-49.105 33.547-40.032 50.556-78.495 50.556-114.322-.002-57.916-47.16-105.034-105.122-105.034z"
                         fill="#e7343f"></path>
                     <path d="M259.078 483.874l45.285-20.316L256 413.507v71.026a7.5 7.5 0 0 0 3.078-.659z"
-                          fill="#ffdb56"></path>
+                        fill="#ffdb56"></path>
                     <path
                         d="M471.654 254.074c-.4-2.212-1.773-4.128-3.74-5.22l-7.97-4.433-91.827 20.477 133.656 155.12-30.12-165.944zM256 484.533v-7.508l-115.022-174.68-9.837 126.895 121.78 54.634a7.53 7.53 0 0 0 3.078.658z"
                         fill="#1ea4e9"></path>
                 </svg>
-                <span
-                    class="text-[14px] text-Primary font-semibold">{{$tour['duration']}}
-                    </span>
+                <span class="text-[14px] text-Primary font-semibold">{{$tour['duration']}}
+                </span>
             </div>
             <div class="flex gap-2 items-center">
                 <img src="{{ asset('Images/Icons/Price.png') }}" alt="Views" class="w-[24px] h-[24px]">
@@ -65,8 +66,8 @@
 
         </div>
         <div class="flex items-center py-2">
-            <a href="{{ route($tour["group"].'.Tour', ['Category' => $tour['category']['slug'],'Tour' => $tour['slug']]) }}"
-               class="main_button px-12 py-3 uppercase bg-bg-main shadow-[0px_5px_0px_0px_rgba(0,0,0,0.25)] shadow-yellow-800 hover:shadow-none hover:translate-y-[5px] transition-all
+            <a href="{{ route($tour["group"] . '.Tour', ['Category' => $tour['category']['slug'], 'Tour' => $tour['slug']]) }}"
+                class="main_button px-12 py-3 uppercase bg-bg-main shadow-[0px_5px_0px_0px_rgba(0,0,0,0.25)] shadow-yellow-800 hover:shadow-none hover:translate-y-[5px] transition-all
                duration-1000 text-secondary
              ">{{__('Explore')}}</a>
         </div>
